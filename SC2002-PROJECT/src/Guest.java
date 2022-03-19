@@ -1,5 +1,8 @@
 import java.util.*;
 public class Guest {
+
+	//testing to see if this updates on github
+	//2nd test to see if it works
 	
 	private String name;
 	private String creditCardName;
