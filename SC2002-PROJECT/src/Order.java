@@ -1,6 +1,6 @@
 
 public class Order {
-	public enum StatusOfOrder{Confirmed, Preparing, Delivered}
+	public enum StatusOfOrder{CONFIRMED, PREPARING, DELIVERED}
 	public String date;
 	public int time;
 	public String remarks;
