@@ -1,3 +1,4 @@
+package classes;
 
 public class Reservation {
 	public enum StatusOfReservation{CONFIRMED,IN_WAITLSIT,CHECKED_IN,EXPIRED}

@@ -1,3 +1,4 @@
+package classes;
 
 public class Order {
 	public enum StatusOfOrder{CONFIRMED, PREPARING, DELIVERED}
