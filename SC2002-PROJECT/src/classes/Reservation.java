@@ -1,22 +1,19 @@
 package classes;
+import java.text.DateFormat;
 
 public class Reservation {
-	public enum StatusOfReservation{CONFIRMED,IN_WAITLSIT,CHECKED_IN,EXPIRED}
-	public double reservationCode;
-	public Guest guestDetails; // Assuming one guest to a reservation
-	public Room[] roomInformation; // For more than one room a reservation
-	public String billingInformation; // For cash or credit card
-	public String checkInDate;
-	public String checkOutDate;
-	public int adultCount;
-	public int childrenCount;
-	public StatusOfReservation reservationStatus;
-	public int numberOfRooms;
+	public enum StatusOfReservation{CONFIRMED,IN_WAITLIST,CHECKED_IN,EXPIRED}
+	private double reservationCode;
+	private Guest guestDetails; // Assuming one guest to a reservation (the guestdetails will be the object name)
+	private String billingInformation; // For cash or credit card
+	private String checkInDate;
+	private String checkOutDate;
+	private int adultCount;
+	private int childrenCount;
+	private StatusOfReservation reservationStatus;
+	private int numberOfRooms;
 	
-	public Reservation()
-	{
-		
-	}
+
 	
 
 }
