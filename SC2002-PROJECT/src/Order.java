@@ -1,9 +1,6 @@
-enum StatusOfOrder{
-	Confirmed,
-	Preparing,
-	Delivered
-}
+
 public class Order {
+	public enum StatusOfOrder{Confirmed, Preparing, Delivered}
 	public String date;
 	public int time;
 	public String remarks;
