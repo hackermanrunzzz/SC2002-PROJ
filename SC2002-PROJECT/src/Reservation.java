@@ -1,10 +1,6 @@
-enum StatusOfReservation{
-	Confirmed,
-	In_Waitlist,
-	Checked_In,
-	Expired
-}
+
 public class Reservation {
+	public enum StatusOfReservation{CONFIRMED,IN_WAITLSIT,CHECKED_IN,EXPIRED}
 	public double reservationCode;
 	public Guest guestDetails; // Assuming one guest to a reservation
 	public Room[] roomInformation; // For more than one room a reservation
