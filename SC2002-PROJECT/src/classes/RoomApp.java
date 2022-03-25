@@ -9,7 +9,7 @@ import classes.Room.TypeOfRoom;
 public class RoomApp {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		//testing to see if my eclipse works -darrenchoo
 
 		int i;
 		ArrayList<Room> rooms = new ArrayList<Room>();
