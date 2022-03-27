@@ -14,16 +14,33 @@ public class RoomManager {
     	this.rooms = rooms;
     }
     
-    
-    public void DisplayRoom(){
-        for (int i = 0; i < rooms.size(); i++) {
-          System.out.printf("room number: %s, room type: %s, bed type: %s, status: %s \n", rooms.get(i).getRoomNumber(), rooms.get(i).getRoomType(), rooms.get(i).getBedType(), rooms.get(i).getRoomStatus() );
-        }
-      }
-    
     public void setRooms(ArrayList<Room> rooms) {
         RoomManager.rooms = rooms;
     }
+    
+    
+    public void displayRoom(){
+        for (int i = 0; i < rooms.size(); i++) {
+          System.out.printf("room number: %s, room type: %s, bed type: %s, status: %s \n", rooms.get(i).getRoomNumber(), rooms.get(i).getRoomType(), rooms.get(i).getBedType(), rooms.get(i).getRoomStatus() );
+        }
+    }
+    
+    public void setToMaintenance(String roomNumber){
+        for(Room r: rooms){
+            if(r.getRoomNumber() == roomNumber) {
+            	r.setRoomStatus(Room.StatusOfRoom.UNDER_MAINTENANCE);
+            }
+        }
+    }
+    
+    public void setToVacant(String roomNumber){
+        for(Room r: rooms){
+            if(r.getRoomNumber() == roomNumber) {
+            	r.setRoomStatus(Room.StatusOfRoom.VACANT);
+            }
+        }
+    }
+    
     
 
 

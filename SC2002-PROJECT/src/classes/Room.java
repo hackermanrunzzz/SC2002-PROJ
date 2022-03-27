@@ -65,7 +65,7 @@ public class Room {
 		return rate;
 	}
 
-	public void printRoomInfo(){
-		System.out.println("Room " + this.getRoomNumber() + " is " + this.getRoomStatus());
-	}
+//	public void printRoomInfo(){
+//		System.out.println("Room " + this.getRoomNumber() + " is " + this.getRoomStatus());
+//	}
 }
