@@ -17,7 +17,7 @@ public class RoomManager {
     
     public void DisplayRoom(){
         for (int i = 0; i < rooms.size(); i++) {
-          System.out.printf("room number:%s, room type: %s, bed type: %s, status: %s \n", rooms.get(i).getRoomNumber(), rooms.get(i).getRoomType(), rooms.get(i).getBedType(), rooms.get(i).getRoomStatus() );
+          System.out.printf("room number: %s, room type: %s, bed type: %s, status: %s \n", rooms.get(i).getRoomNumber(), rooms.get(i).getRoomType(), rooms.get(i).getBedType(), rooms.get(i).getRoomStatus() );
         }
       }
     
