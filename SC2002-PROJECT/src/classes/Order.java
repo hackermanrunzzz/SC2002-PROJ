@@ -8,6 +8,8 @@ public class Order {
 	public StatusOfOrder orderStatus;
 	public OrderItem[] orderItems;
 	public double totalPrice;
+
+	
 	
 
 }
