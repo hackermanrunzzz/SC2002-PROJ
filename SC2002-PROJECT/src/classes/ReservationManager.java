@@ -15,7 +15,7 @@ public class ReservationManager {
 	private static ArrayList<Room> rooms = new ArrayList<Room>();
 	
 	public ReservationManager(ArrayList<Reservation> reservations) {
-        this.reservations = reservations;
+        ReservationManager.reservations = reservations;
     }
 	
 	public void setReservations(ArrayList<Reservation> reservations) {

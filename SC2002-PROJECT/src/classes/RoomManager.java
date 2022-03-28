@@ -11,7 +11,7 @@ public class RoomManager {
     
     
     public RoomManager(ArrayList<Room> rooms) {
-    	this.rooms = rooms;
+    	RoomManager.rooms = rooms; // Made a change here cos the static reference wasn't accepted
     }
     
     public void setRooms(ArrayList<Room> rooms) {
