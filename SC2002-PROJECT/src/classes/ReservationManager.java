@@ -15,11 +15,11 @@ public class ReservationManager {
 	private static ArrayList<Room> rooms = new ArrayList<Room>();
 	
 	public ReservationManager(ArrayList<Reservation> reservations) {
-        ReservationManager.reservations = reservations;
+        rooms.reservations = reservations;
     }
 	
 	public void setReservations(ArrayList<Reservation> reservations) {
-        ReservationManager.reservations = reservations;
+        rooms.reservations = reservations;
 	}
 	
 //	public void displayReservation() {
