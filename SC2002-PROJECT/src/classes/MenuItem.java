@@ -157,7 +157,7 @@ public class MenuItem {
 		System.out.println("----------Sides----------");
 		for (int i = 15; i < 20; i++)
 		{
-			System.out.println(temp.get(i).name + "\n" + temp.get(i).options + "\n" + temp.get(i).addOns + " - " + temp.get(i).price);
+			System.out.println(temp.get(i).name + "--" + temp.get(i).options + "--" + temp.get(i).addOns + " - " + temp.get(i).price);
 		}
 		System.out.print("\n\n");
 		return;
