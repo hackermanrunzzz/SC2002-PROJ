@@ -3,8 +3,6 @@ package classes;
 
 import java.util.*;
 
-import org.w3c.dom.NameList;
-
 public class MenuItem {
 	private String name;
 	private String options; // These change from like types of food to spiciness level and stuff
