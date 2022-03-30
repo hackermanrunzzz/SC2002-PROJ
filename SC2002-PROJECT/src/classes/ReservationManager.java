@@ -30,7 +30,7 @@ public class ReservationManager {
 			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount,
 			StatusOfReservation reservationStatus, int numberOfDays){
 
-        boolean status = true;
+       
         double reservationID = 10000;
         if(reservations.size() > 0){
         	reservationID = reservations.get(reservations.size()-1).getReservationID()+1;
