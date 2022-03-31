@@ -27,7 +27,7 @@ public class MenuApp {
 			menu.add(food5);
 
 		//Beverage
-			MenuItem food6 = new MenuItem("Plain Water", "test", TypeOfMenuItem.BEVERAGE , 2.99);
+			MenuItem food6 = new MenuItem("Plain Water", "Chilled", TypeOfMenuItem.BEVERAGE , 2.99);
 			menu.add(food6);
 
 			MenuItem food7 = new MenuItem("Coca-Cola", "Chilled", TypeOfMenuItem.BEVERAGE, 4.99);
@@ -62,13 +62,9 @@ public class MenuApp {
 			
 			
 			
-			MenuItem foodadd = new MenuItem("coke", "test", TypeOfMenuItem.BEVERAGE , 2.99);
-			
-			mm.setMenu(menu);
-			mm.addMenuItem();
-			
-			mm.printMenu();
-			
+//			MenuItem foodadd = new MenuItem("coke", "test", TypeOfMenuItem.BEVERAGE , 2.99);
+//			
+//		
 	}
 	
 	
