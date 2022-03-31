@@ -37,7 +37,7 @@ public class MenuManager {
             System.out.println("This food is already on the menu!");
             return false;
         }
-        this.menu.add(menuItem);
+        MenuManager.menu.add(menuItem);
         return true;
     }
     
@@ -109,7 +109,7 @@ public class MenuManager {
     	j = sc.nextInt();
     	
     	if(j==1) {
-    		this.menu.remove(i-1);
+    		MenuManager.menu.remove(i-1);
     	}
     	else {
     		return false;
@@ -118,8 +118,8 @@ public class MenuManager {
     }
     
     public int findFood(String menuItemName) {
-        for(int i=0; i<this.menu.size(); i++) {
-        	MenuItem menuItem = this.menu.get(i);
+        for(int i=0; i<MenuManager.menu.size(); i++) {
+        	MenuItem menuItem = MenuManager.menu.get(i);
             if(menuItem.getName().equals(menuItemName)) {
                 return i;
             }
@@ -164,8 +164,8 @@ public class MenuManager {
     
     public void printMain() {
         System.out.println("==================================== MAIN ======================================");
-        for (int i = 0; i < this.menu.size(); i++) {
-            if (this.menu.get(i).getFoodType().equals(TypeOfMenuItem.MAIN)) {
+        for (int i = 0; i < MenuManager.menu.size(); i++) {
+            if (MenuManager.menu.get(i).getFoodType().equals(TypeOfMenuItem.MAIN)) {
                 System.out.print((i + 1) + ". ");
                 printMenuItem(i);
                 System.out.println("--------------------------------------------------------------------------------");
@@ -175,8 +175,8 @@ public class MenuManager {
 
     public void printBeverage() {
         System.out.println("================================== BEVERAGE ====================================");
-        for (int i = 0; i < this.menu.size(); i++) {
-        	if (this.menu.get(i).getFoodType().equals(TypeOfMenuItem.BEVERAGE)) {
+        for (int i = 0; i < MenuManager.menu.size(); i++) {
+        	if (MenuManager.menu.get(i).getFoodType().equals(TypeOfMenuItem.BEVERAGE)) {
                 System.out.print((i + 1) + ". ");
                 printMenuItem(i);
                 System.out.println("--------------------------------------------------------------------------------");
@@ -186,8 +186,8 @@ public class MenuManager {
 
     public void printDessert() {
         System.out.println("=================================== DESSERT ====================================");
-        for (int i = 0; i < this.menu.size(); i++) {
-        	if (this.menu.get(i).getFoodType().equals(TypeOfMenuItem.DESSERT)) {
+        for (int i = 0; i < MenuManager.menu.size(); i++) {
+        	if (MenuManager.menu.get(i).getFoodType().equals(TypeOfMenuItem.DESSERT)) {
                 System.out.print((i + 1) + ". ");
                 printMenuItem(i);
                 System.out.println("--------------------------------------------------------------------------------");

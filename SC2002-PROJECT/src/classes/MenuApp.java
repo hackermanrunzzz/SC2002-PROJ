@@ -30,7 +30,17 @@ public class MenuApp {
 			MenuItem food6 = new MenuItem("Plain Water", "test", TypeOfMenuItem.BEVERAGE , 2.99);
 			menu.add(food6);
 
+			MenuItem food7 = new MenuItem("Coca-Cola", "Chilled", TypeOfMenuItem.BEVERAGE, 4.99);
+			menu.add(food7);
 
+			MenuItem food8 = new MenuItem("Lemon Seltzer", "Freshly Squeezed Lemon, Stirred With Hard Seltzer [ Alcohol-Content Present ]", TypeOfMenuItem.BEVERAGE, 6.99);
+			menu.add(food8);
+
+			MenuItem food9 = new MenuItem("Sunset Sling", "Mocktail Of Freshly Picked and Squeezed Tropical Fruits, Mango, Apple, Pineapple, and Banana", TypeOfMenuItem.BEVERAGE, 8.99);
+			menu.add(food9);
+
+			MenuItem food10 = new MenuItem("Iced Lemon Tea", "Freshly Squeezed Lemon Juice, Stirred With Iced Plain Tea", TypeOfMenuItem.BEVERAGE, 6.99);
+			menu.add(food10);
 
 		//Desserts
 
@@ -52,12 +62,12 @@ public class MenuApp {
 			
 			
 			
-//			MenuItem foodadd = new MenuItem("coke", "test", TypeOfMenuItem.BEVERAGE , 2.99);
-//			
-//			mm.setMenu(menu);
-//			mm.addMenu(foodadd);
-//			
-//			mm.printMenu();
+			MenuItem foodadd = new MenuItem("coke", "test", TypeOfMenuItem.BEVERAGE , 2.99);
+			
+			mm.setMenu(menu);
+			mm.addMenuItem();
+			
+			mm.printMenu();
 			
 	}
 	
