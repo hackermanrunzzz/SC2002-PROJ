@@ -260,6 +260,50 @@ public class MenuManager {
     }
     
     public void updateMenuItemUI() {
-    	System.out.println();
+    	 System.out.println("========================================");
+         System.out.println("Enter menu item index to be updated :");
+         int index = sc.nextInt();
+         sc.nextLine();
+         if(index==-1) return;
+         try{
+             menu.get(index-1);
+         }
+         catch (IndexOutOfBoundsException e) {
+             System.out.println("Menu Item index is not valid.");
+             return;
+         }
+
+         int option;
+         do{
+             System.out.println("========================================");
+             System.out.println("Updating Menu Item :");
+             printMenuItem(index - 1);
+             System.out.println("========================================");
+             System.out.println("(1) Update Name");
+             System.out.println("(2) Update Description");
+             System.out.println("(3) Update Type");
+             System.out.println("(4) Update Price");
+             System.out.println(("(5) Exit"));
+             System.out.println("========================================");
+
+             option = sc.nextInt();
+             sc.nextLine();
+
+             switch(option){
+                 case 1:
+                	 updateMenuItemName(menu.get(index-1));
+                     break;
+                 case 2:
+                	 updateMenuItemDescription(menu.get(index-1));
+                     break;
+                 case 3:
+                	 updateMenuItemType(menu.get(index-1));
+                     break;
+                 case 4:
+                	 updateMenuItemPrice(menu.get(index-1));
+                     break;
+             }
+
+         } while (option<5);
     }
 }

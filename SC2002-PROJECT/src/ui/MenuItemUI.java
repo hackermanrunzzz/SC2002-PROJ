@@ -45,6 +45,7 @@ public class MenuItemUI {
                 	mm.removeMenu();
                     break;
                 case 4:
+                	mm.updateMenuItemUI();
                     break;
               
 
