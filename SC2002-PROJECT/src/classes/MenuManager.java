@@ -20,13 +20,8 @@ public class MenuManager {
     }
 	
 	
-	
-	
-	
-	
 	Scanner sc = new Scanner(System.in);
 
-	
 	
 
 	public void printMenuItem(int i)
@@ -37,7 +32,7 @@ public class MenuManager {
               menu.get(i).getPrice());
 
     }
-    public boolean addMenu(MenuItem menuItem){
+    public boolean addMenuBoolean(MenuItem menuItem){
         if(findFood(menuItem.getName())>=0){
             System.out.println("This food is already on the menu!");
             return false;
@@ -46,8 +41,79 @@ public class MenuManager {
         return true;
     }
     
-    public boolean removeMenu(int i){
-        this.menu.remove(i-1);
+	public void addMenuItem() {
+			
+		Scanner sc = new Scanner(System.in);
+		MenuItem menuItem = new MenuItem("dummy", "dummy",TypeOfMenuItem.MAIN, 0);
+		boolean i;
+		
+        System.out.println("========================================");
+        System.out.println("Enter name of new menu item :");
+        String name = sc.nextLine();
+
+        System.out.println("Enter description of new menu item : ");
+        String description = sc.nextLine();
+        System.out.println("Enter type of new menu item (MAIN/ BEVERAGE / DESSERT) :");
+        
+        String type = sc.nextLine();
+        while(!type.equals("MAIN") && !type.equals("BEVERAGE") && !type.equals("DESSERT")  ){
+            System.out.println("Insert New Type (MAIN/ BEVERAGE/ DESSERT) :");
+            type=sc.next();
+        }
+
+
+        System.out.println("Enter price of new menu item :");
+        double price;
+        do {
+            System.out.println("Please enter a positive number!");
+            while (!sc.hasNextDouble()) {
+                System.out.println("That's not a number!");
+                sc.next(); // this is important!
+            }
+            price = sc.nextDouble();
+        } while (price <= 0);
+
+
+        sc.nextLine();
+        
+        menuItem.setName(name);
+        menuItem.setDescription(description);
+        menuItem.setPrice(price);
+        
+        if(type.equals("MAIN")) {
+        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.MAIN);
+        }
+        else if(type.equals("BEVERAGE")) {
+        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.BEVERAGE);
+        }
+        else if(type.equals("DESSERT")) {
+        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.DESSERT);
+        }
+       
+        
+        i = addMenuBoolean(menuItem);
+        if(i){
+            System.out.println("----------------------------------------");
+            System.out.println("Menu item added successfully.");}
+        else  return;
+	}
+    
+    public boolean removeMenu(){
+    	int i,j;
+    	System.out.println("Enter the index of the food you want to remove: ");
+    	i = sc.nextInt();
+    	System.out.println("Are you sure you want to remove the following:");
+    	printMenuItem(i-1);
+    	
+    	System.out.println("Press (1) to confirm, Press any other number to cancel");
+    	j = sc.nextInt();
+    	
+    	if(j==1) {
+    		this.menu.remove(i-1);
+    	}
+    	else {
+    		return false;
+    	}
         return true;
     }
     
@@ -63,28 +129,28 @@ public class MenuManager {
 
     
     
-    public void printShortFoodMenu() {
-        System.out.println("================================================================================");
-        System.out.println("                          4 Guys Restaurant Menu");
-        System.out.println("================================= FOOD MENU ====================================");
-        for (int i = 0; i < this.menu.size(); i++) {
-            System.out.println((i + 1) + "." +
-                    this.menu.get(i).getName());
-
-
-        }
-        System.out.println("================================================================================");
-    }
-    public void printShortMenu() {
-        System.out.println("================================================================================");
-        System.out.println("                          4 Guys Restaurant Menu");
-        System.out.println("================================= FOOD MENU ====================================");
-        for (int i = 0; i < this.menu.size(); i++) {
-            System.out.println((i + 1) + ". " +
-                    this.menu.get(i).getName() + "  " + this.menu.get(i).getPrice());
-
-        }
-    }
+//    public void printShortFoodMenu() {
+//        System.out.println("================================================================================");
+//        System.out.println("                          4 Guys Restaurant Menu");
+//        System.out.println("================================= FOOD MENU ====================================");
+//        for (int i = 0; i < this.menu.size(); i++) {
+//            System.out.println((i + 1) + "." +
+//                    this.menu.get(i).getName());
+//
+//
+//        }
+//        System.out.println("================================================================================");
+//    }
+//    public void printShortMenu() {
+//        System.out.println("================================================================================");
+//        System.out.println("                          4 Guys Restaurant Menu");
+//        System.out.println("================================= FOOD MENU ====================================");
+//        for (int i = 0; i < this.menu.size(); i++) {
+//            System.out.println((i + 1) + ". " +
+//                    this.menu.get(i).getName() + "  " + this.menu.get(i).getPrice());
+//
+//        }
+//    }
 
     public void printMenu() {
         System.out.println("================================================================================");
@@ -128,7 +194,72 @@ public class MenuManager {
             }
         }
     }
-
-
-
+    
+    public void updateMenuItemName(MenuItem menuItem) {
+    	
+    	System.out.println("[Update Name]");
+        String current =menuItem.getName();
+        System.out.println("Current Name : " + current);
+        System.out.print("Insert New Name : ");
+        String name = sc.nextLine();
+        
+        ////condition if the change is the same ask for change again////
+        if(current.equals(name)){
+            System.out.println("No change in name, please key in again");
+            System.out.print("Insert New Name : ");
+            name = sc.nextLine();
+        }
+        menuItem.setName(name);
+    }
+    
+    
+    public void updateMenuItemDescription(MenuItem menuItem) {
+    	System.out.println("[Update Description]" );
+        System.out.println("Current Description : " + menuItem.getDescription());
+        System.out.print("Insert New Description : ");
+        String description = sc.nextLine();
+        menuItem.setDescription(description);
+    }
+    
+    public void updateMenuItemType(MenuItem menuItem) {
+    	System.out.println("[Update Type]");
+        System.out.println("Current Type : " + menuItem.getFoodType());
+        System.out.print("Insert New Type (MAIN/BEVERAGE/DESSERT) : ");
+        String type = sc.nextLine();
+        while(!type.equals("MAIN") && !type.equals("BEVERAGE") && !type.equals("DESSERT")  ){
+            System.out.println("Insert New Type (Main/ Beverage/ Dessert) :");
+            type=sc.next();
+        }
+        if(type.equals("MAIN")) {
+        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.MAIN);
+        }
+        else if(type.equals("BEVERAGE")) {
+        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.BEVERAGE);
+        }
+        else if(type.equals("DESSERT")) {
+        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.DESSERT);
+        }
+    }
+    
+    public void updateMenuItemPrice(MenuItem menuItem) {
+    	System.out.println("[Update Price] ");
+        System.out.println("Current Price : " + menuItem.getPrice());
+        System.out.print("Insert New Price : ");
+        double price ;
+        //condition to update the correct price////
+        do {
+            System.out.println("Please enter a new positive number!");
+            while (!sc.hasNextDouble()) {
+                System.out.println("That's not a number!");
+                sc.next();
+            }
+            price = sc.nextDouble();
+        } while (price <= 0 || price== menuItem.getPrice());
+        sc.nextLine();
+        menuItem.setPrice(price);
+    }
+    
+    public void updateMenuItemUI() {
+    	System.out.println();
+    }
 }
