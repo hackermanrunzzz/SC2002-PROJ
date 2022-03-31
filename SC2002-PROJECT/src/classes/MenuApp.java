@@ -27,20 +27,20 @@ public class MenuApp {
 
 		//Lunch
 
-			MenuItem six = new MenuItem("Seafood Nasi Goreng",  "Sambal Fried Fish, Prawn Satay, Fried Egg, FIsh Cracker and Pickled Achar", TypeOfMenuItem.MAIN , 20.00);
-			menu.add(six);
+			MenuItem food1 = new MenuItem("Seafood Nasi Goreng",  "Sambal Fried Fish, Prawn Satay, Fried Egg, FIsh Cracker and Pickled Achar", TypeOfMenuItem.MAIN , 20.00);
+			menu.add(food1);
 
-			MenuItem seven = new MenuItem("Grass-Fed Angus Sirloin - 250gm", "Toasted Fresh Harvest Vegetable and Roasted Potato", TypeOfMenuItem.MAIN , 42.00);
-			menu.add(seven);
+			MenuItem food2 = new MenuItem("Grass-Fed Angus Sirloin - 250gm", "Toasted Fresh Harvest Vegetable and Roasted Potato", TypeOfMenuItem.MAIN , 42.00);
+			menu.add(food2);
 
-			MenuItem eight = new MenuItem("Seared Chicken - Half",  "Roasted Fresh Harvest Vegetable with Tarragon Sauce", TypeOfMenuItem.MAIN , 28.00);
-			menu.add(eight);
+			MenuItem food3 = new MenuItem("Seared Chicken - Half",  "Roasted Fresh Harvest Vegetable with Tarragon Sauce", TypeOfMenuItem.MAIN , 28.00);
+			menu.add(food3);
 
-			MenuItem nine = new MenuItem("Assorted Butcher's Platter" , "Four Kinds of Homemade Sausages", TypeOfMenuItem.MAIN , 28.00);
-			menu.add(nine);
+			MenuItem food4 = new MenuItem("Assorted Butcher's Platter" , "Four Kinds of Homemade Sausages", TypeOfMenuItem.MAIN , 28.00);
+			menu.add(food4);
 
-			MenuItem ten = new MenuItem("Tandoori Chicken Wrap", "Lime Yogurt Dip and Raita Salad", TypeOfMenuItem.MAIN , 18.00);
-			menu.add(ten);
+			MenuItem food5 = new MenuItem("Tandoori Chicken Wrap", "Lime Yogurt Dip and Raita Salad", TypeOfMenuItem.MAIN , 18.00);
+			menu.add(food5);
 
 		//Dinner
 
