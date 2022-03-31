@@ -23,7 +23,7 @@ public class MenuApp {
 			MenuItem food4 = new MenuItem("Assorted Butcher's Platter" , "Four Kinds of Homemade Sausages", TypeOfMenuItem.MAIN , 28.00);
 			menu.add(food4);
 
-			MenuItem food5 = new MenuItem("Tandoori Chicken Wrap", "Lime Yogurt Dip and Raita Salad", TypeOfMenuItem.MAIN , 18.00);
+			MenuItem food5 = new MenuItem("Tandoori Chicken Wrap", "Shredded Chicken with Lime Yogurt Dip and Raita Salad", TypeOfMenuItem.MAIN , 18.00);
 			menu.add(food5);
 
 		//Beverage
