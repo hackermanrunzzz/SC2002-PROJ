@@ -1,8 +1,10 @@
 package classes;
 
 public class RoomService {
-	public Order[] order;
-	public double totalPrice;
+	private Order[] order;
+	private double totalPrice;
+
+	
 	
 	public RoomService()
 	{
@@ -12,6 +14,11 @@ public class RoomService {
 	public void displayMenu()
 	{
 		
+	}
+
+	public double getTotalPrice()
+	{
+		return totalPrice;
 	}
 	
 
