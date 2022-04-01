@@ -44,8 +44,6 @@ public class Order {
 		return remarks;
 	}
 
-	
-
 	public void setTotalPrice(double totalPrice)
 	{
 		this.totalPrice = totalPrice;

@@ -97,6 +97,12 @@ public class MenuManager {
             System.out.println("Menu item added successfully.");}
         else  return;
 	}
+
+    public void addMenuItem(MenuItem temp) // Overloaded Method, in-case you already created a MenuItem Object
+    {
+        menu.add(temp);
+        return;
+    }
     
     public boolean removeMenu(){
     	int i,j;

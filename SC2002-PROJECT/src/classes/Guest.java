@@ -1,6 +1,6 @@
 package classes;
 
-import java.util.*;
+
 public class Guest {
 	
 	private String name;
