@@ -61,12 +61,6 @@ public class MenuApp {
 		menu.add(19,food15);
 
 		//Initial ArrayList size is 20, with options available to add stuff to the menu or remove stuff from the menu
-		
-		 
-		// Below is some sample code we can use to test this class for adding and removing food
-
-		MenuItem foodadd = new MenuItem("coke", "test", TypeOfMenuItem.BEVERAGE , 2.99);
-		mm.addMenuItem(foodadd); // For adding MenuItem
 
 			
 		
