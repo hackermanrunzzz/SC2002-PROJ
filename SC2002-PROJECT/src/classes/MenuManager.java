@@ -104,7 +104,7 @@ public class MenuManager {
         return;
     }
     
-    public boolean removeMenu(){
+    public boolean removeMenuItem(){
     	int i,j;
     	System.out.println("Enter the index of the food you want to remove: ");
     	i = sc.nextInt();
@@ -309,7 +309,8 @@ public class MenuManager {
                 	 updateMenuItemPrice(menu.get(index-1));
                      break;
              }
-
          } while (option<5);
     }
 }
+
+
