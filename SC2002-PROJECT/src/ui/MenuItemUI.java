@@ -42,16 +42,12 @@ public class MenuItemUI {
                 	mm.addMenuItem();
                     break;
                 case 3:
-                	mm.removeMenu();
+                	mm.removeMenuItem();
                     break;
                 case 4:
                 	mm.updateMenuItemUI();
                     break;
-              
-
             }
         } while (option<5);
     }
-	
-	
 }
