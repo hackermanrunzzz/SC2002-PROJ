@@ -116,6 +116,7 @@ public class MenuManager {
     	
     	if(j==1) {
     		MenuManager.menu.remove(i-1);
+    		System.out.println("Food successfully removed.");
     	}
     	else {
     		return false;
