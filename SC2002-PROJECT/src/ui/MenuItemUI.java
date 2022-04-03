@@ -8,7 +8,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 public class MenuItemUI {
-	public static void main (String [] args) {
+	public static void menuOptions() {
 		
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		MenuManager mm = new MenuManager(menu);
@@ -19,8 +19,7 @@ public class MenuItemUI {
 		MenuApp.menuapp();
 		
 		
-	
-		
+
 		do {
             System.out.println("========================================");
             System.out.println("Hi! Please select an option:");
