@@ -23,7 +23,8 @@ public class MenuItemUI {
 		//we will need to change this to initialise
 //		MenuApp.menuapp(); 
 	
-		Initialise.InitialiseMenu(); //each ui has to initialise their respective items!
+		Initialise.InitialiseMenu(); 
+		//each ui has to initialise their respective items!
 		
 
 		do {
