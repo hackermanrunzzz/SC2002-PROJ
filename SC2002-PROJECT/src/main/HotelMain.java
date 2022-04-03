@@ -1,12 +1,14 @@
 package main;
 
 import ui.*;
+//import Initialiser.Initialise;
 import java.util.Scanner;
 
 public class HotelMain {
 	public static void main (String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int option;
+//		Initialise.InitialiseHotel();
 		
 		 System.out.println("================================================================================");
 	     System.out.println("                 Welcome To NTU Hotel");
@@ -31,6 +33,7 @@ public class HotelMain {
                 	MenuItemUI.menuOptions();
                     break;
                 case 2 :
+                	ReservationUI.showReservationOptions();
                     break;
                 case 3 : 
                     break;
