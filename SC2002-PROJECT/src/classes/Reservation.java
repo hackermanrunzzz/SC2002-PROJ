@@ -20,12 +20,11 @@ public class Reservation {
 	
 	
 	
-	
-	
+
 	public Reservation(double reservationID, Guest guestDetails, Room roomDetails, String billingInformation,
 			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount,
 			StatusOfReservation reservationStatus, int numberOfDays) {
-		super();
+		
 		this.reservationID = reservationID;
 		this.guestDetails = guestDetails;
 		this.roomDetails = roomDetails;
@@ -36,12 +35,10 @@ public class Reservation {
 		this.childrenCount = childrenCount;
 		this.reservationStatus = reservationStatus;
 		this.numberOfDays = numberOfDays;
+		
 	}
 
-
-
-
-
+	
 
 
 
@@ -50,24 +47,9 @@ public class Reservation {
 		return reservationID;
 	}
 
-
-
-
-
-
-
-
-
 	public void setReservationID(double reservationID) {
 		this.reservationID = reservationID;
 	}
-
-
-
-
-
-
-
 
 
 	public Guest getGuestDetails() {
@@ -75,217 +57,76 @@ public class Reservation {
 	}
 
 
-
-
-
-
-
-
-
 	public void setGuestDetails(Guest guestDetails) {
 		this.guestDetails = guestDetails;
 	}
-
-
-
-
-
-
-
 
 
 	public Room getRoomDetails() {
 		return roomDetails;
 	}
 
-
-
-
-
-
-
-
-
 	public void setRoomDetails(Room roomDetails) {
 		this.roomDetails = roomDetails;
 	}
-
-
-
-
-
-
-
-
 
 	public String getBillingInformation() {
 		return billingInformation;
 	}
 
-
-
-
-
-
-
-
-
 	public void setBillingInformation(String billingInformation) {
 		this.billingInformation = billingInformation;
 	}
-
-
-
-
-
-
-
-
 
 	public Calendar getCheckInDate() {
 		return checkInDate;
 	}
 
-
-
-
-
-
-
-
-
 	public void setCheckInDate(Calendar checkInDate) {
 		this.checkInDate = checkInDate;
 	}
-
-
-
-
-
-
-
-
-
+	
 	public Calendar getCheckOutDate() {
 		return checkOutDate;
 	}
-
-
-
-
-
-
-
 
 
 	public void setCheckOutDate(Calendar checkOutDate) {
 		this.checkOutDate = checkOutDate;
 	}
 
-
-
-
-
-
-
-
-
 	public int getAdultCount() {
 		return adultCount;
 	}
-
-
-
-
-
-
-
-
 
 	public void setAdultCount(int adultCount) {
 		this.adultCount = adultCount;
 	}
 
-
-
-
-
-
-
-
-
 	public int getChildrenCount() {
 		return childrenCount;
 	}
-
-
-
-
-
-
-
-
 
 	public void setChildrenCount(int childrenCount) {
 		this.childrenCount = childrenCount;
 	}
 
-
-
-
-
-
-
-
-
 	public StatusOfReservation getReservationStatus() {
 		return reservationStatus;
 	}
-
-
-
-
-
-
-
-
 
 	public void setReservationStatus(StatusOfReservation reservationStatus) {
 		this.reservationStatus = reservationStatus;
 	}
 
-
-
-
-
-
-
-
-
 	public int getNumberOfDays() {
 		return numberOfDays;
 	}
 
-
-
-
-
-
-
-
-
 	public void setNumberOfDays(int numberOfDays) {
 		this.numberOfDays = numberOfDays;
 	}
-
-
-
-
-
-
-
-
-
+	
 	public String printReservation() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String strDate = dateFormat.format(this.checkInDate.getTime());
@@ -294,10 +135,5 @@ public class Reservation {
                 +"\nCheck in time: \t\t\t" + strDate + "\nReservation ID: \t\t" + this.reservationID
                 + "\nRoom Number: \t\t\t\t" + this.roomDetails.getRoomNumber() + "\n";
     }
-	
-	
-	
-
-	
 
 }
