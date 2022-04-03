@@ -1,13 +1,16 @@
 package main;
 
 import ui.*;
-import classes.*;
 import java.util.Scanner;
 
 public class HotelMain {
 	public static void main (String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int option;
+		
+		 System.out.println("================================================================================");
+	     System.out.println("                 Welcome To NTU Hotel");
+	     System.out.println("================================================================================");
 		
         do{
             System.out.println("========================================");
