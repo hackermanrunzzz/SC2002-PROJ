@@ -6,8 +6,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 
-import classes.Reservation.StatusOfReservation;
-import initialize.Restaurant;
+import classes.Reservation.*;
 
 public class ReservationManager {
 

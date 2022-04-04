@@ -2,11 +2,15 @@ package ui;
 
 import classes.MenuItem;
 import classes.MenuManager;
-import classes.MenuApp;
+//import classes.MenuApp;
+
 
 import java.util.ArrayList;
 import java.util.Scanner;
 import ui.*;
+
+import Initialiser.Initialise;
+
 
 public class MenuItemUI {
 	public static void menuOptions() {
@@ -17,8 +21,11 @@ public class MenuItemUI {
 		Scanner sc = new Scanner(System.in);
 		int option;
 		
-		MenuApp.menuapp();
-		
+		//we will need to change this to initialise
+//		MenuApp.menuapp(); 
+	
+		Initialise.InitialiseMenu(); 
+		//each ui has to initialise their respective items!
 		
 
 		do {
