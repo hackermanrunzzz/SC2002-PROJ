@@ -6,6 +6,7 @@ import classes.MenuApp;
 
 import java.util.ArrayList;
 import java.util.Scanner;
+import ui.*;
 
 public class MenuItemUI {
 	public static void menuOptions() {
