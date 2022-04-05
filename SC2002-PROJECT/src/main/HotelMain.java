@@ -2,6 +2,7 @@ package main;
 
 import ui.*;
 
+
 //import Initialiser.Initialise;
 
 import java.util.Scanner;
@@ -21,11 +22,12 @@ public class HotelMain {
         do{
             System.out.println("========================================");
             System.out.println("Hello! Please select an option:");
-            System.out.println("(1) Menu");
-            System.out.println("(2) Reservations");
-            System.out.println("(3) Room Service");
-            System.out.println("(4) Payment");
-            System.out.println("(5) Exit Program");
+            System.out.println("(1) Update/search guest's detail by name");
+            System.out.println("(2) Menu Options");
+            System.out.println("(3) Reservations/Room Details");
+            System.out.println("(4) Room Service");
+            System.out.println("(5) Payment");
+            System.out.println("(6) Exit Program");
             System.out.println("========================================");
 
 
@@ -34,20 +36,23 @@ public class HotelMain {
 
             switch(option){
                 case 1 :
-                	MenuItemUI.menuOptions();
+                	GuestUI.guestOptions();
                     break;
                 case 2 :
-                	ReservationUI.showReservationOptions();
+                	MenuItemUI.menuOptions();
                     break;
                 case 3 : 
+                	ReservationUI.showReservationOptions();
                     break;
                 case 4 :
                      break;
+                case 5:
+                	break;
                 default :
                       break;
 
             }
-        } while (option<5);
+        } while (option<6);
 	}
 
 	

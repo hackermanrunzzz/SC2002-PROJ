@@ -5,6 +5,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.Scanner;
 
 import classes.Reservation.*;
 
@@ -22,6 +23,46 @@ public class ReservationManager {
 		ReservationManager.reservations = reservations;
 		
 	}
+	
+	//fix this, include stuff like asking for all the details
+	//this makeReservationUI calls the below makeReservation function
+	public void makeReservationUI(){
+		Scanner sc = new Scanner(System.in);
+        int pax = 0;
+        String custContact = "";
+        
+        
+
+        if(Restaurant.reservationManager.getReservations().size() > 9 ){
+            System.out.println("We are fully booked!");
+            return;
+        }
+
+        System.out.print("Enter amount of pax: ");
+        pax = sc.nextInt();
+        sc.nextLine();
+        if(pax > 10){
+            System.out.println("Sorry, number of pax is not valid");
+            return;
+        }
+            Calendar reservationDate = Restaurant.reservationManager.getValidReservationDateTime();
+            int tableId = Restaurant.tableManager.findReservationTable(reservationDate, pax);
+            if (tableId == -1){
+                return;
+            }else{
+                System.out.print("Enter customer name: ");
+                String custName = sc.nextLine();
+
+                do{
+                    System.out.print("Enter customer phone number: ");
+                    custContact = sc.next();
+                }while(!isValidMobileNo(custContact));
+
+                Restaurant.reservationManager.makeReservation(custName, Integer.parseInt(custContact), pax,reservationDate, tableId);
+            }
+
+        return;
+    }
 	
 	
 	public void makeReservation(Guest guestDetails, Room roomDetails, String billingInformation,
@@ -66,7 +107,9 @@ public class ReservationManager {
                     System.out.println(r.printReservation());
                     return;
                 }
-           }
+            }
+            System.out.println("Reservation ID not found.");
+            
         }
         System.out.println("Reservation can't be found");
     }

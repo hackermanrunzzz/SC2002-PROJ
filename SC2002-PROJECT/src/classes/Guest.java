@@ -4,7 +4,7 @@ package classes;
 public class Guest {
 	
 	private String name;
-	private String creditCardName;
+	private String creditCardName; 
 	private String creditCardNumber;
 	private String address;
 	private String country;
