@@ -1,7 +1,10 @@
 package ui;
 
 import java.util.Calendar;
+import java.util.InputMismatchException;
 import java.util.Scanner;
+
+import initialize.Restaurant;
 
 
 public class ReservationUI {
@@ -38,7 +41,7 @@ public class ReservationUI {
                     
                     break;
                 case 3:
-                    
+                	showReservationsUI();
                     break;
                 case 4:
                     
@@ -88,6 +91,38 @@ public class ReservationUI {
 //
 //        return;
 //    }
+	
+	
+	//implement in case 3
+	private static void showReservationsUI(){
+        int choice;
+        int resId;
+
+        System.out.println("\nDo you want to view, ");
+            System.out.println("(1) All Reservations");
+            System.out.println("(2) Search Reservation");
+            System.out.println("(3) Go back");
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch(choice) {
+                case 1:
+                    Restaurant.reservationManager.showAllReservations();
+                    break;
+                case 2:
+                    try {
+                        int id = Restaurant.reservationManager.showReservationShort();
+                        if(id==0)break;
+                        System.out.print("Enter reservation id: ");
+                        resId = sc.nextInt();
+                        sc.nextLine();
+                        Restaurant.reservationManager.searchReservation(resId);
+                    } catch (InputMismatchException e){
+                        System.out.println("Invalid reservation id.");
+                    }
+                    break;
+            }
+    }
         
         
     

@@ -89,7 +89,8 @@ public class ReservationManager {
     }
 	
 	//manual cancellation
-	public int cancelReservation(int resId){
+	//can integrate all the user inputs inside this func, or we just get input from the ui
+	public int cancelReservation(int resId){ 
         int index = 0;
         for(Reservation r : reservations){
             if(r.getReservationID() == resId){

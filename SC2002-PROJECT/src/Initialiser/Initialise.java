@@ -14,8 +14,15 @@ public class Initialise {
 //		
 //	}
 	
+	
+	//attributes
 	public static ArrayList<MenuItem> menu;
 	
+	public static ArrayList<Room> rooms;
+	
+	
+	
+	//methods
 	public static void InitialiseMenu(){
 		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 		MenuManager mm = new MenuManager(menu);
@@ -123,6 +130,8 @@ public class Initialise {
 			rooms.add(new Room("07-" + String.format("%02d", i) ,  TypeOfRoom.VIPSUITE , TypeOfBed.KING, true, true, true, StatusOfRoom.VACANT, 500) );
 			
 		}
+		
+		Initialise.rooms = rooms;
 		
 	}
 	
