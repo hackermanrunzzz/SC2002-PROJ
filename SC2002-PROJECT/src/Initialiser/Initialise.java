@@ -16,6 +16,11 @@ public class Initialise {
 	
 	
 	//attributes
+	
+	public static final int OPENING_HOUR = 14;
+    
+    public static final int CLOSING_HOUR = 22;
+    
 	public static ArrayList<MenuItem> menu;
 	
 	public static ArrayList<Room> rooms;

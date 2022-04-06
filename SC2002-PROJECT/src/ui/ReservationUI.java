@@ -1,6 +1,7 @@
 package ui;
 
 import java.util.ArrayList;
+
 import java.util.Calendar;
 
 import java.util.Scanner;
@@ -13,8 +14,12 @@ public class ReservationUI {
 	
 	public static void showReservationOptions(){
 		
+		ArrayList<Room> rooms = new ArrayList<Room>();
+		RoomManager roomm = new RoomManager(rooms);
+		
 		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-		ReservationManager rm = new ReservationManager(reservations);
+		ReservationManager resm = new ReservationManager(reservations, rooms);
+		
 		
 		//we need to initialise rooms here
 		Initialise.InitialiseRoom();
@@ -44,21 +49,21 @@ public class ReservationUI {
 
             switch(choice){
                 case 1:
-                    rm.makeReservationUI();
+                	resm.makeReservationUI();
                     break;
                 case 2:
                     
                     break;
                 case 3:
-                	rm.showAllReservations();
+                	resm.showAllReservations();
                     break;
                 case 4:
                 	System.out.println("Please enter the reservation ID: ");
                 	int input = sc.nextInt();
-                    rm.searchReservation(input);
+                	resm.searchReservation(input);
                     break;
                 case 5:
-                    
+                	roomm.displayRoom();
                     break;
                 case 6:
                     
