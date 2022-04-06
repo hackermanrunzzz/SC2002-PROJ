@@ -1,6 +1,7 @@
 package classes;
 
 import java.text.DateFormat;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -21,7 +22,9 @@ public class ReservationManager {
 
 	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 	
-	private static ArrayList<Room> rooms = new ArrayList<Room>();
+	private static ArrayList<Room> rooms;
+	
+	
 	
 	public ReservationManager(ArrayList<Reservation> reservations, ArrayList<Room> rooms) {
 		ReservationManager.reservations = reservations;
@@ -34,15 +37,19 @@ public class ReservationManager {
 		
 	}
 	
+	
+	
 	//fix this, include stuff like asking for all the details
 	//this makeReservationUI calls the below makeReservation function
 	public void makeReservationUI(){
 		Scanner sc = new Scanner(System.in);
+		int adults=0, children=0;
         int pax = 0;
         int maxOccupancy=0;
         int roomcounter = 0;
-        String custContact = "";
         String typeofroomUpper;
+        ArrayList<String> vacantRooms = new ArrayList<String>();
+        boolean RoomMatch = true;
         
         
 
@@ -57,8 +64,13 @@ public class ReservationManager {
 	        
 	        
 	        
-	        System.out.print("Enter amount of pax: ");
-	        pax = sc.nextInt();
+	        System.out.print("Enter amount of Adults: ");
+	        adults = sc.nextInt();
+	        
+	        System.out.print("Enter amount of Children: ");
+	        children = sc.nextInt();
+	        
+	        pax = adults + children;
 	        
 	        if(typeofroomUpper.equals("SINGLE")) {
 	        	maxOccupancy=1;
@@ -89,46 +101,122 @@ public class ReservationManager {
         //printing all the available rooms that are vacant and of the selected room type
         if(typeofroomUpper.equals("SINGLE")) {
         	System.out.println("These are the vacant Single Rooms:");
-        	for (Room r : rooms) {
+        	for (Room r : Initialise.rooms) {
         		 if (r.getRoomType().equals(TypeOfRoom.SINGLE) && r.getRoomStatus().equals(StatusOfRoom.VACANT)) {
         			 System.out.println(r.getRoomNumber());
         			 roomcounter++;
+        			 vacantRooms.add(r.getRoomNumber());
         		 }
         	}
         }
         else if(typeofroomUpper.equals("DOUBLE")) {
         	System.out.println("These are the vacant Double Rooms:");
-        	for (Room r : rooms) {
+        	for (Room r : Initialise.rooms) {
         		 if (r.getRoomType().equals(TypeOfRoom.DOUBLE) && r.getRoomStatus().equals(StatusOfRoom.VACANT)) {
         			 System.out.println(r.getRoomNumber());
         			 roomcounter++;
+        			 vacantRooms.add(r.getRoomNumber());
         		 }
         	}
         }
         else if(typeofroomUpper.equals("DELUXE")) {
         	System.out.println("These are the vacant Deluxe Rooms:");
-        	for (Room r : rooms) {
+        	for (Room r : Initialise.rooms) {
         		 if (r.getRoomType().equals(TypeOfRoom.DELUXE) && r.getRoomStatus().equals(StatusOfRoom.VACANT)) {
         			 System.out.println(r.getRoomNumber());
         			 roomcounter++;
+        			 vacantRooms.add(r.getRoomNumber());
         		 }
         	}
         }
         else if(typeofroomUpper.equals("VIPSUITE")) {
         	System.out.println("These are the vacant VIP Suites:");
-        	for (Room r : rooms) {
+        	for (Room r : Initialise.rooms) {
         		 if (r.getRoomType().equals(TypeOfRoom.VIPSUITE) && r.getRoomStatus().equals(StatusOfRoom.VACANT)) {
         			 System.out.println(r.getRoomNumber());
         			 roomcounter++;
+        			 vacantRooms.add(r.getRoomNumber());
         		 }
         	}
         }
+        sc.nextLine();
         
         if(roomcounter == 0) {
         	System.out.println("There are no available rooms available.");
         }
         else {
-        	System.out.println("Enter the selected room that you wish to assign to the guest:");
+        	while(RoomMatch) {
+	        	System.out.println("Enter the selected room that you wish to assign to the guest:");
+	        	String roomNumber = sc.nextLine();
+	        	
+	        	for(String vacant : vacantRooms) {
+	        		if(roomNumber.equals(vacant)) {
+	        			RoomMatch = false;
+	        			break;
+	        		}
+	        			
+	        	}
+	        	
+	        	if(RoomMatch) {
+	        		System.out.println("Invalid Room Number.");
+	        	}
+        	}
+        	
+        	
+        	ArrayList<Guest> currentGuestArr = new ArrayList<Guest>();
+        	String creditCardNumber;
+        	
+        	
+        	System.out.println("Ensure that the first guest details is the one footing the bill !!!");
+        	
+        	for(int i=0; i<pax;i++) {
+        		System.out.printf("Please enter the guest %d name:\n", i+1);
+        		String guestName = sc.nextLine();
+        		
+        		System.out.println("Please enter the credit card name:");
+        		String creditCardName = sc.nextLine();
+        		
+        		while(true) {
+        			System.out.println("Please enter the credit card number (Enter \"-\" if not applicable): ");
+        			creditCardNumber = sc.nextLine();
+        		
+        			if(i==0 && creditCardNumber.equals("-")) {
+        				System.out.println("Please enter a valid Credit Card Number for the first guest.");
+        			}
+        			else {
+        				break;
+        			}
+        		}
+        		
+        		System.out.println("Please enter your address:");
+        		String address = sc.nextLine();
+        		
+        		System.out.println("Please enter your country:");
+        		String country = sc.nextLine();
+        		
+        		System.out.println("Please enter your gender (M/F):");
+        		char gender = sc.next().charAt(0);
+        		sc.nextLine();
+        		
+        		System.out.println("Please enter your identity:");
+        		String identity = sc.nextLine();
+        		
+        		System.out.println("Please enter your nationality:");
+        		String nationality = sc.nextLine();
+        		
+        		System.out.println("Please enter your contact number:");
+        		String contact = sc.nextLine();
+        		
+        		Guest guestx = new Guest(guestName,creditCardName,creditCardNumber,address,country,gender,identity,nationality,contact);
+        		currentGuestArr.add(guestx);
+        	}
+        	
+        	
+        	
+        	
+        	
+        	
+        	
         	
         }
         
@@ -161,9 +249,8 @@ public class ReservationManager {
     }
 	
 	
-	public void makeReservation(Guest guestDetails, Room roomDetails, String billingInformation,
-			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount,
-			StatusOfReservation reservationStatus, int numberOfDays){
+	public void makeReservation(ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
+			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount, int numberOfDays){
 
 		if(roomDetails.getRoomStatus() == Room.StatusOfRoom.VACANT) {
 	        double reservationID = 10000;
@@ -174,7 +261,7 @@ public class ReservationManager {
 	        System.out.println("\nReservation is Confirmed!\nReservation ID:" + reservationID);
 	        reservations.add(new Reservation(reservationID, guestDetails, roomDetails, billingInformation,
 	    			checkInDate, checkOutDate, adultCount, childrenCount,
-	    			reservationStatus, numberOfDays));
+	    			StatusOfReservation.CONFIRMED, numberOfDays));
 	        
 	        roomDetails.setRoomStatus(Room.StatusOfRoom.RESERVED);
 	        

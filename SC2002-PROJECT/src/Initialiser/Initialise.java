@@ -25,6 +25,8 @@ public class Initialise {
 	
 	public static ArrayList<Room> rooms;
 	
+	public static ArrayList<Reservation> reservations;
+	
 	
 	
 	//methods

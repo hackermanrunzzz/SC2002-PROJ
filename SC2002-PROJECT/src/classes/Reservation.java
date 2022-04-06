@@ -1,13 +1,14 @@
 package classes;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
 
 public class Reservation {
 	
 	public enum StatusOfReservation{CONFIRMED,IN_WAITLIST,CHECKED_IN,EXPIRED}
 	private double reservationID;
-	private Guest guestDetails; // Assuming one guest to a reservation (the guestdetails will be the object name)
+	private ArrayList<Guest> guestDetails; 
 	private Room roomDetails;
 	private String billingInformation; // For cash or credit card
 	private Calendar checkInDate;
@@ -21,7 +22,7 @@ public class Reservation {
 	
 	
 
-	public Reservation(double reservationID, Guest guestDetails, Room roomDetails, String billingInformation,
+	public Reservation(double reservationID, ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
 			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount,
 			StatusOfReservation reservationStatus, int numberOfDays) {
 		
@@ -52,12 +53,12 @@ public class Reservation {
 	}
 
 
-	public Guest getGuestDetails() {
+	public ArrayList<Guest> getGuestDetails() {
 		return guestDetails;
 	}
 
 
-	public void setGuestDetails(Guest guestDetails) {
+	public void setGuestDetails(ArrayList<Guest> guestDetails) {
 		this.guestDetails = guestDetails;
 	}
 
@@ -131,7 +132,7 @@ public class Reservation {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String strDate = dateFormat.format(this.checkInDate.getTime());
 
-        return "Guest Name: \t\t\t" + this.guestDetails.getName() + "\nContact:\t\t\t\t" + this.guestDetails.getContact()
+        return "Guest Name: \t\t\t" + this.guestDetails.get(0).getName() + "\nContact:\t\t\t\t" + this.guestDetails.get(0).getContact()
                 +"\nCheck in time: \t\t\t" + strDate + "\nReservation ID: \t\t" + this.reservationID
                 + "\nRoom Number: \t\t\t\t" + this.roomDetails.getRoomNumber() + "\n";
     }

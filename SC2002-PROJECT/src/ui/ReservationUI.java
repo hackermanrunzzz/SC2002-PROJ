@@ -14,8 +14,11 @@ public class ReservationUI {
 	
 	public static void showReservationOptions(){
 		
+		
+		
 		ArrayList<Room> rooms = new ArrayList<Room>();
 		RoomManager roomm = new RoomManager(rooms);
+		
 		
 		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
 		ReservationManager resm = new ReservationManager(reservations, rooms);

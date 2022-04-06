@@ -13,7 +13,7 @@ public class HotelMain {
 		int option;
 //		Initialise.InitialiseHotel(); //
 		//this is like redundant, but we may have issues to initialise rooms, since right now the UIs are the ones initialising their respective ites
-		//Room doesnt have a UI, unless its under Reservation UI then i guess thats fine...
+		//Room doesnt have a UI, unless its  under Reservation UI then i guess thats fine...
 		
 		 System.out.println("================================================================================");
 	     System.out.println("                 Welcome To NTU Hotel");
