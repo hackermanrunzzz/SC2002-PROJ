@@ -222,7 +222,7 @@ public class ReservationManager {
         
        
         
-        
+        //BETTER GO FKIN STUDY THIS PART AND HOW THEY CALL THE BELOW makeReservation()!!!!!!!!!
 
 //        sc.nextLine();
 //        if(pax > 10){
@@ -342,7 +342,7 @@ public class ReservationManager {
         long diff = date.getTimeInMillis() - now.getTimeInMillis();
         long ddays = diff / (24 * 60 * 60 * 1000);
         if(ddays>90){
-            System.out.println("! ERROR: Booking is only valid for 3 months in advannce");
+            System.out.println("! ERROR: Booking is only valid for 3 months in advance");
             return false;
         }
         return true;
