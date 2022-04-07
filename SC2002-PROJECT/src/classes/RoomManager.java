@@ -98,17 +98,6 @@ public class RoomManager {
         System.out.printf("Number: %d occupied rooms.\n", occupied);
         System.out.println();
         
-        System.out.println("======== IN MAINTENANCE ========");
-    	System.out.print("Rooms: ");
-        for(Room r: rooms) {
-        	if(r.getRoomStatus().equals(Room.StatusOfRoom.UNDER_MAINTENANCE)) {
-        		System.out.print(r.getRoomNumber() + ", ");
-        		inMaintenance++;
-        	}
-        }
-        System.out.println();
-        System.out.printf("Number: %d rooms are under maintenance.\n", inMaintenance);
-        System.out.println();
         
         System.out.println("=========== RESERVED ===========");
     	System.out.print("Rooms: ");
@@ -121,6 +110,21 @@ public class RoomManager {
         System.out.println();
         System.out.printf("Number: %d reserved rooms.\n", reserved);
         System.out.println();
+        
+        
+        System.out.println("======== IN MAINTENANCE ========");
+    	System.out.print("Rooms: ");
+        for(Room r: rooms) {
+        	if(r.getRoomStatus().equals(Room.StatusOfRoom.UNDER_MAINTENANCE)) {
+        		System.out.print(r.getRoomNumber() + ", ");
+        		inMaintenance++;
+        	}
+        }
+        System.out.println();
+        System.out.printf("Number: %d rooms are under maintenance.\n", inMaintenance);
+        System.out.println();
+        
+        
     }
     
     public void setToMaintenance(String roomNumber){

@@ -28,65 +28,97 @@ public class Guest {
 	}
 
 
-	public String getName()
-	{
+	public String getName() {
 		return name;
 	}
 
 
-	public String getCreditCardName()
-	{
+	public void setName(String name) {
+		this.name = name;
+	}
+
+
+	public String getCreditCardName() {
 		return creditCardName;
 	}
 
 
-	public String getCreditCardNumber()
-	{
+	public void setCreditCardName(String creditCardName) {
+		this.creditCardName = creditCardName;
+	}
+
+
+	public String getCreditCardNumber() {
 		return creditCardNumber;
 	}
 
 
-	public String getAddress()
-	{
+	public void setCreditCardNumber(String creditCardNumber) {
+		this.creditCardNumber = creditCardNumber;
+	}
+
+
+	public String getAddress() {
 		return address;
 	}
 
 
-	public String getCountry()
-	{
+	public void setAddress(String address) {
+		this.address = address;
+	}
+
+
+	public String getCountry() {
 		return country;
 	}
 
 
-	public char getGender()
-	{
+	public void setCountry(String country) {
+		this.country = country;
+	}
+
+
+	public char getGender() {
 		return gender;
 	}
 
 
-	public String getIdentity()
-	{
+	public void setGender(char gender) {
+		this.gender = gender;
+	}
+
+
+	public String getIdentity() {
 		return identity;
 	}
 
 
-	public String getNationality()
-	{
+	public void setIdentity(String identity) {
+		this.identity = identity;
+	}
+
+
+	public String getNationality() {
 		return nationality;
 	}
 
 
-	public String getContact()
-	{
+	public void setNationality(String nationality) {
+		this.nationality = nationality;
+	}
+
+
+	public String getContact() {
 		return contact;
 	}
-	
-	
+
+
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
+
 
 	
-	
-	
-	
-	
+
 
 }
