@@ -55,7 +55,9 @@ public class ReservationUI {
                 	resm.makeReservationUI();
                     break;
                 case 2:
-                    
+                	System.out.println("Please enter the reservation ID that you wish to cancel:");
+                	int resID = sc.nextInt();
+                    resm.cancelReservation(resID);
                     break;
                 case 3:
                 	resm.showAllReservations();
@@ -66,10 +68,10 @@ public class ReservationUI {
                 	resm.searchReservation(input);
                     break;
                 case 5:
-                	roomm.displayRoom();
+                	roomm.displayRoomViaOccupancy();;
                     break;
                 case 6:
-                    
+                    roomm.displayRoomViaStatus();
                     break;
                 default:
                 	break;
