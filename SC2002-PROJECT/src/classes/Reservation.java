@@ -7,7 +7,7 @@ import java.util.Calendar;
 public class Reservation {
 	
 	public enum StatusOfReservation{CONFIRMED,IN_WAITLIST,CHECKED_IN,EXPIRED}
-	private double reservationID;
+	private int reservationID;
 	private ArrayList<Guest> guestDetails; 
 	private Room roomDetails;
 	private String billingInformation; // For cash or credit card
@@ -16,15 +16,15 @@ public class Reservation {
 	private int adultCount;
 	private int childrenCount;
 	private StatusOfReservation reservationStatus;
-	private int numberOfDays;
+	private int numberOfNights;
 	
 	
 	
 	
 
-	public Reservation(double reservationID, ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
+	public Reservation(int reservationID, ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
 			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount,
-			StatusOfReservation reservationStatus, int numberOfDays) {
+			StatusOfReservation reservationStatus, int numberOfNights) {
 		
 		this.reservationID = reservationID;
 		this.guestDetails = guestDetails;
@@ -35,7 +35,7 @@ public class Reservation {
 		this.adultCount = adultCount;
 		this.childrenCount = childrenCount;
 		this.reservationStatus = reservationStatus;
-		this.numberOfDays = numberOfDays;
+		this.numberOfNights = numberOfNights;
 		
 	}
 
@@ -44,11 +44,11 @@ public class Reservation {
 
 
 
-	public double getReservationID() {
+	public int getReservationID() {
 		return reservationID;
 	}
 
-	public void setReservationID(double reservationID) {
+	public void setReservationID(int reservationID) {
 		this.reservationID = reservationID;
 	}
 
@@ -120,12 +120,12 @@ public class Reservation {
 		this.reservationStatus = reservationStatus;
 	}
 
-	public int getNumberOfDays() {
-		return numberOfDays;
+	public int getnumberOfNights() {
+		return numberOfNights;
 	}
 
-	public void setNumberOfDays(int numberOfDays) {
-		this.numberOfDays = numberOfDays;
+	public void setnumberOfNights(int numberOfNights) {
+		this.numberOfNights = numberOfNights;
 	}
 	
 	public String printReservation() {

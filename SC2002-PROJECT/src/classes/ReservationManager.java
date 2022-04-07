@@ -1,7 +1,7 @@
 package classes;
 
 import java.text.DateFormat;
-
+import java.util.concurrent.TimeUnit;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -11,6 +11,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Scanner;
+import java.time.temporal.ChronoUnit;
 
 import Initialiser.Initialise;
 import classes.MenuItem.TypeOfMenuItem;
@@ -50,7 +51,12 @@ public class ReservationManager {
         String typeofroomUpper;
         ArrayList<String> vacantRooms = new ArrayList<String>();
         boolean RoomMatch = true;
-        
+    	ArrayList<Guest> currentGuestArr = new ArrayList<Guest>();
+    	String creditCardNumber;
+    	Calendar checkInDate;
+    	Calendar checkOutDate;
+    	String roomNumber ="";
+    	int numberOfNights;
         
 
 //        if(Restaurant.reservationManager.getReservations().size() > 9 ){
@@ -147,7 +153,7 @@ public class ReservationManager {
         else {
         	while(RoomMatch) {
 	        	System.out.println("Enter the selected room that you wish to assign to the guest:");
-	        	String roomNumber = sc.nextLine();
+	        	roomNumber = sc.nextLine();
 	        	
 	        	for(String vacant : vacantRooms) {
 	        		if(roomNumber.equals(vacant)) {
@@ -163,8 +169,7 @@ public class ReservationManager {
         	}
         	
         	
-        	ArrayList<Guest> currentGuestArr = new ArrayList<Guest>();
-        	String creditCardNumber;
+
         	
         	
         	System.out.println("Ensure that the first guest details is the one footing the bill !!!");
@@ -211,23 +216,27 @@ public class ReservationManager {
         		currentGuestArr.add(guestx);
         	}
         }
+        Room thisRoom = ReturnRoom(roomNumber);
         
-        Calendar checkInDate = Initialise.resm.getValidCheckInDateTime();
+        checkInDate = getValidCheckInDateTime();
+        checkOutDate = getValidCheckOutDateTime(checkInDate);
+        numberOfNights = calcNumberOfDays(checkInDate,checkOutDate);
+
         
-        Initialise.resm.makeReservation(custName, Integer.parseInt(custContact), pax,reservationDate, tableId);
         
-       
-//       Initialise.resm.makeReservation(ArrayList<Guest> guestDetails, roomDetails, billingInformation,
-//   			checkInDate, checkOutDate, AdultCount, childrenCount, numberOfDays)
+
+        makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
+
+
 
     }
 	
 	
 	public void makeReservation(ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
-			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount, int numberOfDays){
+			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount, int numberOfNights){
 
 		if(roomDetails.getRoomStatus() == Room.StatusOfRoom.VACANT) {
-	        double reservationID = 10000;
+	        int reservationID = 10000;
 	        if(reservations.size() > 0){
 	        	reservationID = reservations.get(reservations.size()-1).getReservationID()+1;
 	        }
@@ -235,7 +244,7 @@ public class ReservationManager {
 	        System.out.println("\nReservation is Confirmed!\nReservation ID:" + reservationID);
 	        reservations.add(new Reservation(reservationID, guestDetails, roomDetails, billingInformation,
 	    			checkInDate, checkOutDate, adultCount, childrenCount,
-	    			StatusOfReservation.CONFIRMED, numberOfDays));
+	    			StatusOfReservation.CONFIRMED, numberOfNights));
 	        
 	        roomDetails.setRoomStatus(Room.StatusOfRoom.RESERVED);
 	        
@@ -248,7 +257,7 @@ public class ReservationManager {
     }
 	
 	
-	public void searchReservation(double resId) {
+	public void searchReservation(int resId) {
         if(reservations.isEmpty() == true){
             System.out.println("\nThere are currently no reservations");
         }
@@ -340,12 +349,12 @@ public class ReservationManager {
         Date parsedDate = null;
         SimpleDateFormat dateFormat = null;
         boolean validDate = false;
-        Calendar arrivalTime = Calendar.getInstance();
+        Calendar checkInDate = Calendar.getInstance();
         
         Scanner sc = new Scanner(System.in);
 
         do {
-            System.out.print("Enter reservation date (dd/MM/yyyy): ");
+            System.out.print("Enter Check In date (dd/MM/yyyy): ");
             date = sc.nextLine();
             //create a date format for user to input
             dateFormat = new SimpleDateFormat("dd/MM/yyyy");
@@ -355,9 +364,9 @@ public class ReservationManager {
                 System.out.println("! ERROR: Entered reservation date is in the wrong format!");
                 continue;
             }
-            arrivalTime.setTime(parsedDate);
-            validDate = checkValidReservationDate(arrivalTime);
-            times = checkReservations(arrivalTime);
+            checkInDate.setTime(parsedDate);
+            validDate = checkValidReservationDate(checkInDate);
+            times = checkReservations(checkInDate);
 
         } while (!validDate);
 
@@ -380,8 +389,8 @@ public class ReservationManager {
                         System.out.println("! ERROR: Entered reservation time is not in the correct format!");
                         continue;
                     }
-                    arrivalTime.setTime(parsedDate);
-                    validDate = checkValidReservationTime(arrivalTime);
+                    checkInDate.setTime(parsedDate);
+                    validDate = checkValidReservationTime(checkInDate);
                 } else {
                     System.out.println("! ERROR: Invalid time");
                 }
@@ -395,13 +404,72 @@ public class ReservationManager {
             dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
         try {
             Date d = dateFormat.parse(date);
-            arrivalTime.setTime(d);
+            checkInDate.setTime(d);
         } catch (ParseException e) {
             e.printStackTrace();
         }
-        return arrivalTime;
+        return checkInDate;
+    }
+    
+    public Calendar getValidCheckOutDateTime(Calendar checkInDate){
+        String date = "";
+        String time = "";
+        List times = new ArrayList();
+        Date parsedDate = null;
+        SimpleDateFormat dateFormat = null;
+        boolean validDate = false;
+        boolean validCheckOutDate = false;
+        Calendar checkOutDate = Calendar.getInstance();
+        
+        Scanner sc = new Scanner(System.in);
+        
+        do {
+	        do {
+	            System.out.print("Enter Check Out date (dd/MM/yyyy): ");
+	            date = sc.nextLine();
+	            //create a date format for user to input
+	            dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+	            try {
+	                parsedDate = dateFormat.parse(date);
+	            } catch (ParseException e) {
+	                System.out.println("! ERROR: Entered reservation date is in the wrong format!");
+	                continue;
+	            }
+	            checkOutDate.setTime(parsedDate);
+	            validDate = checkValidReservationDate(checkOutDate);
+	            times = checkReservations(checkOutDate);
+	
+	        } while (!validDate);
+	
+	        dateFormat = new SimpleDateFormat("HH:mm");
+	        time = "14:00";
+	        date = date + " " + time;
+	        dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+	        try {
+	            Date d = dateFormat.parse(date);
+	            checkOutDate.setTime(d);
+	        } catch (ParseException e) {
+	            e.printStackTrace();
+	        }
+	        
+	        
+	        validCheckOutDate = compareCheckInCheckOut(checkInDate, checkOutDate);
+        }while(!validCheckOutDate);
+        
+        
+        System.out.println("Input accepted, Check Out has to be done before 2pm");
+
+        return checkOutDate;
     }
 	
+    public boolean compareCheckInCheckOut(Calendar checkInDate, Calendar checkOutDate ) {
+    	if(checkInDate.before(checkOutDate)) {
+    		return true;
+    	}
+    	else {
+    		return false;
+    	}
+    }
     
     public List checkReservations(Calendar date){
 
@@ -450,7 +518,27 @@ public class ReservationManager {
         return times;
 
     }
+
+    public Room ReturnRoom(String roomNumber) {
+    	for (Room r : Initialise.rooms) {
+    		if (r.getRoomNumber().equals(roomNumber)) {
+    				return r;
+    		}
+    	}
+    	return null;
+    }
 	
+    public int calcNumberOfDays(Calendar checkInDate, Calendar checkOutDate) {
+
+    	long numberOfSeconds = ChronoUnit.SECONDS.between(checkInDate.getTime().toInstant(), checkOutDate.getTime().toInstant());
+    	float numberOfSecondsdouble = (float)numberOfSeconds;
+    	//covertion from seconds to days
+    	int numberOfDays = Math.round((numberOfSecondsdouble/(60*60*24)));
+    	return numberOfDays;
+
+
+
+    }
 	
 	
 }
