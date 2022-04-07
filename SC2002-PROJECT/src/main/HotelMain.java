@@ -25,9 +25,10 @@ public class HotelMain {
             System.out.println("(1) Update/search guest's detail by name");
             System.out.println("(2) Menu Options");
             System.out.println("(3) Reservations/Room Details");
-            System.out.println("(4) Room Service");
-            System.out.println("(5) Payment");
-            System.out.println("(6) Exit Program");
+            System.out.println("(4) Check in");
+            System.out.println("(5) Room Service");
+            System.out.println("(6) Payment");
+            System.out.println("(7) Exit Program");
             System.out.println("========================================");
 
 
@@ -48,11 +49,13 @@ public class HotelMain {
                      break;
                 case 5:
                 	break;
+                case 6:
+                	break;
                 default :
                       break;
 
             }
-        } while (option<6);
+        } while (option<7);
 	}
 
 	

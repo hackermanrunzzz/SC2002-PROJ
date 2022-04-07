@@ -21,11 +21,17 @@ public class Initialise {
     
     public static final int CLOSING_HOUR = 22;
     
+    public static final int CHECK_OUT_TIME = 14;
+    
 	public static ArrayList<MenuItem> menu;
 	
 	public static ArrayList<Room> rooms;
 	
 	public static ArrayList<Reservation> reservations;
+	
+	public static ReservationManager resm;
+	
+	public static RoomManager roomm;
 	
 	
 	

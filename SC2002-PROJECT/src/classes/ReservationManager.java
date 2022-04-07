@@ -210,42 +210,16 @@ public class ReservationManager {
         		Guest guestx = new Guest(guestName,creditCardName,creditCardNumber,address,country,gender,identity,nationality,contact);
         		currentGuestArr.add(guestx);
         	}
-        	
-        	
-        	
-        	
-        	
-        	
-        	
-        	
         }
         
-       
+        Calendar checkInDate = Initialise.resm.getValidCheckInDateTime();
         
-        //BETTER GO FKIN STUDY THIS PART AND HOW THEY CALL THE BELOW makeReservation()!!!!!!!!!
+        Initialise.resm.makeReservation(custName, Integer.parseInt(custContact), pax,reservationDate, tableId);
+        
+       
+//       Initialise.resm.makeReservation(ArrayList<Guest> guestDetails, roomDetails, billingInformation,
+//   			checkInDate, checkOutDate, AdultCount, childrenCount, numberOfDays)
 
-//        sc.nextLine();
-//        if(pax > 10){
-//            System.out.println("Sorry, number of pax is not valid");
-//            return;
-//        }
-//            Calendar reservationDate = Restaurant.reservationManager.getValidReservationDateTime();
-//            int tableId = Restaurant.tableManager.findReservationTable(reservationDate, pax);
-//            if (tableId == -1){
-//                return;
-//            }else{
-//                System.out.print("Enter customer name: ");
-//                String custName = sc.nextLine();
-//
-//                do{
-//                    System.out.print("Enter customer phone number: ");
-//                    custContact = sc.next();
-//                }while(!isValidMobileNo(custContact));
-//
-//                Restaurant.reservationManager.makeReservation(custName, Integer.parseInt(custContact), pax,reservationDate, tableId);
-//            }
-//
-//        return;
     }
 	
 	
@@ -359,7 +333,7 @@ public class ReservationManager {
         return false;
     }
 
-    public Calendar getValidReservationDateTime(){
+    public Calendar getValidCheckInDateTime(){
         String date = "";
         String time = "";
         List times = new ArrayList();
@@ -378,7 +352,7 @@ public class ReservationManager {
             try {
                 parsedDate = dateFormat.parse(date);
             } catch (ParseException e) {
-                System.out.println("! ERROR: Entered reservation date is not in the correct format!");
+                System.out.println("! ERROR: Entered reservation date is in the wrong format!");
                 continue;
             }
             arrivalTime.setTime(parsedDate);
