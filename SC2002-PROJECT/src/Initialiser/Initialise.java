@@ -23,16 +23,27 @@ public class Initialise {
     
     public static final int CHECK_OUT_TIME = 14;
     
-	public static ArrayList<MenuItem> menu;
+//	public static ArrayList<MenuItem> menu;
+//	
+//	public static ArrayList<Room> rooms;
+//	
+//	public static ArrayList<Reservation> reservations;
+//	
+//	public static ReservationManager resm;
+//	
+//	public static RoomManager roomm;
 	
-	public static ArrayList<Room> rooms;
+	//
+	public static ArrayList<Room> rooms = new ArrayList<Room>();
+	public static RoomManager roomm = new RoomManager(rooms);
 	
-	public static ArrayList<Reservation> reservations;
 	
-	public static ReservationManager resm;
+	public static ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	public static ReservationManager resm = new ReservationManager(reservations, rooms);
 	
-	public static RoomManager roomm;
-	
+	public static ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
+	public static MenuManager mm = new MenuManager(menu);
+	//
 	
 	
 	//methods

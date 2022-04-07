@@ -15,17 +15,16 @@ import Initialiser.Initialise;
 public class MenuItemUI {
 	public static void menuOptions() {
 		
-		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-		MenuManager mm = new MenuManager(menu);
+//		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
+//		MenuManager mm = new MenuManager(menu);
 		
 		Scanner sc = new Scanner(System.in);
 		int option;
-		
-		//we will need to change this to initialise
-//		MenuApp.menuapp(); 
 	
-		Initialise.InitialiseMenu(); 
+	
+
 		//each ui has to initialise their respective items!
+//		Initialise.InitialiseMenu(); 
 		
 
 		do {
@@ -43,16 +42,20 @@ public class MenuItemUI {
 
             switch(option) {
                 case 1:
-                	mm.printMenu();
+//                	mm.printMenu();
+                	Initialise.mm.printMenu();
                     break;
                 case 2:
-                	mm.addMenuItem();
+//                	mm.addMenuItem();
+                	Initialise.mm.addMenuItem();
                     break;
                 case 3:
-                	mm.removeMenuItem();
+                	Initialise.mm.removeMenuItem();
+//                	mm.removeMenuItem();
                     break;
                 case 4:
-                	mm.updateMenuItemUI();
+                	Initialise.mm.updateMenuItemUI();
+//                	mm.updateMenuItemUI();
                     break;
             }
         } while (option<5);

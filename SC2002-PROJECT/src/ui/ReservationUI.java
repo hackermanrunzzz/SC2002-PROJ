@@ -2,6 +2,7 @@ package ui;
 
 import java.util.ArrayList;
 
+
 import java.util.Calendar;
 
 import java.util.Scanner;
@@ -16,16 +17,16 @@ public class ReservationUI {
 		
 		
 		
-		ArrayList<Room> rooms = new ArrayList<Room>();
-		RoomManager roomm = new RoomManager(rooms);
-		
-		
-		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-		ReservationManager resm = new ReservationManager(reservations, rooms);
+//		ArrayList<Room> rooms = new ArrayList<Room>();
+//		RoomManager roomm = new RoomManager(rooms);
+//		
+//		
+//		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+//		ReservationManager resm = new ReservationManager(reservations, rooms);
 		
 		
 		//we need to initialise rooms here
-		Initialise.InitialiseRoom();
+//		Initialise.InitialiseRoom();
 		
 		Scanner sc = new Scanner(System.in);
         int choice;
@@ -52,26 +53,26 @@ public class ReservationUI {
 
             switch(choice){
                 case 1:
-                	resm.makeReservationUI();
+                	Initialise.resm.makeReservationUI();
                     break;
                 case 2:
                 	System.out.println("Please enter the reservation ID that you wish to cancel:");
                 	int resID = sc.nextInt();
-                    resm.cancelReservation(resID);
+                	Initialise.resm.cancelReservation(resID);
                     break;
                 case 3:
-                	resm.showAllReservations();
+                	Initialise.resm.showAllReservations();
                     break;
                 case 4:
                 	System.out.println("Please enter the reservation ID: ");
                 	int input = sc.nextInt();
-                	resm.searchReservation(input);
+                	Initialise.resm.searchReservation(input);
                     break;
                 case 5:
-                	roomm.displayRoomViaOccupancy();;
+                	Initialise.roomm.displayRoomViaOccupancy();;
                     break;
                 case 6:
-                    roomm.displayRoomViaStatus();
+                	Initialise.roomm.displayRoomViaStatus();
                     break;
                 default:
                 	break;

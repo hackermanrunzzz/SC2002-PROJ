@@ -275,9 +275,7 @@ public class ReservationManager {
                 }
             }
             System.out.println("Reservation ID not found.");
-            
         }
-        System.out.println("Reservation can't be found");
     }
 	
 	public void showAllReservations() {
@@ -300,15 +298,23 @@ public class ReservationManager {
 	//manual cancellation
 	//can integrate all the user inputs inside this func, or we just get input from the ui
 	public int cancelReservation(int resId){ 
-        int index = 0;
-        for(Reservation r : reservations){
-            if(r.getReservationID() == resId){
-            	r.getRoomDetails().setRoomStatus(Room.StatusOfRoom.VACANT);
-                reservations.remove(index);
-                return resId;
-            }
-            index++;
-        }
+		Scanner sc = new Scanner(System.in);
+		System.out.println("Are you sure you wish to remove reservation "+ resId + "?");
+		System.out.println("Press (1) to confirm, Press any other number to cancel");
+		int choice = sc.nextInt();
+		if (choice == 1) {
+	        int index = 0;
+	        for(Reservation r : reservations){
+	            if(r.getReservationID() == resId){
+	            	r.getRoomDetails().setRoomStatus(Room.StatusOfRoom.VACANT);
+	                reservations.remove(index);
+	                
+	                System.out.println("Reservation successfully removed.");
+	                return 1;
+	            }
+	            index++;
+	        }
+		}
         return 0;
     }
 	
