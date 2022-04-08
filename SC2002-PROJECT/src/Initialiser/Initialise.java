@@ -45,9 +45,11 @@ public class Initialise {
 	public static MenuManager mm = new MenuManager(menu);
 	
 	public static CheckInManager checkm = new CheckInManager();
+	
+	public static ArrayList<MenuItem> roomServiceitems = new ArrayList<MenuItem>();
 	//
-	
-	
+	public static ArrayList<Order> order=new ArrayList<Order>();
+	public static OrderManager om = new OrderManager(order);	
 	//methods
 	public static void InitialiseMenu(){
 //		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
@@ -160,6 +162,7 @@ public class Initialise {
 //		Initialise.rooms = rooms;
 		
 	}
+
 	
 	public static void InitialiseHotel() {
 		InitialiseMenu();

@@ -299,6 +299,11 @@ public class MenuManager {
              }
          } while (option<5);
     }
+    
+    public ArrayList<MenuItem> getFoods() {
+        return menu;
+    }
+
 }
 
 
