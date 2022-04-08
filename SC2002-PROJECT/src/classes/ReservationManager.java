@@ -1,7 +1,6 @@
 package classes;
 
-import java.text.DateFormat;
-import java.util.concurrent.TimeUnit;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
@@ -14,7 +13,6 @@ import java.util.Scanner;
 import java.time.temporal.ChronoUnit;
 
 import Initialiser.Initialise;
-import classes.MenuItem.TypeOfMenuItem;
 import classes.Reservation.*;
 import classes.Room.StatusOfRoom;
 import classes.Room.TypeOfRoom;
@@ -496,8 +494,6 @@ public class ReservationManager {
         String enteredDate = new SimpleDateFormat("dd/MM/yyyy").format(date.getTime());
         times = showTimeSlots(date);
 
-        /* this for loop to check if select date matches any reservation date,
-        and then display the available time slots for the date */
 
         for(Reservation r: reservations){
             String resDate = new SimpleDateFormat("dd/MM/yyyy").format(r.getCheckInDate().getTime());

@@ -6,7 +6,7 @@ import classes.MenuItem.TypeOfMenuItem;
 import classes.Room.StatusOfRoom;
 import classes.Room.TypeOfBed;
 import classes.Room.TypeOfRoom;
-import ui.*;
+
 
 public class Initialise {
 	
