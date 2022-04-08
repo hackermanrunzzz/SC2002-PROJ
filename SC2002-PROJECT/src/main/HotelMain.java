@@ -49,6 +49,7 @@ public class HotelMain {
                 	ReservationUI.showReservationOptions();
                     break;
                 case 4 :
+                	CheckInUI.checkInOptions();
                      break;
                 case 5:
                 	break;

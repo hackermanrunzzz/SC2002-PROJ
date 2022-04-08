@@ -43,6 +43,8 @@ public class Initialise {
 	
 	public static ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 	public static MenuManager mm = new MenuManager(menu);
+	
+	public static CheckInManager checkm = new CheckInManager();
 	//
 	
 	

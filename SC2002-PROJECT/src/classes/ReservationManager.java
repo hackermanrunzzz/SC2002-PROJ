@@ -48,7 +48,7 @@ public class ReservationManager {
         int pax = 0;
         int maxOccupancy=0;
         int roomcounter = 0;
-        String typeofroomUpper;
+        String typeofroomUpper = "";
         ArrayList<String> vacantRooms = new ArrayList<String>();
         boolean RoomMatch = true;
     	ArrayList<Guest> currentGuestArr = new ArrayList<Guest>();
@@ -64,11 +64,25 @@ public class ReservationManager {
 //            return;
 //        }
         while(true) {
-	        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE): ");
-	        String typeofroom = sc.nextLine();
-	        typeofroomUpper = typeofroom.toUpperCase();
+        	
+        	//DC added this to check for proper room type input
+        	boolean roomTypeCheck = true;
+        	while(roomTypeCheck) {
+		        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE): ");
+		        String typeofroom = sc.nextLine();
+		        typeofroomUpper = typeofroom.toUpperCase();
+		        
+		        if(typeofroomUpper.equals("SINGLE") || typeofroomUpper.equals("DOUBLE") || typeofroomUpper.equals("DELUXE") || typeofroomUpper.equals("VIPSUITE")) {
+		        	roomTypeCheck = false;
+		        }
+		        else {
+		        	System.out.println("Invalid room type entered.");
+		        }
+        	}
 	        
-	        
+//	        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE): ");
+//	        String typeofroom = sc.nextLine();
+//	        typeofroomUpper = typeofroom.toUpperCase();
 	        
 	        System.out.print("Enter amount of Adults: ");
 	        adults = sc.nextInt();
@@ -222,7 +236,7 @@ public class ReservationManager {
         checkOutDate = getValidCheckOutDateTime(checkInDate);
         numberOfNights = calcNumberOfDays(checkInDate,checkOutDate);
 
-        System.out.printf("You have booked %d days.\n", numberOfNights);
+        System.out.printf("You have booked %d day(s).\n", numberOfNights);
         
 
         makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
@@ -257,9 +271,10 @@ public class ReservationManager {
     }
 	
 	
-	public void searchReservation(int resId) {
+	public int searchReservation(int resId) {
         if(reservations.isEmpty() == true){
             System.out.println("\nThere are currently no reservations");
+            return 0;
         }
         else{
             for(Reservation r: reservations){
@@ -267,15 +282,13 @@ public class ReservationManager {
                     System.out.println("========================================");
 
                     System.out.println("\nFound reservation: ");
-//                    Date date = r.getCheckInDate().getTime();
-//                    DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-//                    String strDate = dateFormat.format(date);
                     System.out.println(r.printReservation());
-                    return;
+                    return 1;
                 }
             }
             System.out.println("Reservation ID not found.");
         }
+        return -1;
     }
 	
 	public void showAllReservations() {

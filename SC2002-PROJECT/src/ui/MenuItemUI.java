@@ -42,20 +42,16 @@ public class MenuItemUI {
 
             switch(option) {
                 case 1:
-//                	mm.printMenu();
                 	Initialise.mm.printMenu();
                     break;
                 case 2:
-//                	mm.addMenuItem();
                 	Initialise.mm.addMenuItem();
                     break;
                 case 3:
                 	Initialise.mm.removeMenuItem();
-//                	mm.removeMenuItem();
                     break;
                 case 4:
                 	Initialise.mm.updateMenuItemUI();
-//                	mm.updateMenuItemUI();
                     break;
             }
         } while (option<5);

@@ -1,11 +1,10 @@
 package ui;
 
-import java.util.ArrayList;
 import java.util.Scanner;
 
 
 public class GuestUI {
-public static void guestOptions() {
+	public static void guestOptions() {
 		
 //		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
 //		MenuManager mm = new MenuManager(menu);

@@ -83,7 +83,7 @@ public class RoomManager {
         	}
         }
         System.out.println();
-        System.out.printf("Number: %d vacant rooms.\n", vacant);
+        System.out.printf("Number: %d vacant room(s).\n", vacant);
         System.out.println();
         
         System.out.println("=========== OCCUPIED ===========");
@@ -95,7 +95,7 @@ public class RoomManager {
         	}
         }
         System.out.println();
-        System.out.printf("Number: %d occupied rooms.\n", occupied);
+        System.out.printf("Number: %d occupied room(s).\n", occupied);
         System.out.println();
         
         
@@ -108,11 +108,11 @@ public class RoomManager {
         	}
         }
         System.out.println();
-        System.out.printf("Number: %d reserved rooms.\n", reserved);
+        System.out.printf("Number: %d reserved room(s).\n", reserved);
         System.out.println();
         
-        
-        System.out.println("======== IN MAINTENANCE ========");
+      
+        System.out.println("======= UNDER MAINTENANCE ======");
     	System.out.print("Rooms: ");
         for(Room r: rooms) {
         	if(r.getRoomStatus().equals(Room.StatusOfRoom.UNDER_MAINTENANCE)) {
@@ -121,7 +121,7 @@ public class RoomManager {
         	}
         }
         System.out.println();
-        System.out.printf("Number: %d rooms are under maintenance.\n", inMaintenance);
+        System.out.printf("Number: %d room(s) under maintenance.\n", inMaintenance);
         System.out.println();
         
         

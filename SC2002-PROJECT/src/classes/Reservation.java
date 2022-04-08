@@ -132,9 +132,9 @@ public class Reservation {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
         String strDate = dateFormat.format(this.checkInDate.getTime());
 
-        return "Guest Name: \t\t\t" + this.guestDetails.get(0).getName() + "\nContact:\t\t\t\t" + this.guestDetails.get(0).getContact()
+        return "Guest Name: \t\t\t" + this.guestDetails.get(0).getName() + "\nContact:\t\t\t" + this.guestDetails.get(0).getContact()
                 +"\nCheck in time: \t\t\t" + strDate + "\nReservation ID: \t\t" + this.reservationID
-                + "\nRoom Number: \t\t\t\t" + this.roomDetails.getRoomNumber() + "\n";
+                + "\nRoom Number: \t\t\t" + this.roomDetails.getRoomNumber() + "\nReservation Status:\t\t" + this.getReservationStatus();
     }
 
 }
