@@ -19,7 +19,7 @@ import classes.Room.TypeOfRoom;
 
 public class ReservationManager {
 
-	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	private static ArrayList<Reservation> reservations;
 	
 	private static ArrayList<Room> rooms;
 	
@@ -249,8 +249,8 @@ public class ReservationManager {
 
 		if(roomDetails.getRoomStatus() == Room.StatusOfRoom.VACANT) {
 	        int reservationID = 10000;
-	        if(reservations.size() > 0){
-	        	reservationID = reservations.get(reservations.size()-1).getReservationID()+1;
+	        if(Initialise.reservations.size() > 0){
+	        	reservationID = Initialise.reservations.get(Initialise.reservations.size()-1).getReservationID()+1;
 	        }
 	
 	        System.out.println("\nReservation is Confirmed!\nReservation ID:" + reservationID);
@@ -264,7 +264,6 @@ public class ReservationManager {
 		}
 		else {
 			System.out.println("The room is " + roomDetails.getRoomStatus() + ".");
-//			System.out.println("The room is unavailable");
 		}
     }
 	
@@ -302,6 +301,7 @@ public class ReservationManager {
 //                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 //                String strDate = dateFormat.format(date);
                 System.out.println(r.printReservation());
+                System.out.println();
             }
         }
     }
