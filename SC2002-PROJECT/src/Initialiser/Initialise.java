@@ -48,8 +48,8 @@ public class Initialise {
 	
 	//methods
 	public static void InitialiseMenu(){
-		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-		MenuManager mm = new MenuManager(menu);
+//		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
+//		MenuManager mm = new MenuManager(menu);
 	
 		//Main
 
@@ -101,14 +101,14 @@ public class Initialise {
 		MenuItem food15= new MenuItem("Milkshakes", "Vanilla, Strawberry, Chocolate, Coookies and Creamn, Lime and Honey",  TypeOfMenuItem.DESSERT, 12.00);
 		menu.add(food15);
 		
-		Initialise.menu = menu;
+//		Initialise.menu = menu;
 		
 	}
 	
 	public static void InitialiseRoom(){
 		int i;
-		ArrayList<Room> rooms = new ArrayList<Room>();
-		RoomManager rm = new RoomManager(rooms);
+//		ArrayList<Room> rooms = new ArrayList<Room>();
+//		RoomManager rm = new RoomManager(rooms);
 		
 		
 		//10 single rooms on floor 2
@@ -155,7 +155,7 @@ public class Initialise {
 			
 		}
 		
-		Initialise.rooms = rooms;
+//		Initialise.rooms = rooms;
 		
 	}
 	

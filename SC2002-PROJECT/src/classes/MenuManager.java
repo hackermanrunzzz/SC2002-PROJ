@@ -2,7 +2,6 @@ package classes;
 
 import java.util.ArrayList;
 
-import java.util.List;
 import java.util.Scanner;
 
 import classes.MenuItem.TypeOfMenuItem;
@@ -109,8 +108,18 @@ public class MenuManager {
     	int i,j;
     	System.out.println("Enter the index of the food you want to remove: ");
     	i = sc.nextInt();
+    	
+    	try{
+            menu.get(i-1);
+        }
+        catch (IndexOutOfBoundsException e) {
+            System.out.println("Menu Item index is not valid.");
+            return false;
+        }
+    	
     	System.out.println("Are you sure you want to remove the following:");
     	printMenuItem(i-1);
+    	
     	
     	System.out.println("Press (1) to confirm, Press any other number to cancel");
     	j = sc.nextInt();
@@ -135,30 +144,7 @@ public class MenuManager {
         return -1;
     }
 
-    
-    
-//    public void printShortFoodMenu() {
-//        System.out.println("================================================================================");
-//        System.out.println("                          4 Guys Restaurant Menu");
-//        System.out.println("================================= FOOD MENU ====================================");
-//        for (int i = 0; i < this.menu.size(); i++) {
-//            System.out.println((i + 1) + "." +
-//                    this.menu.get(i).getName());
-//
-//
-//        }
-//        System.out.println("================================================================================");
-//    }
-//    public void printShortMenu() {
-//        System.out.println("================================================================================");
-//        System.out.println("                          4 Guys Restaurant Menu");
-//        System.out.println("================================= FOOD MENU ====================================");
-//        for (int i = 0; i < this.menu.size(); i++) {
-//            System.out.println((i + 1) + ". " +
-//                    this.menu.get(i).getName() + "  " + this.menu.get(i).getPrice());
-//
-//        }
-//    }
+
 
     public void printMenu() {
         System.out.println("================================================================================");

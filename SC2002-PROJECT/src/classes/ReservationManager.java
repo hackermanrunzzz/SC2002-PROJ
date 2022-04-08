@@ -222,7 +222,7 @@ public class ReservationManager {
         checkOutDate = getValidCheckOutDateTime(checkInDate);
         numberOfNights = calcNumberOfDays(checkInDate,checkOutDate);
 
-        
+        System.out.printf("You have booked %d days.\n", numberOfNights);
         
 
         makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
@@ -463,7 +463,7 @@ public class ReservationManager {
         }while(!validCheckOutDate);
         
         
-        System.out.println("Input accepted, Check Out has to be done before 2pm");
+        System.out.println("Input accepted, Check Out has to be done before 2pm.");
 
         return checkOutDate;
     }

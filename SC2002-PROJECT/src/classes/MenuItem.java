@@ -1,7 +1,6 @@
 package classes;
 
 
-import java.util.*;
 
 public class MenuItem {
 	public enum TypeOfMenuItem {MAIN, DESSERT,BEVERAGE};
