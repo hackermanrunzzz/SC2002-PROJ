@@ -32,6 +32,7 @@ public class CheckInUI {
 	            	Initialise.checkm.CheckIn(reserID);
 	                break;
 	            case 3:
+	            	Initialise.checkm.WalkIn();
 	                break;
 	            default:
 	            	break;
