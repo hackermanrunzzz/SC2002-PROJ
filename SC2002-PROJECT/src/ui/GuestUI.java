@@ -1,28 +1,36 @@
 package ui;
 
 import java.util.Scanner;
+import Initialiser.Initialise;
+import classes.Guest;
 
 
 public class GuestUI {
 	public static void guestOptions() {
 		
-//		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-//		MenuManager mm = new MenuManager(menu);
 		
 		Scanner sc = new Scanner(System.in);
 		int option;
+		boolean searchSuccessful = false;
+		Guest guest = null;
 		
-		//we will need to change this to initialise
-//		MenuApp.menuapp(); 
-	
-		//each ui has to initialise their respective items!
+		while(!searchSuccessful) {
+			System.out.println("========================================");
+			System.out.println("Hi! Please enter guest name (Enter 0 to return to previous menu): ");
+			String guestName = sc.nextLine();
+			if(guestName.equals("0")) {
+				return;
+			}
+			guest = Initialise.gm.searchGuest(guestName);
+			if(guest != null) {
+				searchSuccessful = true;
+			}
+			System.out.println("Guest not found!");
+		}
+
 		
 
 		do {
-			
-			//have to implement method to find the guest name first, before jumping to the below menu
-			
-			
             System.out.println("========================================");
             System.out.println("Hi! Please select an option:");
             System.out.println("(1) Update guest's name");
@@ -34,7 +42,7 @@ public class GuestUI {
             System.out.println("(7) Update guest's identity");
             System.out.println("(8) Update guest's nationality");
             System.out.println("(9) Update guest's contact");
-            System.out.println("(10) Go Back To Main Menu");
+            System.out.println("(10) Go Back To Previous Page");
             System.out.println("========================================");
 
             option = sc.nextInt();
@@ -42,7 +50,7 @@ public class GuestUI {
 
             switch(option) {
                 case 1:
-                	
+                	Initialise.gm.updateGuestName(guest);
                     break;
                 case 2:
                 	
