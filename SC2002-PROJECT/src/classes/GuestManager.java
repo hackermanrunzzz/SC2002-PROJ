@@ -50,7 +50,7 @@ public class GuestManager {
 	}
 	
 	public void updateGuestCardName(Guest guest) {
-		System.out.println("Current guest name: " + guest.getCreditCardName());
+		System.out.println("Current guest credit card name: " + guest.getCreditCardName());
 		System.out.println("Please enter updated guest credit card name (Enter 0 to cancel): ");
 		String updatedCardName = sc.nextLine();
 		if(updatedCardName.equals("0")) {
@@ -69,7 +69,7 @@ public class GuestManager {
 	}
 	
 	public void updateGuestCardNumber(Guest guest) {
-		System.out.println("Current guest name: " + guest.getCreditCardNumber());
+		System.out.println("Current guest credit card number: " + guest.getCreditCardNumber());
 		System.out.println("Please enter updated guest credit card number (Enter 0 to cancel): ");
 		String updatedCardNumber = sc.nextLine();
 		if(updatedCardNumber.equals("0")) {
@@ -88,7 +88,7 @@ public class GuestManager {
 	}
 	
 	public void updateGuestAddress(Guest guest) {
-		System.out.println("Current guest name: " + guest.getAddress());
+		System.out.println("Current guest address: " + guest.getAddress());
 		System.out.println("Please enter updated guest address (Enter 0 to cancel): ");
 		String updatedAddress = sc.nextLine();
 		if(updatedAddress.equals("0")) {
@@ -107,7 +107,7 @@ public class GuestManager {
 	}
 	
 	public void updateGuestCountry(Guest guest) {
-		System.out.println("Current guest name: " + guest.getCountry());
+		System.out.println("Current guest country: " + guest.getCountry());
 		System.out.println("Please enter updated guest country (Enter 0 to cancel): ");
 		String updatedCountry = sc.nextLine();
 		if(updatedCountry.equals("0")) {
@@ -126,7 +126,7 @@ public class GuestManager {
 	}
 	
 	public void updateGuestGender(Guest guest) {
-		System.out.println("Current guest name: " + guest.getGender());
+		System.out.println("Current guest gender: " + guest.getGender());
 		System.out.println("Please enter updated guest gender (Enter 0 to cancel): ");
 		char updatedGender = sc.next().charAt(0);
 		// 48 is decimal value of char 0
@@ -147,7 +147,7 @@ public class GuestManager {
 	}
 	
 	public void updateGuestIdentity(Guest guest) {
-		System.out.println("Current guest name: " + guest.getIdentity());
+		System.out.println("Current guest identity number: " + guest.getIdentity());
 		System.out.println("Please enter updated guest identity number (Enter 0 to cancel): ");
 		String updatedIdentity = sc.nextLine();
 		if(updatedIdentity.equals("0")) {
@@ -166,7 +166,7 @@ public class GuestManager {
 	}
 	
 	public void updateGuestNationality(Guest guest) {
-		System.out.println("Current guest name: " + guest.getNationality());
+		System.out.println("Current guest nationality: " + guest.getNationality());
 		System.out.println("Please enter updated guest nationality (Enter 0 to cancel): ");
 		String updatedNationality = sc.nextLine();
 		if(updatedNationality.equals("0")) {
@@ -185,7 +185,7 @@ public class GuestManager {
 	}
 	
 	public void updateGuestContact(Guest guest) {
-		System.out.println("Current guest name: " + guest.getContact());
+		System.out.println("Current guest contact: " + guest.getContact());
 		System.out.println("Please enter updated guest contact (Enter 0 to cancel): ");
 		String updatedContact = sc.nextLine();
 		if(updatedContact.equals("0")) {

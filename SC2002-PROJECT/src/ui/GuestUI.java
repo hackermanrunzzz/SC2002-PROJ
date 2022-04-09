@@ -79,7 +79,7 @@ public class GuestUI {
                     break;
             }
         } while (option<10);
-		sc.close();
+		
     }
 	
 
