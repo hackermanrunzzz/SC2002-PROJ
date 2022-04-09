@@ -36,8 +36,12 @@ public class OrderManager {
 
     
     public Order getOrder(int ResID){
-        for(Order o: orders ){
-            if(o.getResID() == ResID) return o;
+        for(Order o: orders )
+		{
+            if(o.getResID() == ResID)
+			{
+				return o;
+			}
         }
         return new Order();
     }
@@ -66,8 +70,12 @@ public class OrderManager {
      * @return the order id
      */
     public static String findOrderID(int ResID,String RoomNumber) {
-        for (Order o : orders) {
-            if (o.getResID() == ResID) return o.getOrderID();
+        for (Order o : orders)
+		{
+            if (o.getResID() == ResID)
+			{
+				return o.getOrderID();
+			}
         }
         System.out.println("No existing order for this room");
         return null;
@@ -82,6 +90,7 @@ public class OrderManager {
     
     public double calculateAmount() {
         double amount = 0;
+
         for (int i = 0; i < orders.size(); i++) {
         	for (int y = 0; y < orders.get(i).getMenuI().size(); y++)
             amount = amount + orders.get(i).getMenuI().get(y).getPrice();
@@ -89,6 +98,11 @@ public class OrderManager {
 
      
       
+        for (int i = 0; i < Initialise.menu.size(); i++)
+		{
+            amount += Initialise.menu.get(i).getPrice();
+        }
+
         return amount;
     }
 	

@@ -23,10 +23,10 @@ public class Order {
 
 	 public Order() {
 	        this.OrderID = UUID.randomUUID().toString();
-	        this.ResID = ResID;
+	        this.ResID = 0; // Got error here jn, changed it to initialise to 0
 	        this.time = Calendar.getInstance();
-	        this.orderStatus = orderStatus;
-	        this.room = room;
+	        this.orderStatus = StatusOfOrder.DELIVERED; //Got error here also, set it as delivered first
+	        this.room = rooms; 
 	        this.totalPrice = 0;// need to be calculated
 	        this.menuI = Initialise.menu;
 ;	    }
