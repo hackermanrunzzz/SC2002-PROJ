@@ -228,7 +228,7 @@ public class CheckInManager {
         checkOutDate = Initialise.resm.getValidCheckOutDateTime(checkInDate);
         numberOfNights = Initialise.resm.calcNumberOfDays(checkInDate,checkOutDate);
 
-        System.out.printf("You have booked %d day(s).\n", numberOfNights);
+        System.out.printf("You have booked %d Night(s).\n", numberOfNights);
         
 
         Initialise.resm.makeCheckIn(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);

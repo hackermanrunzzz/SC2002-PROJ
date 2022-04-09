@@ -34,7 +34,7 @@ public class OrderUI {
 		                  Initialise.om.createOrderUI();
 		                    break;
 		                case 2:
-		                   // viewOrderUI();
+		                    Initialise.om.viewOrderUI();
 		                    break;
 		                case 3:
 		                   // addItemToOrderUI();

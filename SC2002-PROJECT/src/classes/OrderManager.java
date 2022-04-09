@@ -102,7 +102,7 @@ public class OrderManager {
 	   
 	   
 	   
-	   public static void createOrderUI(){
+	   public void createOrderUI(){
 			Scanner sc = new Scanner(System.in);
 			int found = 0;
 			int not_found=0;
@@ -113,20 +113,20 @@ public class OrderManager {
 
 	        int table =0;
 	        
-	        System.out.println("Enter Reservation ID (1-10) : ");
+	        System.out.println("Enter Reservation ID : ");
 	        int  ResID = sc.nextInt();
 	        System.out.println("Enter Room Number");
 	        String RoomNumber = sc.next();
 
 	        
 	      
-	        sc.nextLine();
+	        //sc.nextLine();
 	        
 	        for (int i = 0 ; i < Initialise.reservations.size(); i++) {
 	        	if (ResID == Initialise.reservations.get(i).getReservationID() && Initialise.reservations.get(i).getReservationStatus().equals(StatusOfReservation.CHECKED_IN))
 	        	{
 	        		found = 1;
-	        	  System.out.println("Reservation Found Please Proceed to Order");
+	        	
 	        	}
 	        	else {
 	        		not_found = -1;
@@ -185,7 +185,7 @@ public class OrderManager {
 
 	        } while(choice!=-1);
 	       // Restaurant.menu.printShortPromoMenu();
-	        Initialise.mm.printMenu();
+	        //Initialise.mm.printMenu();
 	        
 	        System.out.println("Please Enter Additional Remarks (If Any)");
 	        String remarks = sc.next();
@@ -211,6 +211,7 @@ public class OrderManager {
 //	        } while(choice!=-1);
 
 	       // Restaurant.allOrders.createOrder(staff,table,menu);
+	        System.out.println(Initialise.roomServiceitems);
 	        Initialise.om.createOrder(ResID, RoomNumber, Initialise.roomServiceitems);
 	    }
 	        
@@ -223,7 +224,7 @@ public class OrderManager {
 	    	
 	
 	
-	  public static void viewOrderUI(){
+	  public void viewOrderUI(){
 			Scanner sc = new Scanner(System.in);
 			Order test;
 	        System.out.println("--------------------------------------------------------------------------------");

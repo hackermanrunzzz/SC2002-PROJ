@@ -52,6 +52,7 @@ public class HotelMain {
                 	CheckInUI.checkInOptions();
                      break;
                 case 5:
+                	OrderUI.orderOptions();
                 	break;
                 case 6:
                 	break;

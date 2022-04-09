@@ -43,7 +43,7 @@ public class Order {
 	
 	public Order(int ResID,String RoomNumber,  ArrayList<MenuItem> menuI) {
 		this.OrderID = UUID.randomUUID().toString();
-		this.RoomNumber = room.getRoomNumber();
+		this.RoomNumber = this.RoomNumber;
 		this.time = time;
 		this.remarks = remarks;
 		this.orderStatus = orderStatus;
