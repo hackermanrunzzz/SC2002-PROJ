@@ -35,8 +35,7 @@ public class ReservationUI {
             System.out.println("(4) Search individual reservation");
             System.out.println("(5) Show room via occupancy");
             System.out.println("(6) Show room via status");
-            System.out.println("(7) Make Walk-in");
-            System.out.println("(8) Go Back To Main Menu");
+            System.out.println("(7) Go Back To Main Menu");
             System.out.println("========================================");
 
             choice = sc.nextInt();

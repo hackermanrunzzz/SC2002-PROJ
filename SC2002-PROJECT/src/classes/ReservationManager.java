@@ -161,6 +161,8 @@ public class ReservationManager {
         
         if(roomcounter == 0) {
         	System.out.println("There are no available rooms available.");
+        	//we must be able to exit here, right now if there are no available rooms, it jumps to date inputs
+        	
         }
         else {
         	while(RoomMatch) {
@@ -259,6 +261,30 @@ public class ReservationManager {
 	    			StatusOfReservation.CONFIRMED, numberOfNights));
 	        
 	        roomDetails.setRoomStatus(Room.StatusOfRoom.RESERVED);
+	        
+	        return;
+		}
+		else {
+			System.out.println("The room is " + roomDetails.getRoomStatus() + ".");
+		}
+    }
+	
+	//makeCheckIn
+	public void makeCheckIn(ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
+			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount, int numberOfNights){
+
+		if(roomDetails.getRoomStatus() == Room.StatusOfRoom.VACANT) {
+	        int reservationID = 10000;
+	        if(Initialise.reservations.size() > 0){
+	        	reservationID = Initialise.reservations.get(Initialise.reservations.size()-1).getReservationID()+1;
+	        }
+	
+	        System.out.println("\nReservation is Confirmed!\nReservation ID:" + reservationID);
+	        reservations.add(new Reservation(reservationID, guestDetails, roomDetails, billingInformation,
+	    			checkInDate, checkOutDate, adultCount, childrenCount,
+	    			StatusOfReservation.CHECKED_IN, numberOfNights));
+	        
+	        roomDetails.setRoomStatus(Room.StatusOfRoom.OCCUPIED);
 	        
 	        return;
 		}

@@ -130,10 +130,12 @@ public class Reservation {
 	
 	public String printReservation() {
         DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-        String strDate = dateFormat.format(this.checkInDate.getTime());
+        String strDateIn = dateFormat.format(this.checkInDate.getTime());
+        
+        String strDateOut = dateFormat.format(this.checkOutDate.getTime());
 
         return "Guest Name: \t\t\t" + this.guestDetails.get(0).getName() + "\nContact:\t\t\t" + this.guestDetails.get(0).getContact()
-                +"\nCheck in time: \t\t\t" + strDate + "\nReservation ID: \t\t" + this.reservationID
+                +"\nCheck In time: \t\t\t" + strDateIn +"\nCheck Out time: \t\t" + strDateOut + "\nNumber of Nights: \t\t" + this.getnumberOfNights() + "\nReservation ID: \t\t" + this.reservationID
                 + "\nRoom Number: \t\t\t" + this.roomDetails.getRoomNumber() + "\nReservation Status:\t\t" + this.getReservationStatus() + "\nRoom Status:\t\t\t" + this.roomDetails.getRoomStatus();
     }
 
