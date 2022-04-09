@@ -21,29 +21,32 @@ public class Order {
 	private Room room;
 	private String RoomNumber;
 	private ArrayList<MenuItem> menuI;
+	private Calendar time;
 	
 
-//	 public Order() {
-//	        this.OrderID = UUID.randomUUID().toString();
-//	        this.ResID = 0; // Got error here jn, changed it to initialise to 0
-//	        this.time = Calendar.getInstance();
-//	        this.orderStatus = StatusOfOrder.DELIVERED; //Got error here also, set it as delivered first
-//	        this.room = room; 
-//	        this.totalPrice = 0;// need to be calculated
-//	        this.menuI = Initialise.menu;
-//;	    }
-//	
-//
-//	public Order(String orderID, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice) {
-//		this.OrderID = UUID.randomUUID().toString();
-//		this.time = time;
-//		this.remarks = remarks;
-//		this.orderStatus = orderStatus;
-//		this.totalPrice = totalPrice;
-//		this.menuI = Initialise.menu;
-//	}
+	 public Order() 
+	 {
+	        this.OrderID = UUID.randomUUID().toString();
+	        this.ResID = 0; // Got error here jn, changed it to initialise to 0
+	        this.time = Calendar.getInstance();
+	        this.orderStatus = StatusOfOrder.DELIVERED; //Got error here also, set it as delivered first
+	        this.totalPrice = 0;// need to be calculated
+	        this.menuI = Initialise.menu;
+;	    }
 	
-	public Order(String OrderID, int ResID,String RoomNumber, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice, ArrayList<MenuItem> menuI) {
+
+	public Order(String orderID, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice) 
+	{
+		this.OrderID = UUID.randomUUID().toString();
+		this.time = time;
+		this.remarks = remarks;
+		this.orderStatus = orderStatus;
+		this.totalPrice = totalPrice;
+		this.menuI = Initialise.menu;
+	}
+	
+	public Order(String OrderID, int ResID,String RoomNumber, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice, ArrayList<MenuItem> menuI) 
+	{
 		this.OrderID = OrderID;
 		this.ResID = ResID;
 		this.RoomNumber = RoomNumber;
@@ -53,7 +56,6 @@ public class Order {
 		this.totalPrice = totalPrice;
 		this.menuI = menuI;
 	}
-
 
 
 

@@ -53,7 +53,7 @@ public class OrderManager {
 				return o;
 			}
         }
-        return new Order(null, ResID, null, null, null, null, ResID, null); // Resolved some errors
+        return new Order(); // Resolved some errors
     } // No error-checking required here
     
 //
@@ -83,8 +83,9 @@ public class OrderManager {
      * @param menu menu to order from
      */
     public void createOrder( int ResID, String RoomNumber, ArrayList<MenuItem> menu) {
-        Order new_order= new Order(ResID,RoomNumber, menu);
+        Order new_order= new Order(ResID,RoomNumber, menu); // Did you mean to use the other constructor here? @ Warren
         orders.add(new_order);
+	}
     public void createOrder( int ResID,String RoomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
     	 String OrderID = UUID.randomUUID().toString();
 
@@ -321,6 +322,7 @@ public class OrderManager {
 	        try{
 	        	Order order =  OrderManager.findOrder(resIDROOM, roomNum);
 	            System.out.println("============================= CURRENT TABLE ORDER =================================");
+			}
 	    
 //	  
 //	  public Order findOrder(int ResID,String RoomNumber) {

@@ -9,14 +9,6 @@ public class RoomService{
 	private double totalPrice;
 
 
-
-
-	public RoomService()
-	{
-		// Empty Constructor here, initialising the ArrayList
-		
-	}
-
 	public RoomService(double price)
 	{
 		this.totalPrice = price;
@@ -44,6 +36,13 @@ public class RoomService{
 	{
 		return totalPrice;
 	}
+
+	public void orderInput()
+	{
+		
+	}
+
+	
 	
 
 }
