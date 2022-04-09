@@ -229,20 +229,19 @@ public class ReservationManager {
         		Guest guestx = new Guest(guestName,creditCardName,creditCardNumber,address,country,gender,identity,nationality,contact);
         		currentGuestArr.add(guestx);
         	}
+        	
+        	
+        	Room thisRoom = ReturnRoom(roomNumber);
+            
+            checkInDate = getValidCheckInDateTime();
+            checkOutDate = getValidCheckOutDateTime(checkInDate);
+            numberOfNights = calcNumberOfDays(checkInDate,checkOutDate);
+
+            System.out.printf("You have booked %d day(s).\n", numberOfNights);
+            
+
+            makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
         }
-        Room thisRoom = ReturnRoom(roomNumber);
-        
-        checkInDate = getValidCheckInDateTime();
-        checkOutDate = getValidCheckOutDateTime(checkInDate);
-        numberOfNights = calcNumberOfDays(checkInDate,checkOutDate);
-
-        System.out.printf("You have booked %d day(s).\n", numberOfNights);
-        
-
-        makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
-
-
-
     }
 	
 	
