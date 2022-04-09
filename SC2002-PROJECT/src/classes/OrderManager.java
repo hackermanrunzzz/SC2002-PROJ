@@ -3,6 +3,7 @@ package classes;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
+import java.util.UUID;
 
 import Initialiser.Initialise;
 import classes.Order.StatusOfOrder;
@@ -60,7 +61,9 @@ public class OrderManager {
      * @param menu menu to order from
      */
     public void createOrder( int ResID,String RoomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
-        Order ordering = new Order( ResID, RoomNumber,  time,  remarks,StatusOfOrder.CONFIRMED, totalPrice, menuI);
+    	 String OrderID = UUID.randomUUID().toString();
+
+        Order ordering = new Order( OrderID, ResID, RoomNumber,  time,  remarks,StatusOfOrder.CONFIRMED, totalPrice, menuI);
         orders.add(ordering);
     }
 
@@ -232,8 +235,16 @@ public class OrderManager {
 	        for (int i = 0; i < Initialise.roomServiceitems.size();i++) 
 	        {		
 		         totalp = totalp + Initialise.roomServiceitems.get(i).getPrice(); 		
-		      }   	       
+		      }
+	        
+	        for (int f = 0 ; f < Initialise.roomServiceitems.size(); f++) {
+	        	System.out.println(Initialise.roomServiceitems.get(f).getName());
+	        }
+	        
 	        createOrder(ResID, RoomNumber,timenow,remarks, totalp,Initialise.roomServiceitems);
+	       System.out.println( orders.get(0));
+	       System.out.println( orders.get(0).printOrder());
+	       System.out.println( findOrderID(ResID,RoomNumber));
 	        
 	        System.out.println(findOrder(10000,"02-01").getResID());
 	    }
