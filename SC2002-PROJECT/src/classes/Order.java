@@ -14,7 +14,7 @@ public class Order {
 	
 	private String OrderID;
 	private int ResID;
-	private Calendar time;
+	private Calendar timeOfOrder;
 	private String remarks;
 	private StatusOfOrder orderStatus;
 	private double totalPrice;
@@ -45,8 +45,9 @@ public class Order {
 	
 	public Order(String OrderID, int ResID,String RoomNumber, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice, ArrayList<MenuItem> menuI) {
 		this.OrderID = OrderID;
+		this.ResID = ResID;
 		this.RoomNumber = RoomNumber;
-		this.time = time;
+		this.timeOfOrder = time;
 		this.remarks = remarks;
 		this.orderStatus = orderStatus;
 		this.totalPrice = totalPrice;
@@ -54,96 +55,6 @@ public class Order {
 	}
 
 
-
-
-    public String getOrderID() {
-		return OrderID;
-	}
-
-
-	public void setOrderID(String orderID) {
-		OrderID = orderID;
-	}
-
-
-	public int getResID() {
-		return ResID;
-	}
-
-
-	public void setResID(int resID) {
-		ResID = resID;
-	}
-
-
-	public Calendar getTime() {
-		return time;
-	}
-
-
-	public void setTime(Calendar time) {
-		this.time = time;
-	}
-
-
-	public String getRemarks() {
-		return remarks;
-	}
-
-
-	public void setRemarks(String remarks) {
-		this.remarks = remarks;
-	}
-
-
-	public StatusOfOrder getOrderStatus() {
-		return orderStatus;
-	}
-
-
-	public void setOrderStatus(StatusOfOrder orderStatus) {
-		this.orderStatus = orderStatus;
-	}
-
-
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-
-
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
-
-
-	public Room getRoom() {
-		return room;
-	}
-
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
-
-
-	public String getRoomNumber() {
-		return RoomNumber;
-	}
-
-
-	public void setRoomNumber(String roomNumber) {
-		RoomNumber = roomNumber;
-	}
-
-
-	public ArrayList<MenuItem> getMenuI() {
-		return menuI;
-	}
-
-
-	public void setMenuI(ArrayList<MenuItem> menuI) {
-		this.menuI = menuI;
-	}
 
 
 	
@@ -195,15 +106,163 @@ public class Order {
 
   
 
-    /**
+    public String getOrderID() {
+		return OrderID;
+	}
+
+
+
+
+
+	public void setOrderID(String orderID) {
+		OrderID = orderID;
+	}
+
+
+
+
+
+	public int getResID() {
+		return ResID;
+	}
+
+
+
+
+
+	public void setResID(int resID) {
+		ResID = resID;
+	}
+
+
+
+
+
+	public Calendar getTimeOfOrder() {
+		return timeOfOrder;
+	}
+
+
+
+
+
+	public void setTimeOfOrder(Calendar timeOfOrder) {
+		this.timeOfOrder = timeOfOrder;
+	}
+
+
+
+
+
+	public String getRemarks() {
+		return remarks;
+	}
+
+
+
+
+
+	public void setRemarks(String remarks) {
+		this.remarks = remarks;
+	}
+
+
+
+
+
+	public StatusOfOrder getOrderStatus() {
+		return orderStatus;
+	}
+
+
+
+
+
+	public void setOrderStatus(StatusOfOrder orderStatus) {
+		this.orderStatus = orderStatus;
+	}
+
+
+
+
+
+	public double getTotalPrice() {
+		return totalPrice;
+	}
+
+
+
+
+
+	public void setTotalPrice(double totalPrice) {
+		this.totalPrice = totalPrice;
+	}
+
+
+
+
+
+	public Room getRoom() {
+		return room;
+	}
+
+
+
+
+
+	public void setRoom(Room room) {
+		this.room = room;
+	}
+
+
+
+
+
+	public String getRoomNumber() {
+		return RoomNumber;
+	}
+
+
+
+
+
+	public void setRoomNumber(String roomNumber) {
+		RoomNumber = roomNumber;
+	}
+
+
+
+
+
+	public ArrayList<MenuItem> getMenuI() {
+		return menuI;
+	}
+
+
+
+
+
+	public void setMenuI(ArrayList<MenuItem> menuI) {
+		this.menuI = menuI;
+	}
+
+
+
+
+
+	/**
      * view the order
      */
  
 	public String printOrder() {
+		  DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+	        String strtimeOfOrder = dateFormat.format(this.timeOfOrder.getTime());
+	        
+	      
       
 
-        return "ORder" + this.getOrderID() + "Resid" + this.getResID() ;
-              
+        return "OrderID : \t\t\t" + this.getOrderID() + "\nResid: \t\t\t" + this.getResID()  + "\nRoomNumber: \t\t\t" + this.getRoomNumber() + "\nTime Of Order: \t\t\t"  + strtimeOfOrder + "\nRemarks : \t\t\t" + this.getRemarks()  + "\nStatus Of Order:  \t\t\t"
+   + this.getOrderStatus() +  "\nTotal Price : \t\t\t" + this.getTotalPrice();            
               
     }
 	

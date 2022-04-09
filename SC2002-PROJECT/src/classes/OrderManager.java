@@ -34,19 +34,19 @@ public class OrderManager {
      * @param tableID table belonging to the pending order
      * @return order
      */
-
-    
-    public Order getOrder(int ResID){
-        for(Order o: orders )
-		{
-            if(o.getResID() == ResID)
-			{
-				return o;
-			}
-        }
-        return new Order();
-    }
-    
+//
+//    
+//    public Order getOrder(int ResID){
+//        for(Order o: orders )
+//		{
+//            if(o.getResID() == ResID)
+//			{
+//				return o;
+//			}
+//        }
+//        return new Order();
+//    }
+//    
 
     /**
      * check if the order is pending
@@ -100,12 +100,6 @@ public class OrderManager {
         }
 
      
-      
-        for (int i = 0; i < Initialise.menu.size(); i++)
-		{
-            amount += Initialise.menu.get(i).getPrice();
-        }
-
         return amount;
     }
 	
@@ -242,16 +236,16 @@ public class OrderManager {
 	        }
 	        
 	        createOrder(ResID, RoomNumber,timenow,remarks, totalp,Initialise.roomServiceitems);
-	       System.out.println( orders.get(0));
+//	       System.out.println( orders.get(0));
+//	       System.out.println( orders.get(0).getResID());
 	       System.out.println( orders.get(0).printOrder());
-	       System.out.println( findOrderID(ResID,RoomNumber));
-	        
-	        System.out.println(findOrder(10000,"02-01").getResID());
+	       printIndividualfood(Initialise.roomServiceitems);
+	       
+//	  
 	    }
 	        
 	        
 
-	
 
 	       
 	     
@@ -263,17 +257,27 @@ public class OrderManager {
 			Order test;
 	        System.out.println("--------------------------------------------------------------------------------");
 	        System.out.println("Enter RES ID and Room Number to view room order.");
-	        int resIDROOM =0;
+	        int resIDROOM;
 	        String roomNum;
-	        do{
-	            System.out.println("Enter RESID  : ");
+	        while(true) {
+	            System.out.println("Enter RESID (Press -1 to Exit)  : ");
 	            resIDROOM = sc.nextInt();
-	            System.out.println("Enter RoomNumber");
-	            roomNum = sc.next();
+	            System.out.println("Enter RoomNumber (Press -1 to exit)");
+	            roomNum = sc.nextLine();
 	            
-	         findOrder(resIDROOM,roomNum);
 	            
-	            sc.nextLine();} while(findOrder(resIDROOM,roomNum) == null);
+	            if (resIDROOM != 1 && roomNum != "-1") {
+	            	break;
+	            }
+	            
+	        }
+	         
+	       
+	        
+	        searchOrders(resIDROOM,roomNum);
+	  }
+	            
+	            
 //	        if(Initialise.roomm.){
 //	            System.out.println("Table is not occupied.");
 //	            return;
@@ -284,65 +288,63 @@ public class OrderManager {
 //	        }
 
 
-	        try{
-	        Order order = findOrder(resIDROOM, roomNum);
-	            System.out.println("============================= CURRENT TABLE ORDER =================================");
+	    
+//	  
+//	  public Order findOrder(int ResID,String RoomNumber) {
+//	        String id = findOrderID(ResID, RoomNumber);
+//	       
+//	        for (Order o : orders) {
+//	            if (id == o.getOrderID()) return o;
+//	        }
+//	        return order;
+//	    }
+//	  
+	  public int searchOrders( int ResID, String RoomNumber) {
+      if(orders.isEmpty() == true){
+          System.out.println("\nThere are currently no orders");
+          return 0;
+      }
+      else{
+          for(int k = 0 ; k <orders.size(); k ++){
+              if(orders.get(k).getResID() == ResID){
+                  System.out.println("========================================");
 
-	      
-	            System.out.println("Order ID : " + order.getOrderID());
-	    		System.out.println("ResID :"  + order.getResID());
-	    		System.out.println("RoomNumber : " + order.getRoomNumber());
-	    		System.out.println(
-	    				"=============================== A-LA CARTE ORDER ===================================");
-	    		for (int j = 0; j < Initialise.menu.size(); j++) {
-	    			int quantity = 0;
-	    			for (int i = 0; i < order.getMenuI().size(); i++) {
-	    				if (Initialise.menu.get(j).equals(order.getMenuI().get(i))) {   					
-	    					quantity++;
-	    				}
-	    			}
-	    			if (quantity != 0) {
-	    				System.out.print((j + 1) + ". " + Initialise.mm.getFoods().get(j).getName()
-	    						+ "          Quantity : " + quantity);
-	    				System.out.printf("          Total Price : $%.2f\n",
-	    						((double) quantity * Initialise.mm.getFoods().get(j).getPrice()));
-	    			}
-	    		}
-	    		double totalp = 0;
-	    		for ( int k = 0 ; k < orders.size(); k++) {
-	    			totalp  = totalp + orders.get(k).getTotalPrice();
-	    			
-	    		}
-	    		System.out.println(
-	    				"====================================================================================");
+                  System.out.println("\nFound Order: ");
+                  System.out.println(orders.get(k).printOrder());
+                  return 1;
+              }
+          }
+          System.out.println("Order not found.");
+      }
+      return -1;
+	  }
+	  
+	  public void printIndividualfood (ArrayList<MenuItem> menuitems) {
+		  
+		  for (int y = 0 ; y<menuitems.size(); y++) {
+			
+			  System.out.println(menuitems.get(y).getName() +"           " +  menuitems.get(y).getPrice() + "\n" );
+		  }
+	  }
 
-	    		System.out.printf( 
-	    				"                                                     Current Total Bill : $%.2f",
-	    				totalp);
-	    		System.out.println();
+	  
+	  public void showAllOrders() {
 
-	    		
-;}
-	        catch(NullPointerException e){
-	            System.out.println("No order"+e);
+	        if (orders.isEmpty() == true) {
+	            System.out.println("\nThere are currently no reservations");
+	        } 
+	        else {
+	            System.out.println("============ ALL Orders ===============");
+
+	            for (Order o : orders) {
+//	                Date date = r.getCheckInDate().getTime();
+//	                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+//	                String strDate = dateFormat.format(date);
+	                System.out.println(o.printOrder());
+	                System.out.println();
+	            }
 	        }
-
 	    }
-	  
-	  
-	  public Order findOrder(int ResID,String RoomNumber) {
-	        String id = findOrderID(ResID, RoomNumber);
-	        Order order = new Order();
-	        for (Order o : orders) {
-	            if (id == o.getOrderID()) return o;
-	        }
-	        return order;
-	    }
-	  
-	  
-
-	 
-
 	    	
 
 
