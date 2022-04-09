@@ -38,7 +38,7 @@ public class GuestManager {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Name from " + guest.getName()+" to " + updatedName +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest name from " + guest.getName()+" to " + updatedName +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setName(updatedName);
@@ -51,13 +51,13 @@ public class GuestManager {
 	
 	public void updateGuestCardName(Guest guest) {
 		System.out.println("Current guest name: " + guest.getCreditCardName());
-		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
+		System.out.println("Please enter updated guest credit card name (Enter 0 to cancel): ");
 		String updatedCardName = sc.nextLine();
 		if(updatedCardName.equals("0")) {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Credit Card Name from " + guest.getCreditCardName()+" to " + updatedCardName +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest credit card name from " + guest.getCreditCardName()+" to " + updatedCardName +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setCreditCardName(updatedCardName);
@@ -70,13 +70,13 @@ public class GuestManager {
 	
 	public void updateGuestCardNumber(Guest guest) {
 		System.out.println("Current guest name: " + guest.getCreditCardNumber());
-		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
+		System.out.println("Please enter updated guest credit card number (Enter 0 to cancel): ");
 		String updatedCardNumber = sc.nextLine();
 		if(updatedCardNumber.equals("0")) {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Credit Card Number from " + guest.getCreditCardNumber()+" to " + updatedCardNumber +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest credit card number from " + guest.getCreditCardNumber()+" to " + updatedCardNumber +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setCreditCardNumber(updatedCardNumber);
@@ -89,13 +89,13 @@ public class GuestManager {
 	
 	public void updateGuestAddress(Guest guest) {
 		System.out.println("Current guest name: " + guest.getAddress());
-		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
+		System.out.println("Please enter updated guest address (Enter 0 to cancel): ");
 		String updatedAddress = sc.nextLine();
 		if(updatedAddress.equals("0")) {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Address from " + guest.getAddress()+" to " + updatedAddress +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest address from " + guest.getAddress()+" to " + updatedAddress +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setAddress(updatedAddress);
@@ -108,13 +108,13 @@ public class GuestManager {
 	
 	public void updateGuestCountry(Guest guest) {
 		System.out.println("Current guest name: " + guest.getCountry());
-		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
+		System.out.println("Please enter updated guest country (Enter 0 to cancel): ");
 		String updatedCountry = sc.nextLine();
 		if(updatedCountry.equals("0")) {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Country from " + guest.getCountry()+" to " + updatedCountry +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest country from " + guest.getCountry()+" to " + updatedCountry +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setCountry(updatedCountry);
@@ -127,14 +127,15 @@ public class GuestManager {
 	
 	public void updateGuestGender(Guest guest) {
 		System.out.println("Current guest name: " + guest.getGender());
-		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
+		System.out.println("Please enter updated guest gender (Enter 0 to cancel): ");
 		char updatedGender = sc.next().charAt(0);
 		// 48 is decimal value of char 0
 		if(updatedGender == 48) {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Gender from " + guest.getName()+" to " + updatedGender +" ? (Enter 1 to confirm, 0 to cancel)");
+		sc.nextLine();
+		System.out.println("Update guest gender from " + guest.getName()+" to " + updatedGender +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setGender(updatedGender);
@@ -147,13 +148,13 @@ public class GuestManager {
 	
 	public void updateGuestIdentity(Guest guest) {
 		System.out.println("Current guest name: " + guest.getIdentity());
-		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
+		System.out.println("Please enter updated guest identity number (Enter 0 to cancel): ");
 		String updatedIdentity = sc.nextLine();
 		if(updatedIdentity.equals("0")) {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Identity Number from " + guest.getIdentity() +" to " + updatedIdentity +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest identity number from " + guest.getIdentity() +" to " + updatedIdentity +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setIdentity(updatedIdentity);
@@ -166,13 +167,13 @@ public class GuestManager {
 	
 	public void updateGuestNationality(Guest guest) {
 		System.out.println("Current guest name: " + guest.getNationality());
-		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
+		System.out.println("Please enter updated guest nationality (Enter 0 to cancel): ");
 		String updatedNationality = sc.nextLine();
 		if(updatedNationality.equals("0")) {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Nationality from " + guest.getNationality()+" to " + updatedNationality +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest nationality from " + guest.getNationality()+" to " + updatedNationality +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setIdentity(updatedNationality);
@@ -185,13 +186,13 @@ public class GuestManager {
 	
 	public void updateGuestContact(Guest guest) {
 		System.out.println("Current guest name: " + guest.getContact());
-		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
+		System.out.println("Please enter updated guest contact (Enter 0 to cancel): ");
 		String updatedContact = sc.nextLine();
 		if(updatedContact.equals("0")) {
 			System.out.println("Cancelling change...");
 			return;
 		}
-		System.out.println("Update Guest Contact from " + guest.getContact() +" to " + updatedContact +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest contact from " + guest.getContact() +" to " + updatedContact +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setContact(updatedContact);
