@@ -1,5 +1,6 @@
 package Initialiser;
 import java.util.ArrayList;
+import java.util.Timer;
 
 import classes.*;
 import classes.MenuItem.TypeOfMenuItem;
@@ -151,11 +152,18 @@ public class Initialise {
 //		Initialise.rooms = rooms;
 		
 	}
+	
+	public static void autoExpiry(){
+        Timer time = new Timer();
+        ReservationExpiry re = new ReservationExpiry(Initialise.reservations); // Instantiate ScheduledTask class
+        time.schedule(re, 0,50000); // Create Repetitively task for every 20 seconds
+    }
 
 	
 	public static void InitialiseHotel() {
 		InitialiseMenu();
 		InitialiseRoom();
+		autoExpiry();
 		
 	}
 }
