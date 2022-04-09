@@ -26,7 +26,16 @@ public class OrderManager {
        
     }
 
-    /**
+    public static ArrayList<Reservation> getReservations() {
+		return reservations;
+	}
+
+	public static void setReservations(ArrayList<Reservation> reservations) {
+		OrderManager.reservations = reservations;
+	} 
+	// Needed to create the above getter and setter to resolve error in line 11
+
+	/**
      * get the pending order for the table
      * @param tableID table belonging to the pending order
      * @return order
@@ -42,7 +51,7 @@ public class OrderManager {
 			}
         }
         return new Order();
-    }
+    } // No error-checking required here
     
 
     /**
@@ -58,8 +67,8 @@ public class OrderManager {
      * @param menu menu to order from
      */
     public void createOrder( int ResID, String RoomNumber, ArrayList<MenuItem> menu) {
-        Order ordering = new Order(ResID,RoomNumber, menu);
-        orders.add(ordering);
+        Order new_order= new Order(ResID,RoomNumber, menu);
+        orders.add(new_order);
     }
 
     /**
@@ -92,7 +101,7 @@ public class OrderManager {
 		{
             amount += Initialise.menu.get(i).getPrice();
         }
-        return amount;
+        return amount; // This returns total price of ALL MenuItems
     }
 	
 	
@@ -111,7 +120,6 @@ public class OrderManager {
 	   public void createOrderUI(){
 			Scanner sc = new Scanner(System.in);
 			int found = 0;
-			int not_found=0;
 			
 	        System.out.println("========================================");
 	        System.out.println("Creating Room Service Order");
@@ -128,25 +136,29 @@ public class OrderManager {
 	      
 	        //sc.nextLine();
 	        
-	        for (int i = 0 ; i < Initialise.reservations.size(); i++) {
+	        for (int i = 0 ; i < Initialise.reservations.size(); i++)
+			{
 	        	if (ResID == Initialise.reservations.get(i).getReservationID() && Initialise.reservations.get(i).getReservationStatus().equals(StatusOfReservation.CHECKED_IN))
 	        	{
 	        		found = 1;
-	        	
 	        	}
-	        	else {
-	        		not_found = -1;
+	        	else 
+				{
+	        		found = -1;
 	        		System.out.println("reservation not found");
-	        }
+	        	}
 	        }
 	        if (found == 1) 
 	        {
 	        	System.out.println(("reservation found please proceed to order"));
 	        }
-	        else {
+	        else
+			{
 	        	System.out.println("reservation not found");
 	        	return;
 	        }
+
+			// Removed the not_found variable above, since can just use found for the if-else statements
 	        	
 	        	
 //	        if(!Restaurant.tableManager.checkAvailability(table)){
@@ -163,16 +175,16 @@ public class OrderManager {
 
 	        Initialise.mm.printMenu();
 	        int choice;
-	        do {
+	        do{
 	            System.out.println("Enter index of a-la-carte menu items ordered: (Enter -1 to exit)");
 	            choice = sc.nextInt();
 	            sc.nextLine();
-	            
-	          
-	            
-
-	            if(choice ==-1)break;
-	            try{
+	            if(choice ==-1)
+				{
+					break;
+				}
+	            try
+				{
 	                MenuItem food = Initialise.menu.get(choice-1);
 	                
 	                Initialise.roomServiceitems.add(food);
@@ -185,11 +197,12 @@ public class OrderManager {
 	                System.out.println(food.getName()+" has been added to order.");
 	                System.out.println("--------------------------------------------------------------------------------");
 	            }
-	            catch(IndexOutOfBoundsException e){
+	            catch(IndexOutOfBoundsException e)
+				{
 	                System.out.println("Index of menu item is invalid. Please re-enter");
 	            }
 
-	        } while(choice!=-1);
+	        }while(choice!=-1);
 	       // Restaurant.menu.printShortPromoMenu();
 	        //Initialise.mm.printMenu();
 	        
@@ -257,7 +270,7 @@ public class OrderManager {
 
 
 	        try{
-	        Order order =  Initialise.om.findOrder(resIDROOM, roomNum);
+	        	Order order =  OrderManager.findOrder(resIDROOM, roomNum);
 	            System.out.println("============================= CURRENT TABLE ORDER =================================");
 
 	      
@@ -305,17 +318,10 @@ public class OrderManager {
 	  public static Order findOrder(int ResID,String RoomNumber) {
 	        String id = findOrderID(ResID, RoomNumber);
 	        Order order = new Order();
-	        for (Order o : Initialise.om.orders) {
+	        for (Order o : OrderManager.orders)
+			{
 	            if (id == o.getOrderID()) return o;
 	        }
 	        return order;
 	    }
-	  
-	  
-
-	 
-
-	    	
-
-
 	}

@@ -7,7 +7,7 @@ import java.util.Scanner;
 import classes.MenuItem.TypeOfMenuItem;
 
 public class MenuManager {
-	private static ArrayList<MenuItem> menu =new ArrayList<MenuItem>();
+	private static ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
     
     
     

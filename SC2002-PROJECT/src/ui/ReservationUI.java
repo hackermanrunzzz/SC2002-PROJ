@@ -59,10 +59,10 @@ public class ReservationUI {
                 	Initialise.resm.searchReservation(input);
                     break;
                 case 5:
-                	Initialise.roomm.displayRoomViaOccupancy();;
+                	Initialise.room.displayRoomViaOccupancy();;
                     break;
                 case 6:
-                	Initialise.roomm.displayRoomViaStatus();
+                	Initialise.room.displayRoomViaStatus();
                     break;
                 default:
                 	break;
