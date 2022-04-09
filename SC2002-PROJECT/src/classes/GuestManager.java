@@ -106,7 +106,7 @@ public class GuestManager {
 		return;
 	}
 	
-	public void updateCountry(Guest guest) {
+	public void updateGuestCountry(Guest guest) {
 		System.out.println("Current guest name: " + guest.getCountry());
 		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
 		String updatedCountry = sc.nextLine();

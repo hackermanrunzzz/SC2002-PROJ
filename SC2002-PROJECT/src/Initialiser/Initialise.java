@@ -42,6 +42,8 @@ public class Initialise {
 	public static ArrayList<Order> order=new ArrayList<Order>();
 	public static OrderManager om = new OrderManager(order);	
 	
+	public static GuestManager gm = new GuestManager();
+	
 	
 	
 	//methods

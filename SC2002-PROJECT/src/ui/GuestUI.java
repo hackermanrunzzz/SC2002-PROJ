@@ -25,7 +25,8 @@ public class GuestUI {
 			if(guest != null) {
 				searchSuccessful = true;
 			}
-			System.out.println("Guest not found!");
+			else
+				System.out.println("Guest not found!");
 		}
 
 		
@@ -53,16 +54,32 @@ public class GuestUI {
                 	Initialise.gm.updateGuestName(guest);
                     break;
                 case 2:
-                	
+                	Initialise.gm.updateGuestCardName(guest);
                     break;
                 case 3:
-                	
+                	Initialise.gm.updateGuestCardNumber(guest);
                     break;
                 case 4:
-                	
+                	Initialise.gm.updateGuestAddress(guest);
+                    break;
+                case 5:
+                	Initialise.gm.updateGuestCountry(guest);
+                    break;
+                case 6:
+                	Initialise.gm.updateGuestGender(guest);
+                    break;
+                case 7:
+                	Initialise.gm.updateGuestIdentity(guest);
+                    break;
+                case 8:
+                	Initialise.gm.updateGuestNationality(guest);
+                    break;
+                case 9:
+                	Initialise.gm.updateGuestContact(guest);
                     break;
             }
         } while (option<10);
+		sc.close();
     }
 	
 
