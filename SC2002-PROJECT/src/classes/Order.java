@@ -8,7 +8,7 @@ import Initialiser.Initialise;
 
 
 public class Order {
-	private enum StatusOfOrder{CONFIRMED, PREPARING, DELIVERED}
+	public enum StatusOfOrder{CONFIRMED, PREPARING, DELIVERED}
 	
 	private String OrderID;
 	private int ResID;
@@ -41,9 +41,9 @@ public class Order {
 		this.menuI = Initialise.menu;
 	}
 	
-	public Order(int ResID,String RoomNumber,  ArrayList<MenuItem> menuI) {
+	public Order(int ResID,String RoomNumber, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice, ArrayList<MenuItem> menuI) {
 		this.OrderID = UUID.randomUUID().toString();
-		this.RoomNumber = this.RoomNumber;
+		this.RoomNumber = RoomNumber;
 		this.time = time;
 		this.remarks = remarks;
 		this.orderStatus = orderStatus;

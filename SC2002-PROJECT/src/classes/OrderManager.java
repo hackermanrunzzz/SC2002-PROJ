@@ -1,9 +1,11 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Scanner;
 
 import Initialiser.Initialise;
+import classes.Order.StatusOfOrder;
 import classes.Reservation.StatusOfReservation;
 
 
@@ -22,7 +24,7 @@ public class OrderManager {
      * @param paidOrders array of paid orders
      */
     public OrderManager(ArrayList<Order> orders) {
-        this.orders = orders;
+        OrderManager.orders = orders;
        
     }
 
@@ -53,8 +55,8 @@ public class OrderManager {
      * @param tableID table at which order is made
      * @param menu menu to order from
      */
-    public void createOrder( int ResID, String RoomNumber, ArrayList<MenuItem> menu) {
-        Order ordering = new Order(ResID,RoomNumber, menu);
+    public void createOrder( int ResID,String RoomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
+        Order ordering = new Order( ResID, RoomNumber,  time,  remarks,StatusOfOrder.CONFIRMED, totalPrice, menuI);
         orders.add(ordering);
     }
 
@@ -67,7 +69,7 @@ public class OrderManager {
         for (Order o : orders) {
             if (o.getResID() == ResID) return o.getOrderID();
         }
-        System.out.println("No existing order for this table");
+        System.out.println("No existing order for this room");
         return null;
     }
 
@@ -78,17 +80,17 @@ public class OrderManager {
      */
 
     
-	public double calculateAmount() {
+    public double calculateAmount() {
         double amount = 0;
-        for (int i = 0; i < Initialise.menu.size(); i++) {
-            amount = amount + Initialise.menu.get(i).getPrice();
+        for (int i = 0; i < orders.size(); i++) {
+        	for (int y = 0; y < orders.get(i).getMenuI().size(); y++)
+            amount = amount + orders.get(i).getMenuI().get(y).getPrice();
         }
 
-   
-        ;
+     
+      
         return amount;
     }
-	
 	
 	   public void addFoodOrder(Order order, MenuItem food){
 	      //  order.menu.getFoods().add(food);
@@ -211,8 +213,15 @@ public class OrderManager {
 //	        } while(choice!=-1);
 
 	       // Restaurant.allOrders.createOrder(staff,table,menu);
-	        System.out.println(Initialise.roomServiceitems);
-	        Initialise.om.createOrder(ResID, RoomNumber, Initialise.roomServiceitems);
+	        Calendar timenow = Calendar.getInstance();
+	        double totalp = 0;
+	        for (int i = 0; i < Initialise.roomServiceitems.size();i++) 
+	        {		
+		         totalp = totalp + Initialise.roomServiceitems.get(i).getPrice(); 		
+		      }   	       
+	        createOrder(ResID, RoomNumber,timenow,remarks, totalp,Initialise.roomServiceitems);
+	        
+	        System.out.println(findOrder(10000,"02-01").getResID());
 	    }
 	        
 	        
@@ -251,7 +260,7 @@ public class OrderManager {
 
 
 	        try{
-	        Order order =  Initialise.om.findOrder(resIDROOM, roomNum);
+	        Order order = findOrder(resIDROOM, roomNum);
 	            System.out.println("============================= CURRENT TABLE ORDER =================================");
 
 	      
@@ -296,10 +305,10 @@ public class OrderManager {
 	    }
 	  
 	  
-	  public static Order findOrder(int ResID,String RoomNumber) {
+	  public Order findOrder(int ResID,String RoomNumber) {
 	        String id = findOrderID(ResID, RoomNumber);
 	        Order order = new Order();
-	        for (Order o : Initialise.om.orders) {
+	        for (Order o : orders) {
 	            if (id == o.getOrderID()) return o;
 	        }
 	        return order;
