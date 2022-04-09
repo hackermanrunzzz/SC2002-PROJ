@@ -1,7 +1,9 @@
 package classes;
 
 
+import java.text.DateFormat;
 import java.text.ParseException;
+
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -229,20 +231,19 @@ public class ReservationManager {
         		Guest guestx = new Guest(guestName,creditCardName,creditCardNumber,address,country,gender,identity,nationality,contact);
         		currentGuestArr.add(guestx);
         	}
+        	
+        	
+        	Room thisRoom = ReturnRoom(roomNumber);
+            
+            checkInDate = getValidCheckInDateTime();
+            checkOutDate = getValidCheckOutDateTime(checkInDate);
+            numberOfNights = calcNumberOfDays(checkInDate,checkOutDate);
+
+            System.out.printf("You have booked %d day(s).\n", numberOfNights);
+            
+
+            makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
         }
-        Room thisRoom = ReturnRoom(roomNumber);
-        
-        checkInDate = getValidCheckInDateTime();
-        checkOutDate = getValidCheckOutDateTime(checkInDate);
-        numberOfNights = calcNumberOfDays(checkInDate,checkOutDate);
-
-        System.out.printf("You have booked %d day(s).\n", numberOfNights);
-        
-
-        makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
-
-
-
     }
 	
 	
@@ -332,25 +333,69 @@ public class ReservationManager {
         }
     }
 	
+	//short reservation menu for staff to see to remove
+	public int showShortReservation(){
+        if (reservations.isEmpty() == true) {
+            System.out.println("There are currently no reservations");
+            return 0;
+        } 
+        else {
+            System.out.println("============ ALL RESERVATIONS ===============");
+            for (Reservation r : reservations) {
+                Date date = r.getCheckInDate().getTime();
+                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+                String strDate = dateFormat.format(date);
+                System.out.println("ID: "+ r.getReservationID() + "\t Date: "+ strDate);
+             }
+            return 1;
+        }
+    }
+	
 	//manual cancellation
 	//can integrate all the user inputs inside this func, or we just get input from the ui
-	public int cancelReservation(int resId){ 
+	public int cancelReservation(){ 
+		int resId;
+		int cancel = Initialise.resm.showShortReservation();
+		int correctId=0;
 		Scanner sc = new Scanner(System.in);
-		System.out.println("Are you sure you wish to remove reservation "+ resId + "?");
-		System.out.println("Press (1) to confirm, Press any other number to cancel");
-		int choice = sc.nextInt();
-		if (choice == 1) {
-	        int index = 0;
-	        for(Reservation r : reservations){
+		
+		if(cancel == 1) {
+			System.out.println();
+			System.out.println("Please enter the reservation ID that you wish to cancel:");
+	    	resId = sc.nextInt();
+	    	
+	    	//checking for valid reservation ID
+	    	for(Reservation r : reservations){
 	            if(r.getReservationID() == resId){
-	            	r.getRoomDetails().setRoomStatus(Room.StatusOfRoom.VACANT);
-	                reservations.remove(index);
-	                
-	                System.out.println("Reservation successfully removed.");
-	                return 1;
+	            	correctId = 1;
 	            }
-	            index++;
 	        }
+	    	
+	    	if(correctId == 1) {
+	    		System.out.println("Are you sure you wish to remove reservation "+ resId + "?");
+				System.out.println("Press (1) to confirm, Press any other number to cancel");
+				int choice = sc.nextInt();
+				if (choice == 1) {
+			        int index = 0;
+			        for(Reservation r : reservations){
+			            if(r.getReservationID() == resId){
+			            	r.getRoomDetails().setRoomStatus(Room.StatusOfRoom.VACANT);
+			                reservations.remove(index);
+			                
+			                System.out.println("Reservation successfully removed.");
+			                return 1;
+			            }
+			            index++;
+			        }
+				}
+				else {
+					System.out.println("Reservation removal cancelled.");
+				}
+	    		
+	    	}
+	    	else {
+	    		System.out.println("Invalid Reservation ID entered.");
+	    	}
 		}
         return 0;
     }
@@ -579,6 +624,20 @@ public class ReservationManager {
 
 
 
+    }
+    
+  
+    public int expireReservation(int resId){ 
+        int index = 0;
+        for(Reservation r : reservations){
+            if(r.getReservationID() == resId){
+            	r.getRoomDetails().setRoomStatus(Room.StatusOfRoom.VACANT);
+                reservations.remove(index);
+                return 1;
+            }
+            index++;
+        }
+        return 0;
     }
 	
 	
