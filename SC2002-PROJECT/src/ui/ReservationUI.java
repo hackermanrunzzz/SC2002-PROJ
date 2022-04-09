@@ -46,9 +46,9 @@ public class ReservationUI {
                 	Initialise.resm.makeReservationUI();
                     break;
                 case 2:
-                	System.out.println("Please enter the reservation ID that you wish to cancel:");
-                	int resID = sc.nextInt();
-                	Initialise.resm.cancelReservation(resID);
+//                	System.out.println("Please enter the reservation ID that you wish to cancel:");
+//                	int resID = sc.nextInt();
+                	Initialise.resm.cancelReservation();
                     break;
                 case 3:
                 	Initialise.resm.showAllReservations();
