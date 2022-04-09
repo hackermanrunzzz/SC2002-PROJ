@@ -10,9 +10,7 @@ import classes.Room.TypeOfRoom;
 
 public class Initialise {
 	
-//	public static MenuManager(){
-//		
-//	}
+
 	
 	
 	//attributes
@@ -23,15 +21,7 @@ public class Initialise {
     
     public static final int CHECK_OUT_TIME = 14;
     
-//	public static ArrayList<MenuItem> menu;
-//	
-//	public static ArrayList<Room> rooms;
-//	
-//	public static ArrayList<Reservation> reservations;
-//	
-//	public static ReservationManager resm;
-//	
-//	public static RoomManager roomm;
+
 	
 	//
 	public static ArrayList<Room> rooms = new ArrayList<Room>();
@@ -50,10 +40,11 @@ public class Initialise {
 	//
 	public static ArrayList<Order> order=new ArrayList<Order>();
 	public static OrderManager om = new OrderManager(order);	
+	
+	
+	
 	//methods
 	public static void InitialiseMenu(){
-//		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-//		MenuManager mm = new MenuManager(menu);
 	
 		//Main
 
@@ -111,8 +102,6 @@ public class Initialise {
 	
 	public static void InitialiseRoom(){
 		int i;
-//		ArrayList<Room> rooms = new ArrayList<Room>();
-//		RoomManager rm = new RoomManager(rooms);
 		
 		
 		//10 single rooms on floor 2

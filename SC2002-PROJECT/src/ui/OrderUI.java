@@ -12,9 +12,7 @@ public class OrderUI {
 		
 		    private static Scanner sc = new Scanner(System.in);
 
-		    /**
-		     * let user input option to interact with order
-		     */
+		  
 		    public static void orderOptions() {
 		        int choice;
 		        do {
