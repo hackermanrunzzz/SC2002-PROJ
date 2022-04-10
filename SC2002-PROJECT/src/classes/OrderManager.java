@@ -82,10 +82,10 @@ public class OrderManager {
      * @param tableID table at which order is made
      * @param menu menu to order from
      */
-    public void createOrder( int ResID, String RoomNumber, ArrayList<MenuItem> menu) {
-        Order new_order= new Order(1001,ResID,RoomNumber,Calendar.getInstance(), menu); // Did you mean to use the other constructor here? @ Warren
-        orders.add(new_order);
-	}
+//    public void createOrder( int ResID, String RoomNumber, ArrayList<MenuItem> menu) {
+//        Order new_order= new Order(1001,ResID,RoomNumber,Calendar.getInstance(), menu); // Did you mean to use the other constructor here? @ Warren
+//        orders.add(new_order);
+//	}
     public void createOrder( int ResID,String RoomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
     	 String OrderID = UUID.randomUUID().toString();
 
@@ -126,8 +126,7 @@ public class OrderManager {
         }
         return amount; // This returns total price of ALL MenuItems
 
-     
-        return amount;
+   
     }
 	
 	   public void addFoodOrder(Order order, MenuItem food){
@@ -145,6 +144,7 @@ public class OrderManager {
 	   public void createOrderUI(){
 			Scanner sc = new Scanner(System.in);
 			int found = 0;
+			ArrayList<MenuItem> roomServiceitems = new ArrayList<MenuItem>();
 			
 	        System.out.println("========================================");
 	        System.out.println("Creating Room Service Order");
@@ -183,19 +183,7 @@ public class OrderManager {
 	        	return;
 	        }
 
-			// Removed the not_found variable above, since can just use found for the if-else statements
-	        	
-	        	
-//	        if(!Restaurant.tableManager.checkAvailability(table)){
-//	            System.out.println("Table is not occupied.");
-//	            return;
-//	        }
-//	        if(Restaurant.allOrders.checkPendingOrder(table)){
-//	            System.out.println("Order already created. Please add/remove items to order instead.");
-//	            return;
-//	        }
-
-	        //ensure no more than 4
+		
 	        sc.nextLine();
 
 	        Initialise.mm.printMenu();
@@ -212,7 +200,7 @@ public class OrderManager {
 				{
 	                MenuItem food = Initialise.menu.get(choice-1);
 	                
-	                Initialise.roomServiceitems.add(food);
+	                roomServiceitems.add(food);
 	                
 	               
 	                
@@ -256,21 +244,24 @@ public class OrderManager {
 
 	       // Restaurant.allOrders.createOrder(staff,table,menu);
 	        Calendar timenow = Calendar.getInstance();
+	        
 	        double totalp = 0;
-	        for (int i = 0; i < Initialise.roomServiceitems.size();i++) 
+	        for (int i = 0; i < roomServiceitems.size();i++) 
 	        {		
-		         totalp = totalp + Initialise.roomServiceitems.get(i).getPrice(); 		
+		         totalp = totalp + roomServiceitems.get(i).getPrice(); 		
 		      }
 	        
-	        for (int f = 0 ; f < Initialise.roomServiceitems.size(); f++) {
-	        	System.out.println(Initialise.roomServiceitems.get(f).getName());
-	        }
+//	        for (int f = 0 ; f < Initialise.roomServiceitems.size(); f++) {
+//	        	System.out.println(Initialise.roomServiceitems.get(f).getName());
+//	        }
 	        
-	        createOrder(ResID, RoomNumber,timenow,remarks, totalp,Initialise.roomServiceitems);
+	        createOrder(ResID, RoomNumber,timenow,remarks, totalp,roomServiceitems);
 //	       System.out.println( orders.get(0));
 //	       System.out.println( orders.get(0).getResID());
-	       System.out.println( orders.get(0).printOrder());
-	       printIndividualfood(Initialise.roomServiceitems);
+	        printIndividualfood(roomServiceitems);
+	        System.out.println("Total Price :" + "\t\t\t" + "$" + totalp);
+	       
+	     
 	       
 //	  
 	    }
@@ -293,9 +284,10 @@ public class OrderManager {
 	        while(true) {
 	            System.out.println("Enter RESID (Press -1 to Exit)  : ");
 	            resIDROOM = sc.nextInt();
+	   
 	            System.out.println("Enter RoomNumber (Press -1 to exit)");
-	            roomNum = sc.nextLine();
-	            
+	             sc.nextLine();
+	             roomNum = sc.nextLine();
 	            
 	            if (resIDROOM != 1 && roomNum != "-1") {
 	            	break;
@@ -319,11 +311,11 @@ public class OrderManager {
 //	        }
 
 
-	        try{
-	        	Order order =  OrderManager.findOrder(resIDROOM, roomNum);
-	            System.out.println("============================= CURRENT TABLE ORDER =================================");
-			}
-	    
+//	        try{
+//	        	Order order =  OrderManager.findOrder(resIDROOM, roomNum);
+//	            System.out.println("============================= CURRENT TABLE ORDER =================================");
+//			}
+//	    
 //	  
 //	  public Order findOrder(int ResID,String RoomNumber) {
 //	        String id = findOrderID(ResID, RoomNumber);
@@ -341,10 +333,14 @@ public class OrderManager {
       }
       else{
           for(int k = 0 ; k <orders.size(); k ++){
-              if(orders.get(k).getResID() == ResID){
+        	  System.out.println(ResID);
+        	  System.out.println(RoomNumber);
+        	  System.out.println(orders.get(k).getResID());
+        	  System.out.println(orders.get(k).getRoomNumber());
+              if(orders.get(k).getResID() == ResID && orders.get(k).getRoomNumber().equals(RoomNumber) ){
                   System.out.println("========================================");
 
-                  System.out.println("\nFound Order: ");
+                  System.out.println("\n==============Found Order============== ");
                   System.out.println(orders.get(k).printOrder());
                   return 1;
               }
@@ -355,11 +351,20 @@ public class OrderManager {
 	  }
 	  
 	  public void printIndividualfood (ArrayList<MenuItem> menuitems) {
+		  System.out.println("============================Order Receipt========================");
 		  
 		  for (int y = 0 ; y<menuitems.size(); y++) {
 			
-			  System.out.println(menuitems.get(y).getName() +"           " +  menuitems.get(y).getPrice() + "\n" );
+			  System.out.print(menuitems.get(y).getName() + "\t\t\t" + "$"+menuitems.get(y).getPrice());
+			  System.out.print("\n");
 		  }
+		  
+		  
+		  System.out.println("---------------------------------------------------------------------");
+		  System.out.println("---------------------------------------------------------------------");
+
+		  
+		  
 	  }
 
 	  
@@ -371,30 +376,141 @@ public class OrderManager {
 	        else 
 			{
 	            System.out.println("============ ALL Orders ===============");
+	            for (Order o : orders) {
+	            	o.printOrder();
+	            	
+	            }
 
 	    	}
 		}
 	  
 	  
-	  public static Order findOrder(int ResID,String RoomNumber) {
-	        String id = findOrderID(ResID, RoomNumber);
-	        Order order = new Order();
-	        for (Order o : OrderManager.orders)
-			{
-	            if (id == o.getOrderID())
-				{
-					return o;
-				}
-	            for (Order q : orders) {
-//	                Date date = r.getCheckInDate().getTime();
-//	                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-//	                String strDate = dateFormat.format(date);
-	                System.out.println(o.printOrder());
-	                System.out.println();
+//	  public static void findOrder(int ResID,String RoomNumber) {
+//	        String id = findOrderID(ResID, RoomNumber);
+//	        Order order = new Order();
+//	        for (Order o : OrderManager.orders)
+//			{
+//	            if (id == o.getOrderID())
+//				{
+//					return o;
+//				}
+//	            for (Order q : orders) {
+////	                Date date = r.getCheckInDate().getTime();
+////	                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
+////	                String strDate = dateFormat.format(date);
+//	                System.out.println(o.printOrder());
+//	                System.out.println();
+//	            }
+//	        }
+//	    }
+	    
+	  public static Order findOrder(int ResID, String RoomNumber) {
+		  String id = findOrderID(ResID, RoomNumber);
+		  Order temp = null;
+		  int found  = 0;
+		  for (int y = 0 ; y < orders.size(); y++) {
+			  if (orders.get(y).getOrderID().equals(id)) {
+				temp = orders.get(y);
+			  }
+			  else {
+				  temp = null;
+			  }
+		  }
+		  
+		  if (temp != null) {
+			  System.out.println("Order Found");
+		  }
+		  else {
+			  System.out.println("Order Not Found");
+		  }
+		  return temp;
+		  
+	
+		  
+		  
+		  
+	  }
+	  
+	  public void ChangeStatusofOrder() {
+		  int choice;
+		  Scanner sc = new Scanner(System.in);
+	        do {
+	            System.out.println("========================================");
+	            System.out.println("Select choice: ");
+	            System.out.println("(1) Send Order to the Kitchen");
+	            System.out.println("(2) Room Service order has been Delivered");
+	            System.out.println("(3) Go Back To Main Menu");
+	            System.out.println("========================================");
+
+	            choice = sc.nextInt();
+	            sc.nextLine();
+
+	            switch (choice) {
+	                case 1:
+	                	System.out.println("Enter ResID and RoomNumber to find Order");
+	                	System.out.println("Enter ResID");
+	                	int resID = sc.nextInt();
+	                	sc.nextLine();
+	                	System.out.println("Enter RoomNumber");
+	                	String rN = sc.nextLine();
+	                	
+	                	searchOrders(resID,rN);
+	                	while(true) {
+	                		System.out.println("Do You Wish to Send Order to the Kitchen. Press(1) to Send , Press(0) to Return to Main Menu " );
+	                		int send = sc.nextInt();
+	                		if (send == 0) {
+	                			break;
+	                		}
+	                		else if (send ==1) {
+	                			Order rsOrder = findOrder(resID,rN);
+	                			rsOrder.setOrderStatus(StatusOfOrder.PREPARING);
+	                			System.out.println("Order is Being Prepared now");
+	                			break;
+	                			
+	                		}
+	                		else {
+	                			System.out.println("You Have Keyed in a Invalid key. PLease Re-Enter your choice");
+	                		}
+	                		
+	                	}
+	                	
+	  
+	                    break;
+	                case 2:
+	                	System.out.println("Enter ResID and RoomNumber to find Order");
+	                	System.out.println("Enter ResID");
+	                	int ID = sc.nextInt();
+	                	sc.nextLine();
+	                	System.out.println("Enter RoomNumber");
+	                	String rNum = sc.nextLine();
+	                	
+	                	searchOrders(ID,rNum);
+	                	while(true) {
+	                		System.out.println("Has Order Been Delivered Press(1) for Yes , Press(0) to Return to Main Menu " );
+	                		int send = sc.nextInt();
+	                		if (send == 0) {
+	                			break;
+	                		}
+	                		else if (send ==1) {
+	                			Order rsOrder = findOrder(ID,rNum);
+	                			rsOrder.setOrderStatus(StatusOfOrder.DELIVERED);
+	                			System.out.println("Order Has Been Delivered");
+	                			break;
+	                			
+	                		}
+	                		else {
+	                			System.out.println("You Have Keyed in a Invalid key. PLease Re-Enter your choice");
+	                		}
+	                		
+	                	}
+	                	
+	                  
+	                    break;
+	                case 3:
+	                	break;
 	            }
-	        }
+	        } while (choice < 3);
 	    }
-	    	
 
 
 	}
