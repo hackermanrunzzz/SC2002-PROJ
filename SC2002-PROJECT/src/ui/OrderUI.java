@@ -7,6 +7,8 @@ import java.util.Scanner;
 import Initialiser.Initialise;
 import classes.Reservation;
 import classes.ReservationManager;
+
+// This can be the UI for room-service in general
 public class OrderUI {
 
 		
