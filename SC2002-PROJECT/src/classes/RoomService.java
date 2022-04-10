@@ -33,21 +33,4 @@ public class RoomService{
 	{
 		RoomService.order = order;
 	}
-
-	public void displayMenu()
-	{
-		for (int i = 0; i < Initialise.menu.size(); i++)
-		{
-			System.out.println(Initialise.menu.get(i)); // Prints out all the Menu-Items
-		}
-	}
-
-	public void orderInput()
-	{
-		
-	}
-
-	
-	
-
 }
