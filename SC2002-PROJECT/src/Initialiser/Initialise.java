@@ -42,7 +42,7 @@ public class Initialise {
 	
 	public static CheckInManager checkm = new CheckInManager();
 	
-	public static ArrayList<MenuItem> roomServiceitems = new ArrayList<MenuItem>(); // Question, is this gonna be used for the RoomService class to print menu and stuff?
+	//public static ArrayList<MenuItem> roomServiceitems = new ArrayList<MenuItem>(); // Question, is this gonna be used for the RoomService class to print menu and stuff?
 	//
 	public static ArrayList<Order> order=new ArrayList<Order>();
 	public static OrderManager om = new OrderManager(order);	

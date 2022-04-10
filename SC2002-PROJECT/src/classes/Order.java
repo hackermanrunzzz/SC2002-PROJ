@@ -24,26 +24,26 @@ public class Order {
 	private Calendar time;
 	
 
-	 public Order() 
-	 {
-	        this.OrderID = UUID.randomUUID().toString();
-	        this.ResID = 0; // Got error here jn, changed it to initialise to 0
-	        this.time = Calendar.getInstance();
-	        this.orderStatus = StatusOfOrder.DELIVERED; //Got error here also, set it as delivered first
-	        this.totalPrice = 0;// need to be calculated
-	        this.menuI = Initialise.menu;
-;	    }
-	
-
-	public Order(String orderID, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice) 
-	{
-		this.OrderID = UUID.randomUUID().toString();
-		this.time = time;
-		this.remarks = remarks;
-		this.orderStatus = orderStatus;
-		this.totalPrice = totalPrice;
-		this.menuI = Initialise.menu;
-	}
+//	 public Order() 
+//	 {
+//	        this.OrderID = UUID.randomUUID().toString();
+//	        this.ResID = 0; // Got error here jn, changed it to initialise to 0
+//	        this.time = Calendar.getInstance();
+//	        this.orderStatus = StatusOfOrder.DELIVERED; //Got error here also, set it as delivered first
+//	        this.totalPrice = 0;// need to be calculated
+//	        this.menuI = Initialise.menu;
+//;	    }
+//	
+//
+//	public Order(String orderID, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice) 
+//	{
+//		this.OrderID = UUID.randomUUID().toString();
+//		this.time = time;
+//		this.remarks = remarks;
+//		this.orderStatus = orderStatus;
+//		this.totalPrice = totalPrice;
+//		this.menuI = Initialise.menu;
+//	}
 	
 	public Order(String OrderID, int ResID,String RoomNumber, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice, ArrayList<MenuItem> menuI) 
 	{
@@ -263,10 +263,20 @@ public class Order {
 	      
       
 
-        return "OrderID : \t\t\t" + this.getOrderID() + "\nResid: \t\t\t" + this.getResID()  + "\nRoomNumber: \t\t\t" + this.getRoomNumber() + "\nTime Of Order: \t\t\t"  + strtimeOfOrder + "\nRemarks : \t\t\t" + this.getRemarks()  + "\nStatus Of Order:  \t\t\t"
-   + this.getOrderStatus() +  "\nTotal Price : \t\t\t" + this.getTotalPrice();            
+        return "OrderID : \t\t\t" + this.getOrderID() + "\nResid: \t\t\t\t" + this.getResID()  + "\nRoomNumber: \t\t\t" + this.getRoomNumber() +this.getMenuI().get(0).getName()+ "\nTime Of Order: \t\t\t"  + strtimeOfOrder + "\nRemarks : \t\t\t" + this.getRemarks()  + "\nStatus Of Order:  \t\t"
+   + this.getOrderStatus() +  "\nTotal Price : \t\t\t" + "$"+ this.getTotalPrice();            
               
     }
+	
+	
+	  public void printIndividualfood (ArrayList<MenuItem> menuitems) {
+		  
+		  for (int y = 0 ; y<menuitems.size(); y++) {
+			  
+			  System.out.println(menuitems.get(y).getName() +"           " +  menuitems.get(y).getPrice() + "\n" );
+		  }
+	  }
+	
 	
 
 }

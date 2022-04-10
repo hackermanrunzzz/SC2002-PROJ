@@ -24,7 +24,7 @@ public class OrderUI {
 		            System.out.println("(2) View Room Service Order");
 		            System.out.println("(3) Add Item to Order");
 		            System.out.println("(4) Show All Orders");
-		            System.out.println("(5) Print Order Invoice");
+		            System.out.println("(5) Change Order Status");
 		            System.out.println("(6) Go Back To Main Menu");
 		            System.out.println("========================================");
 
@@ -46,7 +46,7 @@ public class OrderUI {
 		                  //  removeItemFromOrderUI();
 		                    break;
 		                case 5:
-		                   // printOrderInvoiceUI();
+		                   Initialise.om.ChangeStatusofOrder();
 		                    break;
 		                case 6:
 
