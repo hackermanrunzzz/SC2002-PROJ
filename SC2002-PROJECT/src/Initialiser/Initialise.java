@@ -11,6 +11,7 @@ import classes.Room.StatusOfRoom;
 import classes.Room.TypeOfBed;
 import classes.Room.TypeOfRoom;
 import classes.Reservation.StatusOfReservation;
+import classes.Payment.methodOfPayment; // For initialising Payment here first, testing
 
 
 public class Initialise {
@@ -208,7 +209,7 @@ public class Initialise {
 
 	public static void InitialiseRoomService()
 	{
-
+		
 	}
 	
 	public static void autoExpiry(){
@@ -216,6 +217,11 @@ public class Initialise {
         ReservationExpiry re = new ReservationExpiry(Initialise.reservations); // Instantiate ScheduledTask class
         time.schedule(re, 0,50000); // Create Repetitively task for every 20 seconds
     }
+
+	public static void InitialisePayment()
+	{
+
+	}
 
 	
 	public static void InitialiseHotel() {

@@ -13,6 +13,16 @@ public class RoomService{
 	{
 		this.totalPrice = price;
 	}
+
+	public double getTotalPrice()
+	{
+		return totalPrice;
+	}
+
+	public void setTotalPrice(double price)
+	{
+		this.totalPrice = price;
+	}
 	
 	public static ArrayList<Order> getOrder()
 	{
@@ -23,26 +33,4 @@ public class RoomService{
 	{
 		RoomService.order = order;
 	}
-
-	public void displayMenu()
-	{
-		for (int i = 0; i < Initialise.menu.size(); i++)
-		{
-			System.out.println(Initialise.menu.get(i)); // Prints out all the Menu-Items
-		}
-	}
-
-	public double getTotalPrice()
-	{
-		return totalPrice;
-	}
-
-	public void orderInput()
-	{
-		
-	}
-
-	
-	
-
 }
