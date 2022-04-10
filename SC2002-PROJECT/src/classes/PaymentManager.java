@@ -34,5 +34,6 @@ public class PaymentManager {
                 System.out.println("Please enter a valid method of Payment!\n");
             }
         }
+        System.out.println("Payment made Successfully!\n");
     }
 }
