@@ -23,7 +23,7 @@ public class Payment {
 	public Payment(int paymentID, double roomCharges, double tax, double roomServices, double discount,
 			double totalCharges, methodOfPayment paymentMethod, ArrayList<Order> orderThisRoom, int numberOfNights,
 			String creditCardName, String billingAddress, String billingCardNumber) {
-		super();
+		
 		this.paymentID = paymentID;
 		this.roomCharges = roomCharges;
 		this.tax = tax;
@@ -33,7 +33,7 @@ public class Payment {
 		this.paymentMethod = paymentMethod;
 		this.orderThisRoom = orderThisRoom;
 		this.numberOfNights = numberOfNights;
-		CreditCardName = creditCardName;
+		this.CreditCardName = creditCardName;
 		this.billingAddress = billingAddress;
 		this.billingCardNumber = billingCardNumber;
 	}
