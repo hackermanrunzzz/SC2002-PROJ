@@ -303,25 +303,27 @@ public class OrderManager {
 //	    }
 //	  
 	  public int searchOrders( int ResID, String RoomNumber) {
-      if(Initialise.orders.isEmpty() == true){
-          System.out.println("\nThere are currently no orders");
-          return 0;
-      }
-      else{
-          for(int k = 0 ; k <Initialise.orders.size(); k ++){
-        	  System.out.println(ResID);
-        	  System.out.println(RoomNumber);
-        	  System.out.println(Initialise.orders.get(k).getResID());
-        	  System.out.println(Initialise.orders.get(k).getRoomNumber());
-              if(orders.get(k).getResID() == ResID && orders.get(k).getRoomNumber().equals(RoomNumber) ){
-                  System.out.println("========================================");
-
-                  System.out.println("\n==============Found Order============== ");
-                  System.out.println(orders.get(k).printOrder());
-                  return 1;
+		  int found = 0;
+	      if(Initialise.orders.isEmpty() == true){
+	          System.out.println("\nThere are currently no orders");
+	          return 0;
+	      }
+	      else{
+	          for(int k = 0 ; k <Initialise.orders.size(); k ++){
+	        	 
+	              if(orders.get(k).getResID() == ResID && orders.get(k).getRoomNumber().equals(RoomNumber) ){
+	                  System.out.println("========================================");
+	
+	                  System.out.println("\n==============Found Order============== ");
+	                  System.out.println(Initialise.orders.get(k).printOrder());
+	                  found  = 1;
+                  
               }
+              
           }
-          System.out.println("Order not found.");
+          if (found==0) {
+        	  System.out.println("Order not found.");
+          }
       }
       return -1;
 	  }
@@ -346,14 +348,16 @@ public class OrderManager {
 	  
 	  public void showAllOrders() {
 
-	        if (orders.isEmpty() == true) {
+	        if (Initialise.orders.isEmpty() == true) {
 	            System.out.println("\nThere are currently no reservations");
 	        } 
 	        else 
 			{
 	            System.out.println("============ ALL Orders ===============");
-	            for (Order o : Initialise.orders) {
-	            	o.printOrder();
+	       
+	            for (int i = 0 ; i < Initialise.orders.size(); i++) {
+	            	System.out.println(Initialise.orders.get(i).printOrder());
+	            	System.out.println("================================================");
 	            	
 	            }
 
@@ -404,6 +408,34 @@ public class OrderManager {
 	
 		  
 		  
+		  
+	  }
+	  
+	  public void DeleteOrder() {
+		  Scanner sc = new Scanner(System.in);
+		  
+		  while(true) {
+		  System.out.println("Enter ResID");
+		  int rd = sc.nextInt();
+		  
+		  sc.nextLine();
+		  
+		  System.out.println("Enter room Number");
+		  String rn = sc.nextLine();
+		  
+		  
+		  Order temp = findOrder(rd,rn);
+		  
+		  if (temp.getOrderStatus().equals(StatusOfOrder.PREPARING)) {
+			  System.out.println("Order Is Already Being Prepared and Cannot be Deleted");
+			  break;
+		  }
+		//  else if (temp.getOrderStatus().equals(StatusOfOrder.))
+			  
+		  
+		  
+		 
+		  }
 		  
 	  }
 	  
