@@ -44,6 +44,7 @@ public class PaymentManager {
 			return;
 		}
 		for(Reservation r: Initialise.reservations) {
+			//reservation found
 			if(r.getRoomDetails().getRoomNumber().equals(roomNumber) && r.getReservationStatus().equals(StatusOfReservation.CHECKED_IN)) {
 				System.out.println("Valid checked in reservation for " + roomNumber +
 								"found, proceed to check out? (Enter 1 for yes, 0 to cancel check out)");
@@ -53,9 +54,11 @@ public class PaymentManager {
 					return;
 				}
 				validRoomFound = true;
+				//assigns reservation object r to local reservation object toCheckout
 				toCheckOut = r;
 				break;
 			}
+			//reservation matched but reservation not checked in
 			else if(!r.getReservationStatus().equals(StatusOfReservation.CHECKED_IN)) {
 				System.out.println("Invalid entry! Reservation is not checked in.");
 				System.out.println("Cancelling check out...");
@@ -104,6 +107,7 @@ public class PaymentManager {
 	}
 	
 	
+	//this function helps to add up the price of each room service order to get the total roomservice charge
 	public double calcRoomServices(ArrayList<Order> orderThisRoom) {
 		double RoomServices = 0;
 		if (orderThisRoom.isEmpty())
