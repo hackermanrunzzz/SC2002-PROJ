@@ -56,13 +56,10 @@ public class HotelMain {
                 	break;
                 case 6:
                 	break;
-                default :
-                      break;
+                default:
+                	break;
 
             }
         } while (option<7);
 	}
-
-	
-
 }
