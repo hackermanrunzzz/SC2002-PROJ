@@ -193,7 +193,7 @@ public class Initialise {
 
 		//Time In
 		
-		String date1_1 = "20/04/2022 14:30";
+		String date1_1 = "10/04/2022 14:30";
 		Calendar date1in = convert(date1_1);
 		
         String date2_1 = "20/04/2022 14:30";
@@ -252,20 +252,20 @@ public class Initialise {
 		
 
 
-		// Second Guest has a reseved Reservation, was assigned a Single Room
+		// Second Guest is assumed to be Checked-in, was assigned a Single Room
 		Reservation reserv_two = new Reservation(10001, guestarr2, rooms.get(0), "Name is: " + guestarr2.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr2.get(0).getCreditCardNumber(), date2in, date2out, 1, 0, StatusOfReservation.CHECKED_IN, days2);
 		rooms.get(0).setRoomStatus(StatusOfRoom.OCCUPIED);
 		reservations.add(reserv_two);
 		
 
 
-		// Third Guest is in the waitlist, was assigned a Deluxe Room
+		// Third Guest reserved a room, was assigned a Deluxe Room
 		Reservation reserv_three = new Reservation(10002, guestarr3, rooms.get(44), "Name is: " + guestarr3.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr3.get(0).getCreditCardNumber(), date3in, date3out, 1, 0, StatusOfReservation.CONFIRMED, days3);
 		rooms.get(44).setRoomStatus(StatusOfRoom.RESERVED);
 		reservations.add(reserv_three);
 	
 
-		//Fourth Guest's Reservation Expired Alrdy, was assigned a Double Room
+		//Fourth Guests reserved a room, was assigned a Double Room
 		Reservation reserv_four = new Reservation(10003, guestarr4, rooms.get(20), "Name is: " + guestarr4.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr4.get(0).getCreditCardNumber(), date4in, date4out, 1, 0, StatusOfReservation.CONFIRMED, days4);
 		rooms.get(20).setRoomStatus(StatusOfRoom.RESERVED);
 		reservations.add(reserv_four);
