@@ -169,7 +169,6 @@ public class Initialise {
 			rooms.add(new Room("07-" + String.format("%02d", i) ,  TypeOfRoom.VIPSUITE , TypeOfBed.KING, true, true, true, StatusOfRoom.VACANT, 500) );
 			
 		}
-//		Initialise.rooms = rooms;
 	}
 
 	public static Calendar convert(String source) {
@@ -183,57 +182,96 @@ public class Initialise {
 		return calendar;
 	  } // Added this to convert String to Calendar type
 
-	public static void InitialiseReservation() // Created for TESTING
-	{
+	
+	public static void InitialiseReservation(){
+	
+		ArrayList<Guest> guestarr1 = new ArrayList<Guest>();
+		ArrayList<Guest> guestarr2 = new ArrayList<Guest>();
+		ArrayList<Guest> guestarr3 = new ArrayList<Guest>();
+		ArrayList<Guest> guestarr4 = new ArrayList<Guest>();
 
-		Calendar calendar1 = Calendar.getInstance();
-        Calendar calendar2= Calendar.getInstance();
-        Calendar calendar3= Calendar.getInstance();
-        Calendar calendar4 = Calendar.getInstance();
 
-
-    	String date1_1 = "13/04/2022 12:30";
-		Calendar date1 = convert(date1_1);
-        String date2_2 = "14/04/2021 14:30";
-		Calendar date2 = convert(date2_2);
-        String date3_3 = "15/04/2021 16:30";
-		Calendar date3 = convert(date3_3);
-        String date4_4 = "16/04/2021 18:30";
-		Calendar date4 = convert(date4_4);
+		//Time In
+		
+		String date1_1 = "20/04/2022 14:30";
+		Calendar date1in = convert(date1_1);
+		
+        String date2_1 = "20/04/2021 14:30";
+		Calendar date2in = convert(date2_1);
+		
+        String date3_1 = "20/04/2021 16:30";
+		Calendar date3in = convert(date3_1);
+		
+        String date4_1 = "20/04/2021 18:30";
+		Calendar date4in = convert(date4_1);
+		
+		//Time Out
+		
+    	String date1_2 = "25/04/2022 14:00";
+		Calendar date1out = convert(date1_2);
+		
+        String date2_2 = "26/04/2021 14:00";
+		Calendar date2out = convert(date2_2);
+		
+        String date3_2 = "27/04/2021 14:00";
+		Calendar date3out = convert(date3_2);
+		
+        String date4_2 = "28/04/2021 14:00";
+		Calendar date4out = convert(date4_2);
+		
+		
+		//Number of days 
+		int days1 = resm.calcNumberOfDays(date1in, date1out);
+		
+		int days2 = resm.calcNumberOfDays(date2in, date2out);
+		
+		int days3 = resm.calcNumberOfDays(date3in, date3out);
+		
+		int days4 = resm.calcNumberOfDays(date4in, date4out);
+		
+		
 
 		// Initialising 4 TEST Guests inside the Guests Array
 		Guest guest_one = new Guest("Derrick", "James", "96785757", "The Ritz, Avenue 6", "Singapore", 'M', "Indian", "Singaporean", "96978575");
-		guests.add(guest_one);
+		guestarr1.add(guest_one);
+		
 		Guest guest_two = new Guest("Mark", "Black", "96684738", "Patriots' Street 58", "Malaysia", 'F', "Chinese", "Malaysian", "77778888");
-		guests.add(guest_two);
+		guestarr2.add(guest_two);
+		
 		Guest guest_three = new Guest("Darren", "Williams", "77665544", "Fourier Avenue 69", "Sweden", 'M', "Indonesian", "American", "12345678");
-		guests.add(guest_three);
+		guestarr3.add(guest_three);
+		
 		Guest guest_four = new Guest("Blake", "Johnson", "11234578", "Salem Avenue 23", "Denmark", 'M', "Armenian", "Australian", "90807060");
-		guests.add(guest_four);
+		guestarr4.add(guest_four);
 
+		
 		// First Guest is assumed to be Checked-in, was assigned a Deluxe Room
-		Reservation reserv_one  = new Reservation(10001, guests, rooms.get(36), "Name is: " + guests.get(0).getCreditCardName() + ", and Credit Card Number is: " + guests.get(0).getCreditCardNumber(), calendar1, date1,2,2,StatusOfReservation.CHECKED_IN,3);
+		Reservation reserv_one  = new Reservation(10000, guestarr1, rooms.get(36), "Name is: " + guestarr1.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr1.get(0).getCreditCardNumber(), date1in, date1out, 1, 0, StatusOfReservation.CHECKED_IN, days1);
+		rooms.get(36).setRoomStatus(StatusOfRoom.OCCUPIED);
 		reservations.add(reserv_one);
+		
 
 
 		// Second Guest has a reseved Reservation, was assigned a Single Room
-		Reservation reserv_two = new Reservation(10002, guests, rooms.get(0), "Name is: " + guests.get(1).getCreditCardName() + ", and Credit Card Number is: " + guests.get(1).getCreditCardNumber(), calendar2,date2,1,0,StatusOfReservation.CONFIRMED,5);
+		Reservation reserv_two = new Reservation(10001, guestarr2, rooms.get(0), "Name is: " + guestarr2.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr2.get(0).getCreditCardNumber(), date2in, date2out, 1, 0, StatusOfReservation.CHECKED_IN, days2);
+		rooms.get(0).setRoomStatus(StatusOfRoom.OCCUPIED);
 		reservations.add(reserv_two);
+		
 
 
 		// Third Guest is in the waitlist, was assigned a Deluxe Room
-		Reservation reserv_three = new Reservation(10003, guests, rooms.get(44), "Name is: " + guests.get(2).getCreditCardName() + ", and Credit Card Number is: " + guests.get(2).getCreditCardNumber(), calendar3, date3,3,2,StatusOfReservation.IN_WAITLIST,5);
+		Reservation reserv_three = new Reservation(10002, guestarr3, rooms.get(44), "Name is: " + guestarr3.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr3.get(0).getCreditCardNumber(), date3in, date3out, 1, 0, StatusOfReservation.CONFIRMED, days3);
+		rooms.get(44).setRoomStatus(StatusOfRoom.RESERVED);
 		reservations.add(reserv_three);
+	
 
 		//Fourth Guest's Reservation Expired Alrdy, was assigned a Double Room
-		Reservation reserv_four = new Reservation(10004, guests, rooms.get(20), "Name is: " + guests.get(3).getCreditCardName() + ", and Credit Card Number is: " + guests.get(3).getCreditCardNumber(), calendar4, date4,1,1,StatusOfReservation.EXPIRED,5);
+		Reservation reserv_four = new Reservation(10003, guestarr4, rooms.get(20), "Name is: " + guestarr4.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr4.get(0).getCreditCardNumber(), date4in, date4out, 1, 0, StatusOfReservation.CONFIRMED, days4);
+		rooms.get(20).setRoomStatus(StatusOfRoom.RESERVED);
 		reservations.add(reserv_four);
 	}
 
-	public static void InitialiseRoomService()
-	{
-		
-	}
+	
 	
 	public static void autoExpiry(){
         Timer time = new Timer();
@@ -241,17 +279,13 @@ public class Initialise {
         time.schedule(re, 0,50000); // Create Repetitively task for every 20 seconds
     }
 
-	public static void InitialisePayment()
-	{
-
-	}
 
 	
 	public static void InitialiseHotel() {
 		InitialiseMenu();
 		InitialiseRoom();
-		autoExpiry();
-//		InitialiseReservation();
+//		autoExpiry();
+		InitialiseReservation();
 		
 	}
 }
