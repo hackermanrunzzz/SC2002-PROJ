@@ -11,19 +11,13 @@ import classes.Reservation.StatusOfReservation;
 
 
 public class OrderManager {
-	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();
+	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();  //should we declare new here?, or take from initialise
 
    private static ArrayList<Order> orders = new ArrayList<Order>();
-    /**
-     * create an array of paid orders
-     */
+
 	Scanner sc = new Scanner(System.in);
 
-    /**
-     * constructor for order manager
-     * @param pendingOrders array of pending orders
-     * @param paidOrders array of paid orders
-     */
+
     public OrderManager(ArrayList<Order> orders) {
         OrderManager.orders = orders;
        
@@ -38,11 +32,7 @@ public class OrderManager {
 	} 
 	// Needed to create the above getter and setter to resolve error in line 11
 
-	/**
-     * get the pending order for the table
-     * @param tableID table belonging to the pending order
-     * @return order
-     */
+
 
     
     public Order getOrder(int ResID){
@@ -72,18 +62,7 @@ public class OrderManager {
 //    }
 //    
 
-    /**
-     * check if the order is pending
-     * @param tableID table belonging to the order
-     * @return boolean value
-     */
-  
-    /**
-     * create an order
-     * @param staffID to attend to order
-     * @param tableID table at which order is made
-     * @param menu menu to order from
-     */
+
 //    public void createOrder( int ResID, String RoomNumber, ArrayList<MenuItem> menu) {
 //        Order new_order= new Order(1001,ResID,RoomNumber,Calendar.getInstance(), menu); // Did you mean to use the other constructor here? @ Warren
 //        orders.add(new_order);
@@ -95,11 +74,7 @@ public class OrderManager {
         orders.add(ordering);
     }
 
-    /**
-     * find the order for a table
-     * @param TableID at which order is being placed
-     * @return the order id
-     */
+
     public static String findOrderID(int ResID,String RoomNumber) {
         for (Order o : orders)
 		{
@@ -112,11 +87,7 @@ public class OrderManager {
         return null;
     }
 
-    /**
-     * find the order for a table
-     * @param TableID at which order is being placed
-     * @return the order
-     */
+
 
     
     public double calculateAmount() {
