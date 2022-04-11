@@ -239,7 +239,7 @@ public class ReservationManager {
             checkOutDate = getValidCheckOutDateTime(checkInDate);
             numberOfNights = calcNumberOfDays(checkInDate,checkOutDate);
 
-            System.out.printf("You have booked %d day(s).\n", numberOfNights);
+            System.out.printf("You have booked %d night(s).\n", numberOfNights);
             
 
             makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);

@@ -53,8 +53,10 @@ public class OrderManager {
 				return o;
 			}
         }
-        return new Order(); // Resolved some errors
-    } // No error-checking required here
+        return new Order(); 
+    }
+    // Resolved some errors
+    // No error-checking required here
     
 //
 //    
