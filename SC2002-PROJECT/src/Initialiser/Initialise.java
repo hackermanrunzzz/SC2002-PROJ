@@ -44,8 +44,8 @@ public class Initialise {
 	
 	//public static ArrayList<MenuItem> roomServiceitems = new ArrayList<MenuItem>(); // Question, is this gonna be used for the RoomService class to print menu and stuff?
 	//
-	public static ArrayList<Order> order=new ArrayList<Order>();
-	public static OrderManager om = new OrderManager(order);	
+	public static ArrayList<Order> orders =new ArrayList<Order>();
+	public static OrderManager om = new OrderManager(orders);	
 
 	public static ArrayList<Guest> guests = new ArrayList<Guest>();
 

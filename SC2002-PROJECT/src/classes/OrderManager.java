@@ -13,7 +13,12 @@ import classes.Reservation.StatusOfReservation;
 public class OrderManager {
 	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();  //should we declare new here?, or take from initialise
 
-   private static ArrayList<Order> orders = new ArrayList<Order>();
+	private static ArrayList<Order> orders = new ArrayList<Order>();
+	
+//	private static ArrayList<Reservation> reservations;
+//	private static ArrayList<Order> orders;
+   
+   
 
 	Scanner sc = new Scanner(System.in);
 
