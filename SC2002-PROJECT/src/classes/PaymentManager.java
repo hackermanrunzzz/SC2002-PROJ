@@ -5,7 +5,9 @@ import java.util.*;
 
 
 import Initialiser.Initialise;
+import classes.Payment.methodOfPayment;
 import classes.Reservation.StatusOfReservation;
+import classes.Room.StatusOfRoom; // Imported to set room to vacant after Reservation was deleted
 
 public class PaymentManager {
 
@@ -22,13 +24,22 @@ public class PaymentManager {
 		PaymentManager.payments = payments;
 		
 	}
+	
+	double roomChargesGlobal = 0;
+    double totalChargesGlobal = 0;
+    double roomServicesGlobal = 0;
+    double discountGlobal = 0;
+    int numberOfNightsGlobal = 0;
+    Reservation toCheckOut=null;
+    
+    
 
 	
 	public void makePayment() {
 		String confirmation = "0";
 		boolean validRoomFound = false;
 		int numberOfNights;
-		Reservation toCheckOut=null;
+		int ch = 0;
 		double roomCharges;
 		double tax;
 		double roomServices;
@@ -47,7 +58,7 @@ public class PaymentManager {
 			//reservation found
 			if(r.getRoomDetails().getRoomNumber().equals(roomNumber) && r.getReservationStatus().equals(StatusOfReservation.CHECKED_IN)) {
 				System.out.println("Valid checked in reservation for " + roomNumber +
-								"found, proceed to check out? (Enter 1 for yes, 0 to cancel check out)");
+								" found, proceed to check out? (Enter 1 for yes, 0 to cancel check out)");
 				confirmation = sc.nextLine();
 				if(confirmation.equals("0")) {
 					System.out.println("Cancelling check out...");
@@ -72,8 +83,8 @@ public class PaymentManager {
 		}
 		
 		//assigning attributes
-		numberOfNights = calcNumberOfNights(toCheckOut.getCheckInDate());
-		roomCharges = Math.round(toCheckOut.getRoomDetails().getRate() * numberOfNights*100.0)/100.0;
+		numberOfNightsGlobal = numberOfNights = calcNumberOfNights(toCheckOut.getCheckInDate());
+		roomChargesGlobal = roomCharges = Math.round(toCheckOut.getRoomDetails().getRate() * numberOfNights*100.0)/100.0;
 		tax = Initialise.GST;
 		
 		for(Order o: Initialise.orders) {
@@ -82,18 +93,71 @@ public class PaymentManager {
 			}
 		}
 		
-		roomServices = Math.round(calcRoomServices(checkOutRoomOrders)*100.0)/100.0;
+		roomServicesGlobal = roomServices = Math.round(calcRoomServices(checkOutRoomOrders)*100.0)/100.0;
 		//getting discount value
 		System.out.println("Please enter discount value in % (Enter 0 for no discount, enter only the numerical value without '%'): ");
-		discount = sc.nextDouble()/100;
+		discountGlobal = discount = sc.nextDouble()/100;
 		
 		//Calculating total charges
-		totalCharges = Math.round(((roomCharges+roomServices)*(1-discount)*(1+tax))*100.0)/100.0;
+		totalChargesGlobal = totalCharges = Math.round(((roomCharges+roomServices)*(1-discount)*(1+tax))*100.0)/100.0;
 		
 		//need to add billing info and payment method
+		int bills = 0;
+		double total = 0;
+		if (toCheckOut.getBillingInformation().equals(methodOfPayment.CASH))
+		{
+			System.out.println("Please enter the appropriate number for which bill, $50, $10, or $5, you would like to use. Enter (4) to exit");
+			while (total<=totalCharges)
+			{
+				System.out.println("========= Cash Input =========");
+				System.out.println("|Enter '1' for $50 input |");
+				System.out.println("|Enter '2' for $10 input |");
+				System.out.println("|Enter '3' for $5 input  |");
+				System.out.println("|Enter '4' for input of change|");
+				bills = sc.nextInt();
+				if (bills == 1)
+				{
+					total += 50;
+				}
+				
+				else if (bills == 2)
+				{
+					total += 10;
+				}
+				
+				else if (bills == 3)
+				{
+					total += 5;
+				}
+				
+				else if (bills == 4)
+				{
+					System.out.println("Please enter the amount of money you would like to use as change: ");
+					double temp = sc.nextDouble();
+					total += temp;
+				}
+			}
+		}
+		else if (toCheckOut.getBillingInformation().equals(methodOfPayment.CARD))
+		{
+			System.out.println("Your payment will be charged to the credit card " + );
+			
+		}
+		
+		
 		//create payment object and add to payment array
 		//print receipt
+		toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); // Room was set to Vacant here
+        
+        for (Reservation r : Initialise.reservations)
+        {
+            if (toCheckOut.equals(r))
+            {
+                Initialise.reservations.remove(r); // Removing Reservation here
+            }
+        }
 		
+        
 		
 	}
 	
@@ -118,8 +182,18 @@ public class PaymentManager {
 		return RoomServices;
 	}
 	
-	public void printReceipt() {
-		
+	public void printReceipt()
+	{
+		System.out.println("==========This is your Total Bill for your stay==========");
+		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName()); // Prints out name of the first name of Guest Details
+		System.out.println("Room Number: " + toCheckOut.getRoomDetails().getRoomNumber());
+		System.out.println("Check-In Date: " + toCheckOut.getCheckInDate());
+		System.out.println("Check-Out Date: " + toCheckOut.getCheckOutDate());
+		System.out.println("Number of Nights Stayed: " + numberOfNightsGlobal);
+		System.out.println("Room Charges: " + roomChargesGlobal);
+		System.out.println("Room Service Charges: " + roomServicesGlobal);
+		System.out.println("Discount: " + discountGlobal);
+		System.out.println("Total Charges: " + totalChargesGlobal);
 	}
 	
 }
