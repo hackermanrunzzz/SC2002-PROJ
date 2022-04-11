@@ -40,7 +40,11 @@ public class ReservationExpiry extends TimerTask {
     public void run(){
         synchronized (Initialise.reservations) {
             Calendar now = Calendar.getInstance();
+<<<<<<< Updated upstream
             System.out.println("running expiry");
+=======
+//          System.out.println("running expiry every 50s");
+>>>>>>> Stashed changes
             if (Initialise.reservations.size() > 0) {
             	for(Reservation r: Initialise.reservations) {
             		if(r.getReservationStatus().equals(StatusOfReservation.CHECKED_IN)) {
