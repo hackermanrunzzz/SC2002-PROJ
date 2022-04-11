@@ -11,9 +11,7 @@ public class PaymentManager {
     
     private static ArrayList<Payment> payments;
 	
-	
-	
-	
+    
 	public PaymentManager(ArrayList<Payment> payments) {
 		PaymentManager.payments = payments;
     }
@@ -51,6 +49,15 @@ public class PaymentManager {
 //        }
 //        System.out.println("Payment made Successfully!\n");
 //    }
+	
+	public void MakePayment() {
+		
+	}
+	
+	
+	public void calcNumberOfDays() {
+		
+	}
 	
 	
 }
