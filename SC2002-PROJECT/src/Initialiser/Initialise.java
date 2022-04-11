@@ -196,13 +196,13 @@ public class Initialise {
 		String date1_1 = "20/04/2022 14:30";
 		Calendar date1in = convert(date1_1);
 		
-        String date2_1 = "20/04/2021 14:30";
+        String date2_1 = "10/04/2022 14:30";
 		Calendar date2in = convert(date2_1);
 		
-        String date3_1 = "20/04/2021 16:30";
+        String date3_1 = "10/04/2022 16:30";
 		Calendar date3in = convert(date3_1);
 		
-        String date4_1 = "20/04/2021 18:30";
+        String date4_1 = "20/04/2022 18:30";
 		Calendar date4in = convert(date4_1);
 		
 		//Time Out
@@ -210,13 +210,13 @@ public class Initialise {
     	String date1_2 = "25/04/2022 14:00";
 		Calendar date1out = convert(date1_2);
 		
-        String date2_2 = "26/04/2021 14:00";
+        String date2_2 = "26/04/2022 14:00";
 		Calendar date2out = convert(date2_2);
 		
-        String date3_2 = "27/04/2021 14:00";
+        String date3_2 = "27/04/2022 14:00";
 		Calendar date3out = convert(date3_2);
 		
-        String date4_2 = "28/04/2021 14:00";
+        String date4_2 = "28/04/2022 14:00";
 		Calendar date4out = convert(date4_2);
 		
 		
@@ -276,7 +276,7 @@ public class Initialise {
 	public static void autoExpiry(){
         Timer time = new Timer();
         ReservationExpiry re = new ReservationExpiry(Initialise.reservations); // Instantiate ScheduledTask class
-        time.schedule(re, 0,50000); // Create Repetitively task for every 20 seconds
+        time.schedule(re, 0,2000); // Create Repetitively task for every 20 seconds
     }
 
 
@@ -284,7 +284,7 @@ public class Initialise {
 	public static void InitialiseHotel() {
 		InitialiseMenu();
 		InitialiseRoom();
-//		autoExpiry();
+		autoExpiry();
 		InitialiseReservation();
 		
 	}
