@@ -191,8 +191,6 @@ public class Initialise {
         Calendar calendar3= Calendar.getInstance();
         Calendar calendar4 = Calendar.getInstance();
 
-		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
 
     	String date1_1 = "13/04/2022 12:30";
 		Calendar date1 = convert(date1_1);
