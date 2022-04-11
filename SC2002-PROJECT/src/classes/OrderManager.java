@@ -74,8 +74,8 @@ public class OrderManager {
 //        Order new_order= new Order(1001,ResID,RoomNumber,Calendar.getInstance(), menu); // Did you mean to use the other constructor here? @ Warren
 //        orders.add(new_order);
 //	}
-    public void createOrder( int ResID,String RoomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
-    	 String OrderID = UUID.randomUUID().toString();
+    public void createOrder(int ResID,String RoomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
+    	String OrderID = UUID.randomUUID().toString();
 
         Order ordering = new Order( OrderID, ResID, RoomNumber,  time,  remarks,StatusOfOrder.CONFIRMED, totalPrice, menuI);
         Initialise.orders.add(ordering);
