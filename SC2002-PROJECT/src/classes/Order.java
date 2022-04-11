@@ -14,14 +14,12 @@ public class Order {
 	
 	private String OrderID;
 	private int ResID;
+	private String RoomNumber;
 	private Calendar timeOfOrder;
 	private String remarks;
 	private StatusOfOrder orderStatus;
 	private double totalPrice;
-	private Room room;
-	private String RoomNumber;
 	private ArrayList<MenuItem> menuI;
-	private Calendar time;
 	
 
 //	 public Order() 
@@ -59,18 +57,6 @@ public class Order {
 
 
 
-	
-    /**
-     * create an order
-     * @param order to be created
-     * @return order
-     */
-  
-    /**
-     * check if food exists in menu
-     * @param food item being ordered
-     * @return value if food is in menu
-     */
 //    public int checkFood(MenuItem food) {
 //        int exists = 0;
 //        for (MenuItem f : this.menuM.getMenu()) {
@@ -202,19 +188,6 @@ public class Order {
 
 
 
-
-
-	public Room getRoom() {
-		return room;
-	}
-
-
-
-
-
-	public void setRoom(Room room) {
-		this.room = room;
-	}
 
 
 

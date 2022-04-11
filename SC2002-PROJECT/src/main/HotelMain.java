@@ -55,6 +55,7 @@ public class HotelMain {
                 	OrderUI.orderOptions();
                 	break;
                 case 6:
+                	PaymentUI.paymentOptions();
                 	break;
                 default:
                 	break;
