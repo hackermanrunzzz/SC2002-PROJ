@@ -11,12 +11,12 @@ import classes.Reservation.StatusOfReservation;
 
 
 public class OrderManager {
-	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();  //should we declare new here?, or take from initialise
-
-	private static ArrayList<Order> orders = new ArrayList<Order>();
+//	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();  //should we declare new here?, or take from initialise
+//
+//	private static ArrayList<Order> orders = new ArrayList<Order>();
 	
-//	private static ArrayList<Reservation> reservations;
-//	private static ArrayList<Order> orders;
+	private static ArrayList<Reservation> reservations;
+	private static ArrayList<Order> orders;
    
    
 
@@ -41,14 +41,12 @@ public class OrderManager {
 
     
     public Order getOrder(int ResID){
-        for(Order o: orders )
-		{
-            if(o.getResID() == ResID)
-			{
+        for(Order o: Initialise.orders ){
+            if(o.getResID() == ResID){
 				return o;
 			}
         }
-        return new Order(); 
+        return null; 
     }
     // Resolved some errors
     // No error-checking required here
@@ -76,12 +74,12 @@ public class OrderManager {
     	 String OrderID = UUID.randomUUID().toString();
 
         Order ordering = new Order( OrderID, ResID, RoomNumber,  time,  remarks,StatusOfOrder.CONFIRMED, totalPrice, menuI);
-        orders.add(ordering);
+        Initialise.orders.add(ordering);
     }
 
 
     public static String findOrderID(int ResID,String RoomNumber) {
-        for (Order o : orders)
+        for (Order o : Initialise.orders)
 		{
             if (o.getResID() == ResID)
 			{
@@ -98,9 +96,9 @@ public class OrderManager {
     public double calculateAmount() {
         double amount = 0;
 
-        for (int i = 0; i < orders.size(); i++) {
-        	for (int y = 0; y < orders.get(i).getMenuI().size(); y++)
-            amount = amount + orders.get(i).getMenuI().get(y).getPrice();
+        for (int i = 0; i < Initialise.orders.size(); i++) {
+        	for (int y = 0; y < Initialise.orders.get(i).getMenuI().size(); y++)
+            amount = amount + Initialise.orders.get(i).getMenuI().get(y).getPrice();
         }
         return amount; // This returns total price of ALL MenuItems
 
@@ -305,16 +303,16 @@ public class OrderManager {
 //	    }
 //	  
 	  public int searchOrders( int ResID, String RoomNumber) {
-      if(orders.isEmpty() == true){
+      if(Initialise.orders.isEmpty() == true){
           System.out.println("\nThere are currently no orders");
           return 0;
       }
       else{
-          for(int k = 0 ; k <orders.size(); k ++){
+          for(int k = 0 ; k <Initialise.orders.size(); k ++){
         	  System.out.println(ResID);
         	  System.out.println(RoomNumber);
-        	  System.out.println(orders.get(k).getResID());
-        	  System.out.println(orders.get(k).getRoomNumber());
+        	  System.out.println(Initialise.orders.get(k).getResID());
+        	  System.out.println(Initialise.orders.get(k).getRoomNumber());
               if(orders.get(k).getResID() == ResID && orders.get(k).getRoomNumber().equals(RoomNumber) ){
                   System.out.println("========================================");
 
@@ -354,7 +352,7 @@ public class OrderManager {
 	        else 
 			{
 	            System.out.println("============ ALL Orders ===============");
-	            for (Order o : orders) {
+	            for (Order o : Initialise.orders) {
 	            	o.printOrder();
 	            	
 	            }
@@ -386,9 +384,9 @@ public class OrderManager {
 		  String id = findOrderID(ResID, RoomNumber);
 		  Order temp = null;
 		  int found  = 0;
-		  for (int y = 0 ; y < orders.size(); y++) {
-			  if (orders.get(y).getOrderID().equals(id)) {
-				temp = orders.get(y);
+		  for (int y = 0 ; y < Initialise.orders.size(); y++) {
+			  if (Initialise.orders.get(y).getOrderID().equals(id)) {
+				temp = Initialise.orders.get(y);
 			  }
 			  else {
 				  temp = null;
