@@ -45,15 +45,14 @@ public class ReservationExpiry extends TimerTask {
     	
         synchronized (Initialise.reservations) {
             Calendar now = Calendar.getInstance();
-            System.out.println("running expiry");
-//          System.out.println("running expiry every 50s");
+//            System.out.println("running expiry");
             if (Initialise.reservations.size() > 0) {
             	
             	Iterator<Reservation> itr = Initialise.reservations.iterator();
 
         		while(itr.hasNext()) {
         			Reservation r = itr.next();
-            		if(r.getReservationStatus().equals(StatusOfReservation.CHECKED_IN)) {
+            		if(r.getReservationStatus().equals(StatusOfReservation.CONFIRMED)) {
     	                long expiryTime =  r.getCheckInDate().getTimeInMillis()+10000; //this is 45min
     	                long nowMilli = now.getTimeInMillis();
     	                if (expiryTime<nowMilli) {
