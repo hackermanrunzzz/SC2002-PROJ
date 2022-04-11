@@ -127,6 +127,8 @@ public class Order {
 
 
 	public Calendar getTimeOfOrder() {
+		
+		
 		return timeOfOrder;
 	}
 
@@ -236,7 +238,7 @@ public class Order {
 	      
       
 
-        return "OrderID : \t\t\t" + this.getOrderID() + "\nResid: \t\t\t\t" + this.getResID()  + "\nRoomNumber: \t\t\t" + this.getRoomNumber() +this.getMenuI().get(0).getName()+ "\nTime Of Order: \t\t\t"  + strtimeOfOrder + "\nRemarks : \t\t\t" + this.getRemarks()  + "\nStatus Of Order:  \t\t"
+        return "OrderID : \t\t\t" + this.getOrderID() + "\nResid: \t\t\t\t" + this.getResID()  + "\nRoomNumber: \t\t\t" + this.getRoomNumber() + "\nTime Of Order: \t\t\t"  + strtimeOfOrder + "\nRemarks : \t\t\t" + this.getRemarks()  + "\nStatus Of Order:  \t\t"
    + this.getOrderStatus() +  "\nTotal Price : \t\t\t" + "$"+ this.getTotalPrice();            
               
     }
