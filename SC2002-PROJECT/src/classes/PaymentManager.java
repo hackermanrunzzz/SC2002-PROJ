@@ -102,9 +102,9 @@ public class PaymentManager {
 		totalChargesGlobal = totalCharges = Math.round(((roomCharges+roomServices)*(1-discount)*(1+tax))*100.0)/100.0;
 		
 		//need to add billing info and payment method
-		int bills = 0;
-		double total = 0;
-		if (toCheckOut.getBillingInformation().equals(methodOfPayment.CASH))
+		int bills = 0; // to identify the type of bill put into the system
+		double total = 0; // for computing total number of bills put into the system
+		if (toCheckOut.getBillingInformation().equals(methodOfPayment.CASH)) // Got an error here, idk why
 		{
 			System.out.println("Please enter the appropriate number for which bill, $50, $10, or $5, you would like to use. Enter (4) to exit");
 			while (total<=totalCharges)
@@ -137,16 +137,61 @@ public class PaymentManager {
 					total += temp;
 				}
 			}
+			printReceipt();
+			if (total <= totalCharges)
+			{
+				double change = totalCharges - total;
+				System.out.println("You have paid " + total + "in cash");
+				System.out.println("Your change is: " + change);
+				System.out.println("Thank you for your stay! Have a safe trip back home!");
+			}
+			else if (total>=totalCharges)
+			{
+				double change = total - totalCharges;
+				System.out.println("You have paid " + total + "in cash");
+				System.out.println("Your change is: " + change);
+				System.out.println("Thank you for your stay! Have a safe trip back home!");
+			}
+			else
+			{
+				System.out.println("You have paid " + total + "in cash");
+				System.out.println("Thank you for your stay! Have a safe trip back home!");
+			}
+			Payment paymentObject = new Payment(20001, roomCharges, tax, roomServices, discount, totalCharges, methodOfPayment.CASH, checkOutRoomOrders, numberOfNights, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
+			payments.add(paymentObject); // Added the payment oboject to the payment array
+			
 		}
 		else if (toCheckOut.getBillingInformation().equals(methodOfPayment.CARD))
 		{
-			System.out.println("Your payment will be charged to the credit card " + );
+			int check = 0;
+			System.out.println("Please verify that this is your credit card name: " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + ". If yes, enter (1). Else, enter (0)");
+			check = sc.nextInt();
+			if (check == 1)
+			{
+				System.out.println("The amount of $" + totalCharges + " will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + " with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + "to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
+				System.out.println("Thank you for your stay! Have a safe trip back home!");
+				Payment paymentObject = new Payment(20001, roomCharges, tax, roomServices, discount, totalCharges, methodOfPayment.CARD, checkOutRoomOrders, numberOfNights,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
+				payments.add(paymentObject); // Added the payment object to the payment array
+			}
+			else if  (check == 0)
+			{
+				String address;
+				String name;
+				String number;
+				System.out.println("Plese enter your credit card name: ");
+				name = sc.nextLine();
+				System.out.println("Please enter your credit card number: ");
+				number = sc.nextLine();
+				System.out.println("Please enter your billing address: ");
+				address = sc.nextLine();
+				System.out.println("The amount of $" + totalCharges + " will be charged to your card, under the name " + name + " with the number " + number);
+				System.out.println("Thank you for your stay! Have a safe trip back home!");
+				Payment paymentObject = new Payment(20002, roomCharges, tax, roomServices, discount, totalCharges, methodOfPayment.CARD, checkOutRoomOrders, numberOfNights, name, address, number);
+				payments.add(paymentObject); // Added the payment object to the payment array
+			}
 			
 		}
 		
-		
-		//create payment object and add to payment array
-		//print receipt
 		toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); // Room was set to Vacant here
         
         for (Reservation r : Initialise.reservations)
@@ -155,10 +200,7 @@ public class PaymentManager {
             {
                 Initialise.reservations.remove(r); // Removing Reservation here
             }
-        }
-		
-        
-		
+        }	
 	}
 	
 	//Any checkout after the required checkout time of 2pm is charged an extra day
@@ -182,6 +224,14 @@ public class PaymentManager {
 		return RoomServices;
 	}
 	
+	public void showAllPaidReservations()
+	{
+		for (int i = 0; i < payments.size(); i++)
+		{
+			System.out.println(payments.get(i));
+		}
+	}
+	
 	public void printReceipt()
 	{
 		System.out.println("==========This is your Total Bill for your stay==========");
@@ -195,5 +245,8 @@ public class PaymentManager {
 		System.out.println("Discount: " + discountGlobal);
 		System.out.println("Total Charges: " + totalChargesGlobal);
 	}
+	
+	
+	
 	
 }

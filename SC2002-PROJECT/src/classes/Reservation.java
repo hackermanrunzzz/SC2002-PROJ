@@ -10,7 +10,7 @@ public class Reservation {
 	private int reservationID;
 	private ArrayList<Guest> guestDetails; 
 	private Room roomDetails;
-	private String billingInformation; // For cash or credit card
+	private String billingInformation; // Either enter cash or enter card [ MUST ]
 	private Calendar checkInDate;
 	private Calendar checkOutDate;
 	private int adultCount;
