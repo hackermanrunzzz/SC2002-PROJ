@@ -45,9 +45,8 @@ public class ReservationExpiry extends TimerTask {
     	
         synchronized (Initialise.reservations) {
             Calendar now = Calendar.getInstance();
-            
             System.out.println("running expiry");
-            
+//          System.out.println("running expiry every 50s");
             if (Initialise.reservations.size() > 0) {
             	
             	Iterator<Reservation> itr = Initialise.reservations.iterator();
