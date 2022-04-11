@@ -27,6 +27,8 @@ public class Initialise {
     
     public static final int CHECK_OUT_TIME = 14;
     
+    public static final double GST = 0.09;
+    
 
 	
 	//
