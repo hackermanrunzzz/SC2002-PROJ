@@ -1,8 +1,10 @@
 package Initialiser;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 import java.util.Calendar;
-
+import java.util.Date;
 import java.util.Timer;
 
 import classes.*;
@@ -170,8 +172,36 @@ public class Initialise {
 //		Initialise.rooms = rooms;
 	}
 
+	public static Calendar convert(String source) {
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+		Calendar calendar = Calendar.getInstance();
+		try {
+			calendar.setTime(dateFormat.parse(source));
+		} catch (ParseException e) {
+			e.printStackTrace();
+		}
+		return calendar;
+	  } // Added this to convert String to Calendar type
+
 	public static void InitialiseReservation() // Created for TESTING
 	{
+
+		Calendar calendar1 = Calendar.getInstance();
+        Calendar calendar2= Calendar.getInstance();
+        Calendar calendar3= Calendar.getInstance();
+        Calendar calendar4 = Calendar.getInstance();
+
+		SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+
+
+    	String date1_1 = "13/04/2022 12:30";
+		Calendar date1 = convert(date1_1);
+        String date2_2 = "14/04/2021 14:30";
+		Calendar date2 = convert(date2_2);
+        String date3_3 = "15/04/2021 16:30";
+		Calendar date3 = convert(date3_3);
+        String date4_4 = "16/04/2021 18:30";
+		Calendar date4 = convert(date4_4);
 
 		// Initialising 4 TEST Guests inside the Guests Array
 		Guest guest_one = new Guest("Derrick", "James", "96785757", "The Ritz, Avenue 6", "Singapore", 'M', "Indian", "Singaporean", "96978575");
@@ -184,34 +214,21 @@ public class Initialise {
 		guests.add(guest_four);
 
 		// First Guest is assumed to be Checked-in, was assigned a Deluxe Room
-		Calendar checkIn_date_one = resm.getValidCheckInDateTime();
-		Calendar checkOut_date_one = resm.getValidCheckOutDateTime(checkIn_date_one);
-
-		Reservation reserv_one  = new Reservation(10001, guests, rooms.get(36), "Name is: " + guests.get(0).getCreditCardName() + ", and Credit Card Number is: " + guests.get(0).getCreditCardNumber(), checkIn_date_one, checkOut_date_one,2,2,StatusOfReservation.CHECKED_IN,3);
+		Reservation reserv_one  = new Reservation(10001, guests, rooms.get(36), "Name is: " + guests.get(0).getCreditCardName() + ", and Credit Card Number is: " + guests.get(0).getCreditCardNumber(), calendar1, date1,2,2,StatusOfReservation.CHECKED_IN,3);
 		reservations.add(reserv_one);
 
 
 		// Second Guest has a reseved Reservation, was assigned a Single Room
-		Calendar checkIn_date_two = resm.getValidCheckInDateTime();
-		Calendar checkOut_date_two = resm.getValidCheckOutDateTime(checkIn_date_two);
-
-
-		Reservation reserv_two = new Reservation(10002, guests, rooms.get(0), "Name is: " + guests.get(1).getCreditCardName() + ", and Credit Card Number is: " + guests.get(1).getCreditCardNumber(), checkIn_date_two, checkOut_date_two,1,0,StatusOfReservation.CONFIRMED,5);
+		Reservation reserv_two = new Reservation(10002, guests, rooms.get(0), "Name is: " + guests.get(1).getCreditCardName() + ", and Credit Card Number is: " + guests.get(1).getCreditCardNumber(), calendar2,date2,1,0,StatusOfReservation.CONFIRMED,5);
 		reservations.add(reserv_two);
 
 
 		// Third Guest is in the waitlist, was assigned a Deluxe Room
-		Calendar checkIn_date_three = resm.getValidCheckInDateTime();
-		Calendar checkOut_date_three = resm.getValidCheckOutDateTime(checkIn_date_three);
-
-		Reservation reserv_three = new Reservation(10003, guests, rooms.get(44), "Name is: " + guests.get(2).getCreditCardName() + ", and Credit Card Number is: " + guests.get(2).getCreditCardNumber(), checkIn_date_three, checkOut_date_three,3,2,StatusOfReservation.IN_WAITLIST,5);
+		Reservation reserv_three = new Reservation(10003, guests, rooms.get(44), "Name is: " + guests.get(2).getCreditCardName() + ", and Credit Card Number is: " + guests.get(2).getCreditCardNumber(), calendar3, date3,3,2,StatusOfReservation.IN_WAITLIST,5);
 		reservations.add(reserv_three);
 
 		//Fourth Guest's Reservation Expired Alrdy, was assigned a Double Room
-		Calendar checkIn_date_four = resm.getValidCheckInDateTime();
-		Calendar checkOut_date_four = resm.getValidCheckOutDateTime(checkIn_date_four);
-
-		Reservation reserv_four = new Reservation(10004, guests, rooms.get(20), "Name is: " + guests.get(3).getCreditCardName() + ", and Credit Card Number is: " + guests.get(3).getCreditCardNumber(), checkIn_date_four, checkOut_date_four,1,1,StatusOfReservation.EXPIRED,5);
+		Reservation reserv_four = new Reservation(10004, guests, rooms.get(20), "Name is: " + guests.get(3).getCreditCardName() + ", and Credit Card Number is: " + guests.get(3).getCreditCardNumber(), calendar4, date4,1,1,StatusOfReservation.EXPIRED,5);
 		reservations.add(reserv_four);
 	}
 
