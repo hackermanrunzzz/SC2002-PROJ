@@ -15,7 +15,7 @@ public class PaymentUI {
 	        System.out.println("========================================");
 	        System.out.println("Hi! Please select an option:");
 	        System.out.println("(1) View All Reservations");
-	        System.out.println("(2) Make Payment");
+	        System.out.println("(2) Checkout and Make Payment");
 	        System.out.println("(3) Go Back To Main Menu");
 	        System.out.println("========================================");
 	
@@ -27,8 +27,7 @@ public class PaymentUI {
 	            	Initialise.resm.showAllReservations();
 	                break;
 	            case 2:
-	            	//call payment manager functions
-//	            	Initialise.pm.
+	            	Initialise.pm.makePayment();
 	                break;
 	            default:
 	            	break;
