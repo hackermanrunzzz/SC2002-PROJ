@@ -174,14 +174,21 @@ public class PaymentManager {
 			}
 		}
 		
-		toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); // Room was set to Vacant here
+		// Room was set to Vacant here
+		toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); 
 		
-//		 for (Reservation r : Initialise.reservations){
-//	            if (toCheckOut.equals(r))
-//	            {
-//	                Initialise.reservations.remove(r); 
-//	            }
-//	        }	
+		
+		
+		//deleting the reservation while iterating through
+		Iterator<Reservation> itr = Initialise.reservations.iterator();
+		while(itr.hasNext()) {
+			Reservation r = itr.next();
+    		if(r.equals(toCheckOut)) {
+              itr.remove();
+                
+        	}
+    	}
+
 	}
 	
 
@@ -239,7 +246,6 @@ public class PaymentManager {
 		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName()); // Prints out name of the first name of Guest Details
 		System.out.println("Room Number: " + toCheckOut.getRoomDetails().getRoomNumber());
 		System.out.println("Check-In Date: " + toCheckOut.getCheckInDate().getTime());
-		toCheckOut.getCheckOutDate();
 		System.out.println("Check-Out Date: " + Calendar.getInstance().getTime());
 		System.out.println("Number of Nights Stayed: " + numberOfNightsGlobal);
 		System.out.println("Room Charges: " + roomChargesGlobal);
