@@ -7,7 +7,11 @@ import java.util.*;
 import Initialiser.Initialise;
 import classes.Payment.methodOfPayment;
 import classes.Reservation.StatusOfReservation;
+<<<<<<< Updated upstream
 import classes.Room.StatusOfRoom; // Imported to set room to vacant after Reservation was deleted
+=======
+import classes.Room.StatusOfRoom;
+>>>>>>> Stashed changes
 
 public class PaymentManager {
 
@@ -18,7 +22,7 @@ public class PaymentManager {
     
 	public PaymentManager(ArrayList<Payment> payments) {
 		PaymentManager.payments = payments;
-    }
+    } // Constructor
 	
 	public void setPayments(ArrayList<Payment> payments) {
 		PaymentManager.payments = payments;
@@ -26,6 +30,7 @@ public class PaymentManager {
 	}
 	
 	double roomChargesGlobal = 0;
+<<<<<<< Updated upstream
     double totalChargesGlobal = 0;
     double roomServicesGlobal = 0;
     double discountGlobal = 0;
@@ -36,16 +41,31 @@ public class PaymentManager {
     
     
 
+=======
+	double totalChargesGlobal = 0;
+	double roomServicesGlobal = 0;
+	double discountGlobal = 0;
+	int numberOfNightsGlobal = 0;
+	String roomNumberGlobal;
+>>>>>>> Stashed changes
 	
 	public void makePayment() {
 		String confirmation = "0";
 		boolean validRoomFound = false;
 		double tax;
+<<<<<<< Updated upstream
 		
+=======
+		double roomServices;
+		double discount;
+		double totalCharges;
+		String roomNumber;
+		ArrayList<Order> checkOutRoomOrders = new ArrayList<Order>();
+>>>>>>> Stashed changes
 		
 		//finding room for check out
 		System.out.println("Hi! Please enter the room to check out from (Enter 0 to cancel check out):");
-		String roomNumber = sc.nextLine();
+		roomNumberGlobal = roomNumber = sc.nextLine();
 		if(roomNumber.equals("0")) {
 			System.out.println("Cancelling check out...");
 			return;
@@ -71,6 +91,7 @@ public class PaymentManager {
 				System.out.println("Cancelling check out...");
 				return;
 			}
+			
 		}
 		if(!validRoomFound) {
 			System.out.println("Invalid entry! Unable to find any reservations for this room!");
@@ -79,8 +100,13 @@ public class PaymentManager {
 		}
 		
 		//assigning attributes
+<<<<<<< Updated upstream
 		numberOfNightsGlobal = calcNumberOfNights(toCheckOut.getCheckInDate());
 		roomChargesGlobal = Math.round(toCheckOut.getRoomDetails().getRate() * numberOfNightsGlobal*100.0)/100.0;
+=======
+		numberOfNightsGlobal = numberOfNights = calcNumberOfNights(toCheckOut.getCheckInDate());
+		roomChargesGlobal = roomCharges = Math.round(toCheckOut.getRoomDetails().getRate() * numberOfNights*100.0)/100.0;
+>>>>>>> Stashed changes
 		tax = Initialise.GST;
 		
 		for(Order o: Initialise.orders) {
@@ -89,6 +115,7 @@ public class PaymentManager {
 			}
 		}
 		
+<<<<<<< Updated upstream
 		roomServicesGlobal = Math.round(calcRoomServices(checkOutRoomOrders)*100.0)/100.0;
 		//getting discount value
 		System.out.println("Please enter discount value in % (Enter 0 for no discount, enter only the numerical value without '%'): ");
@@ -217,6 +244,35 @@ public class PaymentManager {
 	            }
 	        }	
 		}
+=======
+		roomServicesGlobal = roomServices = Math.round(calcRoomServices(checkOutRoomOrders)*100.0)/100.0;
+		//getting discount value
+		System.out.println("Please enter discount value in % (Enter 0 for no discount, enter only the numerical value without '%'): ");
+		discountGlobal = discount = sc.nextDouble()/100;
+		//Calculating total charges
+		totalChargesGlobal = totalCharges = Math.round(((roomCharges+roomServices)*(1-discount)*(1+tax))*100.0)/100.0;
+		
+		toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); // Room was set to Vacant here
+		
+		for (Reservation r : Initialise.reservations)
+		{
+			if (toCheckOut.equals(r))
+			{
+				Initialise.reservations.remove(r); // Removed Reservation
+			}
+		}
+		
+		
+		
+//		System.out.println("Please enter your preferred payment method: (1) for Cash and (2) for Card");
+		
+		//need to add billing info and payment method
+		//create payment object and add to payment array
+		//print receipt
+		
+		
+		
+>>>>>>> Stashed changes
 	}
 	
 	public void makePaymentObject(int paymentID, double roomCharges, double tax, double roomServices, double discount, double totalCharges, methodOfPayment methodOfPayment, ArrayList<Order> r, int numberOfNights, String name, String address, String number)
@@ -247,6 +303,7 @@ public class PaymentManager {
 		return RoomServices;
 	}
 	
+<<<<<<< Updated upstream
 	public void showAllPaidReservations()
 	{
 		if (payments.size() == 0)
@@ -281,6 +338,20 @@ public class PaymentManager {
 		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName());
 		System.out.println("Payment Type: " + globalPaymentType); // Calls the global variable for PaymentType
 		System.out.println("Check-Out Date: " + toCheckOut.getCheckOutDate()); // Date of payment		System.out.println("Total Charges: " + totalChargesGlobal); // Total Bill
+=======
+	public void printReceipt() 
+	{
+		System.out.println("Guest Name: " + );
+		System.out.println("Room Number: " + roomNumberGlobal);
+		System.out.println("Check-In Date: " + );
+		System.out.println("Check-Out Date: " + );
+		System.out.println("Number of Night Stayed: " + numberOfNightsGlobal);
+		System.out.println("Room Charges: " + roomChargesGlobal);
+		System.out.println("Tax: " + Initialise.GST);
+		System.out.println("Room Service Charges " + roomServicesGlobal);
+		System.out.println("Discount: " + discountGlobal);
+		System.out.println("Your total charges are: " + totalChargesGlobal);
+>>>>>>> Stashed changes
 	}
 	
 }
