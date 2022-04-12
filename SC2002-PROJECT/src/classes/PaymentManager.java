@@ -32,6 +32,7 @@ public class PaymentManager {
     int numberOfNightsGlobal = 0;
     Reservation toCheckOut=null;
     String globalPaymentType;
+    ArrayList<Order> checkOutRoomOrders = new ArrayList<Order>();
     
     
 
@@ -40,7 +41,7 @@ public class PaymentManager {
 		String confirmation = "0";
 		boolean validRoomFound = false;
 		double tax;
-		ArrayList<Order> checkOutRoomOrders = new ArrayList<Order>();
+		
 		
 		//finding room for check out
 		System.out.println("Hi! Please enter the room to check out from (Enter 0 to cancel check out):");
@@ -155,8 +156,17 @@ public class PaymentManager {
 				System.out.println("You have paid " + total + "in cash");
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
 			}
-			Payment paymentObject = new Payment(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CASH, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
-			payments.add(paymentObject); // Added the payment oboject to the payment array
+			
+			if (payments.size()>0)
+			{
+				makePaymentObject(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CASH, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // Calling the method
+			}
+			else 
+			{
+				makePaymentObject(1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CASH, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // If arrayList isn't created yet, assign this payment the ID of 1
+			}
+			
+			
 			
 		}
 		else if (choice == 2)
@@ -171,8 +181,7 @@ public class PaymentManager {
 				int ccv = sc.nextInt(); // Just for confirmation of guest, one-time use, don't need to use
 				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + " with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + "to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
-				Payment paymentObject = new Payment(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
-				payments.add(paymentObject); // Added the payment object to the payment array
+				makePaymentObject(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
 			}
 			else if  (check == 0)
 			{
@@ -185,16 +194,15 @@ public class PaymentManager {
 				number = sc.nextLine();
 				System.out.println("Please enter your billing address: ");
 				address = sc.nextLine();
-				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + name + " with the number " + number);
+				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name, " + name + ", with the number " + number + ", to your billing address at " + address);
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
-				if (payments.size() >= 0)
+				if (payments.size() > 0)
 				{
-					Payment paymentObject = new Payment(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, name, address, number);
-					payments.add(paymentObject); // Added the payment object to the payment array
+					makePaymentObject(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // Calling the method
 				}
 				else
 				{
-					
+					makePaymentObject(1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // If arrayList isn't created yet, assign this payment the ID of 1
 				}
 				
 			}
@@ -211,10 +219,11 @@ public class PaymentManager {
 		}
 	}
 	
-	public void makePaymentObject(int paymentID, double roomCharges, double tax, double roomServices, double discount, double totalCharges, Payment.methodOfPayment, Reservation r, int numberOfNights, String name, String address, String number)
+	public void makePaymentObject(int paymentID, double roomCharges, double tax, double roomServices, double discount, double totalCharges, methodOfPayment methodOfPayment, ArrayList<Order> r, int numberOfNights, String name, String address, String number)
 	{
-		
-	}
+		Payment paymentObject = new Payment(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, classes.Payment.methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, name, address, number);
+		payments.add(paymentObject); // Added the payment object to the payment array
+	} // To call inside the makePayment Method
 	
 	//Any checkout after the required checkout time of 2pm is charged an extra day
 	public int calcNumberOfNights(Calendar checkInDate)
@@ -271,11 +280,7 @@ public class PaymentManager {
 		System.out.println("==========This is your Total Bill for your stay==========");
 		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName());
 		System.out.println("Payment Type: " + globalPaymentType); // Calls the global variable for PaymentType
-		System.out.println("Check-Out Date: " + toCheckOut.getCheckOutDate()); // Date of payment
-		System.out.println("Total Charges: " + totalChargesGlobal); // Total Bill
+		System.out.println("Check-Out Date: " + toCheckOut.getCheckOutDate()); // Date of payment		System.out.println("Total Charges: " + totalChargesGlobal); // Total Bill
 	}
-	
-	
-	
 	
 }
