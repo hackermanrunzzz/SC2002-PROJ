@@ -232,41 +232,41 @@ public class Initialise {
 		
 
 		// Initialising 4 TEST Guests inside the Guests Array
-		Guest guest_one = new Guest("Derrick", "James", "96785757", "The Ritz, Avenue 6", "Singapore", 'M', "Indian", "Singaporean", "96978575");
+		Guest guest_one = new Guest("Derrick", "Derrick James", "96785757", "The Ritz, Avenue 6", "Singapore", 'M', "Indian", "Singaporean", "96978575");
 		guestarr1.add(guest_one);
 		
-		Guest guest_two = new Guest("Mark", "Black", "96684738", "Patriots' Street 58", "Malaysia", 'F', "Chinese", "Malaysian", "77778888");
+		Guest guest_two = new Guest("Mark", "Mark Black", "96684738", "Patriots' Street 58", "Malaysia", 'F', "Chinese", "Malaysian", "77778888");
 		guestarr2.add(guest_two);
 		
-		Guest guest_three = new Guest("Darren", "Williams", "77665544", "Fourier Avenue 69", "Sweden", 'M', "Indonesian", "American", "12345678");
+		Guest guest_three = new Guest("Darren", "Darren Williams", "77665544", "Fourier Avenue 69", "Sweden", 'M', "Indonesian", "American", "12345678");
 		guestarr3.add(guest_three);
 		
-		Guest guest_four = new Guest("Blake", "Johnson", "11234578", "Salem Avenue 23", "Denmark", 'M', "Armenian", "Australian", "90807060");
+		Guest guest_four = new Guest("Blake", "Blake Johnson", "11234578", "Salem Avenue 23", "Denmark", 'M', "Armenian", "Australian", "90807060");
 		guestarr4.add(guest_four);
 
 		
 		// First Guest is assumed to be Checked-in, was assigned a Deluxe Room
-		Reservation reserv_one  = new Reservation(10000, guestarr1, rooms.get(36), "Name is: " + guestarr1.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr1.get(0).getCreditCardNumber(), date1in, date1out, 1, 0, StatusOfReservation.CHECKED_IN, days1);
+		Reservation reserv_one  = new Reservation(10000, guestarr1, rooms.get(36), guestarr1.get(0).getCreditCardNumber(), date1in, date1out, 1, 0, StatusOfReservation.CHECKED_IN, days1);
 		rooms.get(36).setRoomStatus(StatusOfRoom.OCCUPIED);
 		reservations.add(reserv_one);
 		
 
 
 		// Second Guest is assumed to be Checked-in, was assigned a Single Room
-		Reservation reserv_two = new Reservation(10001, guestarr2, rooms.get(0), "Name is: " + guestarr2.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr2.get(0).getCreditCardNumber(), date2in, date2out, 1, 0, StatusOfReservation.CHECKED_IN, days2);
+		Reservation reserv_two = new Reservation(10001, guestarr2, rooms.get(0), guestarr2.get(0).getCreditCardNumber(), date2in, date2out, 1, 0, StatusOfReservation.CHECKED_IN, days2);
 		rooms.get(0).setRoomStatus(StatusOfRoom.OCCUPIED);
 		reservations.add(reserv_two);
 		
 
 
 		// Third Guest reserved a room, was assigned a Deluxe Room
-		Reservation reserv_three = new Reservation(10002, guestarr3, rooms.get(44), "Name is: " + guestarr3.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr3.get(0).getCreditCardNumber(), date3in, date3out, 1, 0, StatusOfReservation.CONFIRMED, days3);
+		Reservation reserv_three = new Reservation(10002, guestarr3, rooms.get(44), guestarr3.get(0).getCreditCardNumber(), date3in, date3out, 1, 0, StatusOfReservation.CONFIRMED, days3);
 		rooms.get(44).setRoomStatus(StatusOfRoom.RESERVED);
 		reservations.add(reserv_three);
 	
 
 		//Fourth Guests reserved a room, was assigned a Double Room
-		Reservation reserv_four = new Reservation(10003, guestarr4, rooms.get(20), "Name is: " + guestarr4.get(0).getCreditCardName() + ", and Credit Card Number is: " + guestarr4.get(0).getCreditCardNumber(), date4in, date4out, 1, 0, StatusOfReservation.CONFIRMED, days4);
+		Reservation reserv_four = new Reservation(10003, guestarr4, rooms.get(20), guestarr4.get(0).getCreditCardNumber(), date4in, date4out, 1, 0, StatusOfReservation.CONFIRMED, days4);
 		rooms.get(20).setRoomStatus(StatusOfRoom.RESERVED);
 		reservations.add(reserv_four);
 	}
