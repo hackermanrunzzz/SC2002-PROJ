@@ -135,7 +135,7 @@ public class PaymentManager {
 				System.out.println("Total cash paid: " + total);
 			}
 			double change = total - totalChargesGlobal;
-			System.out.println("You have paid " + total + "in cash");
+			System.out.println("You have paid " + total + " in cash.");
 			System.out.println("Your change is: " + change);
 			System.out.println("Thank you for your stay! Have a safe trip back home!");
 			
@@ -198,8 +198,6 @@ public class PaymentManager {
 	        System.out.println("\nPayment has been made!\nPayment ID: " + paymentID);
 	        payments.add(new Payment(paymentID, roomCharges, tax, roomServices, discount, totalCharges, paymentMethod, orderThisRoom, 
 	        		numberOfNights, creditCardName, billingAddress, billingCardNumber));
-	        
-	        return;
 		
     }
 	
@@ -225,7 +223,7 @@ public class PaymentManager {
 	
 	public void showAllPaidReservations(){
 		if (payments.size() == 0){
-			System.out.println("Error! No Payments were made yet!");
+			System.out.println("No Past Payment History Available.");
 		}
 		else {
 			System.out.println("============ PAYMENT HISTORY ===========");
@@ -237,12 +235,12 @@ public class PaymentManager {
 	}
 	
 	public void printFullReceipt(){
-		System.out.println("==========This is your Total Bill for your stay==========");
+		System.out.println("======== This is your Total Bill for your stay ========");
 		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName()); // Prints out name of the first name of Guest Details
-//		System.out.println("Payment Type: " + globalPaymentType);
 		System.out.println("Room Number: " + toCheckOut.getRoomDetails().getRoomNumber());
-		System.out.println("Check-In Date: " + toCheckOut.getCheckInDate());
-		System.out.println("Check-Out Date: " + toCheckOut.getCheckOutDate());
+		System.out.println("Check-In Date: " + toCheckOut.getCheckInDate().getTime());
+		toCheckOut.getCheckOutDate();
+		System.out.println("Check-Out Date: " + Calendar.getInstance().getTime());
 		System.out.println("Number of Nights Stayed: " + numberOfNightsGlobal);
 		System.out.println("Room Charges: " + roomChargesGlobal);
 		System.out.println("Room Service Charges: " + roomServicesGlobal);
