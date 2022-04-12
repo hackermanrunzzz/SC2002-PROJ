@@ -28,7 +28,7 @@ public class PaymentUI {
 	            	Initialise.resm.showAllReservations();
 	                break;
 	            case 2:
-	            	Initialise.pm.makePayment();
+	            	Initialise.pm.makePaymentUI();
 	                
 	            case 3:
 	            	Initialise.pm.showAllPaidReservation();

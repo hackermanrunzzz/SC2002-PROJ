@@ -37,7 +37,7 @@ public class PaymentManager {
     
 
 	
-	public void makePayment() {
+	public void makePaymentUI() {
 		String confirmation = "0";
 		boolean validRoomFound = false;
 		double tax;
@@ -153,6 +153,7 @@ public class PaymentManager {
 				int ccv = sc.nextInt(); // Just for confirmation of guest, one-time use, don't need to use
 				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + ", with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + ", to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
+				
 				makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
 			}
 			else if  (check == 0){
@@ -173,7 +174,7 @@ public class PaymentManager {
 			}
 		}
 		
-		// Room was set to Vacant here
+		// Room set to Vacant here
 		toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); 
 		
 		
