@@ -103,88 +103,60 @@ public class PaymentManager {
 		int choice = 0;
 		printFullReceipt(); // Printing receipt before user decides how to pay
 		System.out.println("Please enter (1) if you would like to pay by Cash. Enter (2) if you would like to pay by Card instead");
+		choice = sc.nextInt();
 		if (choice==1)
 		{
 			globalPaymentType = "Cash";
-			System.out.println("Please enter the appropriate number for which bill, $50, $10, or $5, you would like to use. Enter (4) to exit");
-			while (total<totalChargesGlobal)
-			{
-				System.out.println("========= Cash Input =========");
-				System.out.println("|Enter '1' for $50 input |");
-				System.out.println("|Enter '2' for $10 input |");
-				System.out.println("|Enter '3' for $5 input  |");
-				System.out.println("|Enter '4' for input of change|");
+			System.out.println("Please enter the appropriate number for which bill, $1000, $100, or $50, you would like to use. Enter (4) to exit");
+			System.out.println("========= Cash Input =========");
+			System.out.println("|Enter '1' for $1000 input |");
+			System.out.println("|Enter '2' for $100 input |");
+			System.out.println("|Enter '3' for $50 input  |");
+			System.out.println("|Enter '4' for input of change|");
+			while (total<=totalChargesGlobal){
 				bills = sc.nextInt();
-				if (bills == 1)
-				{
+				if (bills == 1){
+					total += 1000;
+				}
+				
+				else if (bills == 2){
+					total += 100;
+				}
+				
+				else if (bills == 3){
 					total += 50;
 				}
 				
-				else if (bills == 2)
-				{
-					total += 10;
-				}
-				
-				else if (bills == 3)
-				{
-					total += 5;
-				}
-				
-				else if (bills == 4)
-				{
+				else if (bills == 4){
 					System.out.println("Please enter the amount of money you would like to use as change: ");
 					double temp = sc.nextDouble();
 					total += temp;
 				}
+				System.out.println("Total cash paid: " + total);
 			}
-			if (total <= totalChargesGlobal)
-			{
-				double change = totalChargesGlobal - total;
-				System.out.println("You have paid " + total + "in cash");
-				System.out.println("Your change is: " + change);
-				System.out.println("Thank you for your stay! Have a safe trip back home!");
-			}
-			else if (total>=totalChargesGlobal)
-			{
-				double change = total - totalChargesGlobal;
-				System.out.println("You have paid " + total + "in cash");
-				System.out.println("Your change is: " + change);
-				System.out.println("Thank you for your stay! Have a safe trip back home!");
-			}
-			else
-			{
-				System.out.println("You have paid " + total + "in cash");
-				System.out.println("Thank you for your stay! Have a safe trip back home!");
-			}
+			double change = total - totalChargesGlobal;
+			System.out.println("You have paid " + total + "in cash");
+			System.out.println("Your change is: " + change);
+			System.out.println("Thank you for your stay! Have a safe trip back home!");
 			
-			if (payments.size()>0)
-			{
-				makePaymentObject(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CASH, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // Calling the method
-			}
-			else 
-			{
-				makePaymentObject(1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CASH, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // If arrayList isn't created yet, assign this payment the ID of 1
-			}
+			makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CASH, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
 			
 			
 			
 		}
-		else if (choice == 2)
-		{
+		else if (choice == 2){
 			globalPaymentType = "Card";
 			int check = 0;
 			System.out.println("Please verify that this is your credit card name: " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + ". If yes, enter (1). Else, enter (0)");
 			check = sc.nextInt();
-			if (check == 1)
-			{
+			if (check == 1){
 				System.out.println("Please enter your CCV / CVV: ");
 				int ccv = sc.nextInt(); // Just for confirmation of guest, one-time use, don't need to use
 				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + " with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + "to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
-				makePaymentObject(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
+				makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
 			}
-			else if  (check == 0)
-			{
+			else if  (check == 0){
 				String address;
 				String name;
 				String number;
@@ -196,38 +168,43 @@ public class PaymentManager {
 				address = sc.nextLine();
 				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name, " + name + ", with the number " + number + ", to your billing address at " + address);
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
-				if (payments.size() > 0)
-				{
-					makePaymentObject(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // Calling the method
-				}
-				else
-				{
-					makePaymentObject(1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // If arrayList isn't created yet, assign this payment the ID of 1
-				}
+				
+				makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // Calling the method
 				
 			}
-			
-			toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); // Room was set to Vacant here
-	        
-	        for (Reservation r : Initialise.reservations)
-	        {
-	            if (toCheckOut.equals(r))
-	            {
-	                Initialise.reservations.remove(r); // Removing Reservation here
-	            }
-	        }	
 		}
+		
+		toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); // Room was set to Vacant here
+		
+//		 for (Reservation r : Initialise.reservations){
+//	            if (toCheckOut.equals(r))
+//	            {
+//	                Initialise.reservations.remove(r); 
+//	            }
+//	        }	
 	}
 	
-	public void makePaymentObject(int paymentID, double roomCharges, double tax, double roomServices, double discount, double totalCharges, methodOfPayment methodOfPayment, ArrayList<Order> r, int numberOfNights, String name, String address, String number)
-	{
-		Payment paymentObject = new Payment(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, classes.Payment.methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, name, address, number);
-		payments.add(paymentObject); // Added the payment object to the payment array
-	} // To call inside the makePayment Method
+
+	public void makePaymentObject(double roomCharges, double tax, double roomServices, double discount,
+			double totalCharges, methodOfPayment paymentMethod, ArrayList<Order> orderThisRoom, int numberOfNights,
+			String creditCardName, String billingAddress, String billingCardNumber){
+
+		
+	        int paymentID = 20000;
+	        if(Initialise.payments.size() > 0){
+	        	paymentID = Initialise.payments.get(Initialise.payments.size()-1).getPaymentID()+1;
+	        }
+	
+	        System.out.println("\nPayment has been made!\nPayment ID: " + paymentID);
+	        payments.add(new Payment(paymentID, roomCharges, tax, roomServices, discount, totalCharges, paymentMethod, orderThisRoom, 
+	        		numberOfNights, creditCardName, billingAddress, billingCardNumber));
+	        
+	        return;
+		
+    }
 	
 	//Any checkout after the required checkout time of 2pm is charged an extra day
-	public int calcNumberOfNights(Calendar checkInDate)
-	{
+	public int calcNumberOfNights(Calendar checkInDate){
 		float numberOfSeconds = ChronoUnit.SECONDS.between(checkInDate.getTime().toInstant(), Calendar.getInstance().toInstant());
     	//covertion from seconds to days
     	int numberOfNights = (int)Math.ceil((numberOfSeconds/(60*60*24)));
@@ -236,8 +213,7 @@ public class PaymentManager {
 	
 	
 	//this function helps to add up the price of each room service order to get the total roomservice charge
-	public double calcRoomServices(ArrayList<Order> orderThisRoom)
-	{
+	public double calcRoomServices(ArrayList<Order> orderThisRoom){
 		double RoomServices = 0;
 		if (orderThisRoom.isEmpty())
 			return 0;
@@ -247,23 +223,23 @@ public class PaymentManager {
 		return RoomServices;
 	}
 	
-	public void showAllPaidReservations()
-	{
-		if (payments.size() == 0)
-		{
+	public void showAllPaidReservations(){
+		if (payments.size() == 0){
 			System.out.println("Error! No Payments were made yet!");
 		}
-		for (int i = 0; i < payments.size(); i++)
-		{
-			System.out.println(payments.get(i));
+		else {
+			System.out.println("============ PAYMENT HISTORY ===========");
+			for(Payment p: Initialise.payments){
+				printShortReceipt(p);
+			}
+			
 		}
 	}
 	
-	public void printFullReceipt()
-	{
+	public void printFullReceipt(){
 		System.out.println("==========This is your Total Bill for your stay==========");
 		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName()); // Prints out name of the first name of Guest Details
-		System.out.println("Payment Type: " + globalPaymentType); // Calls the global variable for PaymentType
+//		System.out.println("Payment Type: " + globalPaymentType);
 		System.out.println("Room Number: " + toCheckOut.getRoomDetails().getRoomNumber());
 		System.out.println("Check-In Date: " + toCheckOut.getCheckInDate());
 		System.out.println("Check-Out Date: " + toCheckOut.getCheckOutDate());
@@ -275,12 +251,13 @@ public class PaymentManager {
 		System.out.println("Total Charges: " + totalChargesGlobal);
 	}
 	
-	public void printShortReceipt()
-	{
-		System.out.println("==========This is your Total Bill for your stay==========");
-		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName());
-		System.out.println("Payment Type: " + globalPaymentType); // Calls the global variable for PaymentType
-		System.out.println("Check-Out Date: " + toCheckOut.getCheckOutDate()); // Date of payment		System.out.println("Total Charges: " + totalChargesGlobal); // Total Bill
+	public void printShortReceipt(Payment p){
+		System.out.println("Payment ID: " + p.getPaymentID());
+		System.out.println("Name: " + p.getCreditCardName());
+		System.out.println("Total Amount: " + p.getTotalCharges());
+		System.out.println("Payment Type: " + p.getPaymentMethod()); 
+//		System.out.println("Check-Out Date: " + ); 
+		System.out.println();
 	}
 	
 }

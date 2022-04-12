@@ -58,7 +58,7 @@ public class Initialise {
 	public static GuestManager gm = new GuestManager();
 	
 	
-	private static ArrayList<Payment> payments = new ArrayList<Payment>();
+	public static ArrayList<Payment> payments = new ArrayList<Payment>();
 	public static PaymentManager pm = new PaymentManager(payments);
 	
 	
