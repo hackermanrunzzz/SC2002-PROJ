@@ -31,11 +31,11 @@ public class PaymentUI {
 	            	Initialise.pm.makePayment();
 	                
 	            case 3:
-	            	Initialise.pm.showAllPaidReservations();
+	            	Initialise.pm.showAllPaidReservation();
 	            default:
 	            	break;
 	        }
-	    } while (option<3);
+	    } while (option<4);
 	}
 
     

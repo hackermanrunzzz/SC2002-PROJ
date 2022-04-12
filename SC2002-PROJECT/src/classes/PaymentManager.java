@@ -104,15 +104,14 @@ public class PaymentManager {
 		printFullReceipt(); // Printing receipt before user decides how to pay
 		System.out.println("Please enter (1) if you would like to pay by Cash. Enter (2) if you would like to pay by Card instead");
 		choice = sc.nextInt();
-		if (choice==1)
-		{
+		if (choice==1){
 			globalPaymentType = "Cash";
 			System.out.println("Please enter the appropriate number for which bill, $1000, $100, or $50, you would like to use. Enter (4) to exit");
-			System.out.println("========= Cash Input =========");
-			System.out.println("|Enter '1' for $1000 input |");
-			System.out.println("|Enter '2' for $100 input |");
-			System.out.println("|Enter '3' for $50 input  |");
-			System.out.println("|Enter '4' for input of change|");
+			System.out.println("========== Cash Input ==========");
+			System.out.println("|Enter '1' for $1000 input     |");
+			System.out.println("|Enter '2' for $100 input      |");
+			System.out.println("|Enter '3' for $50 input       |");
+			System.out.println("|Enter '4' for input of change |");
 			while (total<=totalChargesGlobal){
 				bills = sc.nextInt();
 				if (bills == 1){
@@ -136,7 +135,7 @@ public class PaymentManager {
 			}
 			double change = total - totalChargesGlobal;
 			System.out.println("You have paid " + total + " in cash.");
-			System.out.println("Your change is: " + change);
+			System.out.printf("Your change is: %.2f.\n",change);
 			System.out.println("Thank you for your stay! Have a safe trip back home!");
 			
 			makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CASH, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
@@ -152,7 +151,7 @@ public class PaymentManager {
 			if (check == 1){
 				System.out.println("Please enter your CCV / CVV: ");
 				int ccv = sc.nextInt(); // Just for confirmation of guest, one-time use, don't need to use
-				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + " with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + "to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
+				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + ", with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + ", to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
 				makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
 			}
@@ -228,7 +227,7 @@ public class PaymentManager {
 		return RoomServices;
 	}
 	
-	public void showAllPaidReservations(){
+	public void showAllPaidReservation(){
 		if (payments.size() == 0){
 			System.out.println("No Past Payment History Available.");
 		}
