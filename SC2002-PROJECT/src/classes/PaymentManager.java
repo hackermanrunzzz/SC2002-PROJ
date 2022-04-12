@@ -187,8 +187,16 @@ public class PaymentManager {
 				address = sc.nextLine();
 				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + name + " with the number " + number);
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
-				Payment paymentObject = new Payment(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, name, address, number);
-				payments.add(paymentObject); // Added the payment object to the payment array
+				if (payments.size() >= 0)
+				{
+					Payment paymentObject = new Payment(payments.get(payments.size()-1).getPaymentID()+1, roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, name, address, number);
+					payments.add(paymentObject); // Added the payment object to the payment array
+				}
+				else
+				{
+					
+				}
+				
 			}
 			
 			toCheckOut.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); // Room was set to Vacant here
@@ -201,6 +209,11 @@ public class PaymentManager {
 	            }
 	        }	
 		}
+	}
+	
+	public void makePaymentObject(int paymentID, double roomCharges, double tax, double roomServices, double discount, double totalCharges, Payment.methodOfPayment, Reservation r, int numberOfNights, String name, String address, String number)
+	{
+		
 	}
 	
 	//Any checkout after the required checkout time of 2pm is charged an extra day
@@ -233,7 +246,7 @@ public class PaymentManager {
 		}
 		for (int i = 0; i < payments.size(); i++)
 		{
-			System.out.println(payments.get(i).);
+			System.out.println(payments.get(i));
 		}
 	}
 	

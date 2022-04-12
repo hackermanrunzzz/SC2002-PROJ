@@ -3,7 +3,7 @@ package classes;
 import java.util.ArrayList;
 
 public class Payment {
-	public enum methodOfPayment{CASH, CARD} // Can add Debit and Credit separately later on if you guys want to
+	public enum methodOfPayment{CASH, CARD}
 	
 	public int paymentID;
 	public double roomCharges;
