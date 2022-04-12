@@ -554,7 +554,7 @@ public class OrderManager {
 	                		else if (send ==1) {
 	                			
 	                			rsOrder.setOrderStatus(StatusOfOrder.PREPARING);
-	                			System.out.println("Order is Being Prepared now");
+	                			System.out.println("Order is Being Prepared now.");
 	                			break;
 	                			
 	                		}
