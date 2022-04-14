@@ -111,7 +111,7 @@ public class Reservation {
 	}
 	/**
 	 * sets unique identifier for a reservation
-	 * @param reservationID 
+	 * @param reservationID unique identifier for a reservation
 	 */
 	public void setReservationID(int reservationID) {
 		this.reservationID = reservationID;
