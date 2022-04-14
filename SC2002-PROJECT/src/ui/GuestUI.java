@@ -4,10 +4,16 @@ import java.util.Scanner;
 import Initialiser.Initialise;
 import classes.Guest;
 
-
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
 public class GuestUI {
+	/**
+	 * displaying options to update guest details
+	 */
 	public static void guestOptions() {
-		
 		
 		Scanner sc = new Scanner(System.in);
 		int option;
