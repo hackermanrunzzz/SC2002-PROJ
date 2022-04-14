@@ -16,6 +16,10 @@ import classes.Room.StatusOfRoom;
  * @since 14th April 2022
  */
 
+
+/**
+ * create reservation expiry class
+ */
 public class ReservationExpiry extends TimerTask {
 	
 	/**

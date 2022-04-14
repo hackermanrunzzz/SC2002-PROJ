@@ -11,6 +11,10 @@ import classes.Guest;
  * @since 14th April 2022
  */
 
+
+/**
+ * create guest manager class
+ */
 public class GuestManager {
 	
 	/**
