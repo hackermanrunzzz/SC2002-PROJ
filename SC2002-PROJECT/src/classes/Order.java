@@ -8,41 +8,80 @@ import java.util.UUID;
 
 import Initialiser.Initialise;
 
+/**
+ * @author darren wong 
+ * @version 1.0
+ * @since 14/4/2022
+ */
 
+/**
+ * create order class
+ */
 public class Order {
-	public enum StatusOfOrder{CONFIRMED, PREPARING, DELIVERED}
 	
+	/**
+	 *  status of order
+	 */
+	public enum StatusOfOrder{
+		/**
+		 * order is confirmed
+		 */
+		CONFIRMED, 
+		/**
+		 * order is being prepared
+		 */
+		PREPARING,
+		/**
+		 * order is being delivered
+		 */
+		DELIVERED}
+	
+	/**
+	 *  unique identifier of order
+	 */
 	private String OrderID;
+	/**
+	 * unique identifier of reservation
+	 */
 	private int ResID;
+	/**
+	 *  room number
+	 */
 	private String RoomNumber;
+	/**
+	 *  time of order
+	 */
 	private Calendar timeOfOrder;
+	/**
+	 *  additional remarks for food
+	 */
 	private String remarks;
+	/**
+	 *  status of order
+	 */
 	private StatusOfOrder orderStatus;
+	/**
+	 *  total price of order
+	 */
 	private double totalPrice;
+	/**
+	 * array list of menu items ordered;
+	 */
 	private ArrayList<MenuItem> menuI;
 	
 
-//	 public Order() 
-//	 {
-//	        this.OrderID = UUID.randomUUID().toString();
-//	        this.ResID = 0; // Got error here jn, changed it to initialise to 0
-//	        this.time = Calendar.getInstance();
-//	        this.orderStatus = StatusOfOrder.DELIVERED; //Got error here also, set it as delivered first
-//	        this.totalPrice = 0;// need to be calculated
-//	        this.menuI = Initialise.menu;
-//;	    }
-//	
-//
-//	public Order(String orderID, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice) 
-//	{
-//		this.OrderID = UUID.randomUUID().toString();
-//		this.time = time;
-//		this.remarks = remarks;
-//		this.orderStatus = orderStatus;
-//		this.totalPrice = totalPrice;
-//		this.menuI = Initialise.menu;
-//	}
-	
+
+	/**
+	 * 
+	 * @param OrderID unique identifier for order
+	 * @param ResID unique identifier for reservation
+	 * @param RoomNumber room number
+	 * @param time time of order
+	 * @param remarks additional remarks
+	 * @param orderStatus status of order
+	 * @param totalPrice total price of order
+	 * @param menuI array list of menu items ordered
+	 */
 	public Order(String OrderID, int ResID,String RoomNumber, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice, ArrayList<MenuItem> menuI) 
 	{
 		this.OrderID = OrderID;
@@ -57,43 +96,15 @@ public class Order {
 
 
 
-//    public int checkFood(MenuItem food) {
-//        int exists = 0;
-//        for (MenuItem f : this.menuM.getMenu()) {
-//            if (f.getName().equals(food.getName())) return 1;
-//        }
-//        return 0;
-//    }
 
 
 
-    /**
-     * add food item to order
-     * @param order to add food item
-     * @param food item to be added to order
-     */
-//    public void addFoodOrder(Order order, MenuItem food){
-//        order.menuM.getMenu().add(food);
-//        calculateAmount();
-//    }
 
 
-
-    /**
-     * remove food item from order
-     * @param food item to be removed
-     */
-//    public void removeFoodOrder(MenuItem food){
-//        if(checkFood(food)==0){
-//            System.out.println("Food item is not in the order. Cannot be removed.");
-//            return;
-//        }
-//        this.menuM.getMenu().remove(food);
-//        calculateAmount();
-//    }
-
-  
-
+	/**
+	 * get order id
+	 * @return order id
+	 */
     public String getOrderID() {
 		return OrderID;
 	}
@@ -101,7 +112,10 @@ public class Order {
 
 
 
-
+    /**
+     * set order id
+     * @param orderID order id
+     */
 	public void setOrderID(String orderID) {
 		OrderID = orderID;
 	}
@@ -109,7 +123,10 @@ public class Order {
 
 
 
-
+	/**
+	 * get reservation id
+	 * @return reservation id
+	 */
 	public int getResID() {
 		return ResID;
 	}
@@ -117,7 +134,10 @@ public class Order {
 
 
 
-
+	/**
+	 * set reservation id
+	 * @param resID reservation id
+	 */
 	public void setResID(int resID) {
 		ResID = resID;
 	}
@@ -125,7 +145,10 @@ public class Order {
 
 
 
-
+	/**
+	 * get time of order
+	 * @return time of order
+	 */
 	public Calendar getTimeOfOrder() {
 		
 		
@@ -135,7 +158,10 @@ public class Order {
 
 
 
-
+	/**
+	 * set time of order
+	 * @param timeOfOrder time of order
+	 */
 	public void setTimeOfOrder(Calendar timeOfOrder) {
 		this.timeOfOrder = timeOfOrder;
 	}
@@ -143,7 +169,10 @@ public class Order {
 
 
 
-
+	/**
+	 * get additional remarks of order
+	 * @return additional remarks of order
+	 */
 	public String getRemarks() {
 		return remarks;
 	}
@@ -151,7 +180,10 @@ public class Order {
 
 
 
-
+	/**
+	 * set additional remarks
+	 * @param remarks additional remarks
+	 */
 	public void setRemarks(String remarks) {
 		this.remarks = remarks;
 	}
@@ -159,7 +191,10 @@ public class Order {
 
 
 
-
+	/**
+	 * get status of order
+	 * @return status of order
+	 */
 	public StatusOfOrder getOrderStatus() {
 		return orderStatus;
 	}
@@ -167,7 +202,10 @@ public class Order {
 
 
 
-
+	/**
+	 * set status of order
+	 * @param orderStatus status of order
+	 */
 	public void setOrderStatus(StatusOfOrder orderStatus) {
 		this.orderStatus = orderStatus;
 	}
@@ -175,7 +213,10 @@ public class Order {
 
 
 
-
+	/**
+	 * get total price of order
+	 * @return total price of order
+	 */
 	public double getTotalPrice() {
 		return totalPrice;
 	}
@@ -183,7 +224,10 @@ public class Order {
 
 
 
-
+	/**
+	 * set total price of order
+	 * @param totalPrice total price of order
+	 */
 	public void setTotalPrice(double totalPrice) {
 		this.totalPrice = totalPrice;
 	}
@@ -194,7 +238,10 @@ public class Order {
 
 
 
-
+	/**
+	 * get room number of order
+	 * @return room number of order
+	 */
 	public String getRoomNumber() {
 		return RoomNumber;
 	}
@@ -202,7 +249,10 @@ public class Order {
 
 
 
-
+	/**
+	 * set room number of order
+	 * @param roomNumber room number
+	 */
 	public void setRoomNumber(String roomNumber) {
 		RoomNumber = roomNumber;
 	}
@@ -210,7 +260,10 @@ public class Order {
 
 
 
-
+	/**
+	 * get array list of menu items ordered
+	 * @return array list of menu items ordered
+	 */
 	public ArrayList<MenuItem> getMenuI() {
 		return menuI;
 	}
@@ -218,7 +271,10 @@ public class Order {
 
 
 
-
+	/**
+	 * set array list of menu items
+	 * @param menuI array list of menu items
+	 */
 	public void setMenuI(ArrayList<MenuItem> menuI) {
 		this.menuI = menuI;
 	}
@@ -226,11 +282,10 @@ public class Order {
 
 
 
-
 	/**
-     * view the order
-     */
- 
+	 * view order
+	 * @return order
+	 */
 	public String printOrder() {
 		  DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
 	        String strtimeOfOrder = dateFormat.format(this.timeOfOrder.getTime());
@@ -244,7 +299,13 @@ public class Order {
     }
 	
 	
-	  public void printIndividualfood (ArrayList<MenuItem> menuitems) {
+	
+	
+	/**
+	 * print menu items
+	 * @param menuitems array list of menu items
+	 */
+	 public void printIndividualfood (ArrayList<MenuItem> menuitems) {
 		  
 		  for (int y = 0 ; y<menuitems.size(); y++) {
 			  

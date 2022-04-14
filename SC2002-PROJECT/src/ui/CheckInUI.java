@@ -2,11 +2,22 @@ package ui;
 
 import java.util.Scanner;
 
+
 import Initialiser.Initialise;
 
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
 public class CheckInUI {	
+	/**
+	 * displaying options to check in
+	 */
 	public static void checkInOptions() {
+		
 		Scanner sc = new Scanner(System.in);
+		
 		int option;
 		
 		do {

@@ -5,10 +5,29 @@ import java.util.Scanner;
 import Initialiser.Initialise;
 import classes.Guest;
 
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
+
 public class GuestManager {
 	
+	/**
+	 * taking in user input
+	 */
 	Scanner sc = new Scanner(System.in);
 	
+	/**
+	 * constructor of guest manager
+	 */
+	public GuestManager() {};
+	
+	/**
+	 * 
+	 * @param guestname name of guest
+	 * @return guest object
+	 */
 	public Guest searchGuest(String guestname){
 		for(Reservation r: Initialise.reservations) {
 			for(Guest g: r.getGuestDetails()) {
@@ -30,6 +49,10 @@ public class GuestManager {
 		return null;
 	}
 	
+	/**
+	 * updates guest's name
+	 * @param guest guest object
+	 */
 	public void updateGuestName(Guest guest) {
 		System.out.println("Current guest name: " + guest.getName());
 		System.out.println("Please enter updated guest name (Enter 0 to cancel): ");
@@ -49,6 +72,10 @@ public class GuestManager {
 		return;
 	}
 	
+	/**
+	 * updates the guest's credit card name
+	 * @param guest guest object
+	 */
 	public void updateGuestCardName(Guest guest) {
 		System.out.println("Current guest credit card name: " + guest.getCreditCardName());
 		System.out.println("Please enter updated guest credit card name (Enter 0 to cancel): ");
@@ -68,6 +95,10 @@ public class GuestManager {
 		return;
 	}
 	
+	/**
+	 * updates the guest's credit card number
+	 * @param guest guest object
+	 */
 	public void updateGuestCardNumber(Guest guest) {
 		System.out.println("Current guest credit card number: " + guest.getCreditCardNumber());
 		System.out.println("Please enter updated guest credit card number (Enter 0 to cancel): ");
@@ -87,6 +118,10 @@ public class GuestManager {
 		return;
 	}
 	
+	/**
+	 * updates the guest's address
+	 * @param guest guest object
+	 */
 	public void updateGuestAddress(Guest guest) {
 		System.out.println("Current guest address: " + guest.getAddress());
 		System.out.println("Please enter updated guest address (Enter 0 to cancel): ");
@@ -106,6 +141,10 @@ public class GuestManager {
 		return;
 	}
 	
+	/**
+	 * updates the guest's country
+	 * @param guest guest object
+	 */
 	public void updateGuestCountry(Guest guest) {
 		System.out.println("Current guest country: " + guest.getCountry());
 		System.out.println("Please enter updated guest country (Enter 0 to cancel): ");
@@ -125,6 +164,10 @@ public class GuestManager {
 		return;
 	}
 	
+	/**
+	 * updates the guest's gender
+	 * @param guest guest object
+	 */
 	public void updateGuestGender(Guest guest) {
 		System.out.println("Current guest gender: " + guest.getGender());
 		System.out.println("Please enter updated guest gender (Enter 0 to cancel): ");
@@ -146,6 +189,10 @@ public class GuestManager {
 		return;
 	}
 	
+	/**
+	 * updates the guest's identity
+	 * @param guest guest object
+	 */
 	public void updateGuestIdentity(Guest guest) {
 		System.out.println("Current guest identity number: " + guest.getIdentity());
 		System.out.println("Please enter updated guest identity number (Enter 0 to cancel): ");
@@ -165,6 +212,10 @@ public class GuestManager {
 		return;
 	}
 	
+	/**
+	 * updates the guest's nationality
+	 * @param guest guest object
+	 */
 	public void updateGuestNationality(Guest guest) {
 		System.out.println("Current guest nationality: " + guest.getNationality());
 		System.out.println("Please enter updated guest nationality (Enter 0 to cancel): ");
@@ -184,6 +235,10 @@ public class GuestManager {
 		return;
 	}
 	
+	/**
+	 * updates the guest's contact number
+	 * @param guest guest object
+	 */
 	public void updateGuestContact(Guest guest) {
 		System.out.println("Current guest contact: " + guest.getContact());
 		System.out.println("Please enter updated guest contact (Enter 0 to cancel): ");

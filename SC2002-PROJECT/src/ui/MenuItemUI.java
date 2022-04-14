@@ -5,8 +5,21 @@ import java.util.Scanner;
 
 import Initialiser.Initialise;
 
+/**
+ * @author darren wong
+ * @version 1.0
+ * @since 14 april 2022
+ */
 
+
+/**
+ * creating menu item user interface
+ */
 public class MenuItemUI {
+	
+	/**
+	 * displaying options to update menu
+	 */
 	public static void menuOptions() {
 		
 //		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();

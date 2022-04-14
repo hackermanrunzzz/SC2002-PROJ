@@ -3,12 +3,26 @@ package ui;
 
 
 import java.util.Scanner;
-
 import Initialiser.Initialise;
 
 
+
+/**
+ * @author darren wong
+ * @version 1.0
+ * @since 14/04/2022
+ */
+
+
+/**
+ * creating reservation user interface class
+ */
 public class ReservationUI {
 	
+	
+	/**
+	 * display reservation options 
+	 */
 	public static void showReservationOptions(){
 		
 		
@@ -24,7 +38,9 @@ public class ReservationUI {
 		//we need to initialise rooms here
 //		Initialise.InitialiseRoom();
 		
+	
 		Scanner sc = new Scanner(System.in);
+		
         int choice;
         do{
             System.out.println("========================================");

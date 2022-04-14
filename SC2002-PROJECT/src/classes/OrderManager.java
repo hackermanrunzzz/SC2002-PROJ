@@ -43,37 +43,9 @@ public class OrderManager {
 
 
 
-    
-    public Order getOrder(int ResID){
-        for(Order o: Initialise.orders ){
-            if(o.getResID() == ResID){
-				return o;
-			}
-        }
-        return null; 
-    }
-    // Resolved some errors
-    // No error-checking required here
-    
-//
-//    
-//    public Order getOrder(int ResID){
-//        for(Order o: orders )
-//		{
-//            if(o.getResID() == ResID)
-//			{
-//				return o;
-//			}
-//        }
-//        return new Order();
-//    }
-//    
 
 
-//    public void createOrder( int ResID, String RoomNumber, ArrayList<MenuItem> menu) {
-//        Order new_order= new Order(1001,ResID,RoomNumber,Calendar.getInstance(), menu); // Did you mean to use the other constructor here? @ Warren
-//        orders.add(new_order);
-//	}
+
     public void createOrder(int ResID,String RoomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
     	String OrderID = UUID.randomUUID().toString();
 
@@ -225,27 +197,7 @@ public class OrderManager {
 	        System.out.println("Please Enter Additional Remarks (If Any): ");
 	        String remarks = sc.next();
 	        
-	        
-//	        do {
-//
-//	            System.out.println("Enter index of Promotion Set Package ordered: (Enter -1 to exit)");
-//	            choice = sc.nextInt();
-//	            sc.nextLine();
-//	            if(choice ==-1)break;
-//	            try{
-//	                PromotionSet promo = Restaurant.menu.getPromos().get(choice-1);
-//	                menu.getPromos().add(promo);
-//	                System.out.print(choice+". ");
-//	                System.out.println(promo.getName()+" has been added to order.");
-//	                System.out.println("--------------------------------------------------------------------------------");
-//	            }
-//	            catch(IndexOutOfBoundsException e){
-//	                System.out.println("Index of Promotion Set Package is invalid. Please re-enter");
-//	            }
-//
-//	        } while(choice!=-1);
 
-	       // Restaurant.allOrders.createOrder(staff,table,menu);
 	        Calendar timenow = Calendar.getInstance();
 	        
 	        double totalp = 0;
@@ -254,19 +206,16 @@ public class OrderManager {
 		         totalp = totalp + roomServiceitems.get(i).getPrice(); 		
 		      }
 	        
-//	        for (int f = 0 ; f < Initialise.roomServiceitems.size(); f++) {
-//	        	System.out.println(Initialise.roomServiceitems.get(f).getName());
-//	        }
+
 	        
 	        createOrder(ResID, RoomNumber,timenow,remarks, totalp,roomServiceitems);
-//	       System.out.println( orders.get(0));
-//	       System.out.println( orders.get(0).getResID());
+
 	        printIndividualfood(roomServiceitems);
-	        System.out.println("Total Price :" + "\t\t\t" + "$" + totalp);
+	        System.out.println("Total Price :" + "\t\t\t" + "$" + String.format("%.2f",totalp));
 	       
 	     
 	       
-//	  
+	  
 	    }
 	        
 	        
@@ -305,31 +254,8 @@ public class OrderManager {
 	  }
 	            
 	            
-//	        if(Initialise.roomm.){
-//	            System.out.println("Table is not occupied.");
-//	            return;
-//	        }
-//	        if(!Restaurant.allOrders.checkPendingOrder(table)){
-//	            System.out.println("There are no existing orders for table "+table);
-//	            return;
-//	        }
 
 
-//	        try{
-//	        	Order order =  OrderManager.findOrder(resIDROOM, roomNum);
-//	            System.out.println("============================= CURRENT TABLE ORDER =================================");
-//			}
-//	    
-//	  
-//	  public Order findOrder(int ResID,String RoomNumber) {
-//	        String id = findOrderID(ResID, RoomNumber);
-//	       
-//	        for (Order o : orders) {
-//	            if (id == o.getOrderID()) return o;
-//	        }
-//	        return order;
-//	    }
-//	  
 	  public int searchOrders( int ResID, String RoomNumber) {
 		  int found = 0;
 	      if(Initialise.orders.isEmpty() == true){
@@ -391,25 +317,7 @@ public class OrderManager {
 		}
 	  
 	  
-//	  public static void findOrder(int ResID,String RoomNumber) {
-//	        String id = findOrderID(ResID, RoomNumber);
-//	        Order order = new Order();
-//	        for (Order o : OrderManager.orders)
-//			{
-//	            if (id == o.getOrderID())
-//				{
-//					return o;
-//				}
-//	            for (Order q : orders) {
-////	                Date date = r.getCheckInDate().getTime();
-////	                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-////	                String strDate = dateFormat.format(date);
-//	                System.out.println(o.printOrder());
-//	                System.out.println();
-//	            }
-//	        }
-//	    }
-	    
+
 	  public static Order findOrder(int ResID, String RoomNumber) {
 		  String id = findOrderID(ResID, RoomNumber);
 		  Order temp = null;
@@ -513,7 +421,7 @@ public class OrderManager {
 			  
 		  }
 		  
-		//  else if (temp.getOrderStatus().equals(StatusOfOrder.))
+	
 			  
 		  
 		  

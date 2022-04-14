@@ -1,6 +1,7 @@
 package classes;
 
 import java.time.temporal.ChronoUnit;
+
 import java.util.*;
 
 
@@ -9,38 +10,59 @@ import classes.Payment.methodOfPayment;
 import classes.Reservation.StatusOfReservation;
 import classes.Room.StatusOfRoom; // Imported to set room to vacant after Reservation was deleted
 
-public class PaymentManager {
 
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
+public class PaymentManager {
+	
+	/**
+	 * taking in user input
+	 */
     Scanner sc = new Scanner(System.in);
     
+    /**
+     * array list of payments
+     */
     private static ArrayList<Payment> payments;
 	
-    
+    /**
+     * constructor of payment manager
+     * @param payments array list of payments
+     */
 	public PaymentManager(ArrayList<Payment> payments) {
 		PaymentManager.payments = payments;
     }
 	
+	/**
+	 * sets array list of payments
+	 * @param payments array list of payments
+	 */
 	public void setPayments(ArrayList<Payment> payments) {
 		PaymentManager.payments = payments;
 		
 	}
 	
-	double roomChargesGlobal = 0;
-    double totalChargesGlobal = 0;
-    double roomServicesGlobal = 0;
-    double discountGlobal = 0;
-    int numberOfNightsGlobal = 0;
-    Reservation toCheckOut=null;
-    String globalPaymentType;
-    ArrayList<Order> checkOutRoomOrders = new ArrayList<Order>();
     
     
 
-	
+	/**
+	 * allow the guest to make payment and checkout
+	 */
 	public void makePaymentUI() {
 		String confirmation = "0";
 		boolean validRoomFound = false;
 		double tax;
+		double roomChargesGlobal = 0;
+	    double totalChargesGlobal = 0;
+	    double roomServicesGlobal = 0;
+	    double discountGlobal = 0;
+	    int numberOfNightsGlobal = 0;
+	    Reservation toCheckOut=null;
+	    String globalPaymentType = "";
+	    ArrayList<Order> checkOutRoomOrders = new ArrayList<Order>();
 		
 		
 		//finding room for check out
@@ -101,7 +123,7 @@ public class PaymentManager {
 		int bills = 0; // to identify the type of bill put into the system
 		double total = 0; // for computing total number of bills put into the system
 		int choice = 0;
-		printFullReceipt(); // Printing receipt before user decides how to pay
+		printFullReceipt(toCheckOut, numberOfNightsGlobal, roomChargesGlobal, roomServicesGlobal, discountGlobal, totalChargesGlobal); // Printing receipt before user decides how to pay
 		System.out.println("Please enter (1) if you would like to pay by Cash. Enter (2) if you would like to pay by Card instead");
 		choice = sc.nextInt();
 		if (choice==1){
@@ -192,7 +214,20 @@ public class PaymentManager {
 
 	}
 	
-
+	/**
+	 * 
+	 * @param roomCharges room charges for all the nights
+	 * @param tax tax on total charges
+	 * @param roomServices room service charges
+	 * @param discount discount applied
+	 * @param totalCharges total charges
+	 * @param paymentMethod method of payment
+	 * @param orderThisRoom array list of orders for a room
+	 * @param numberOfNights number of nights stayed
+	 * @param creditCardName guest's credit card name
+	 * @param billingAddress guest's billing address
+	 * @param billingCardNumber guest's billing card number
+	 */
 	public void makePaymentObject(double roomCharges, double tax, double roomServices, double discount,
 			double totalCharges, methodOfPayment paymentMethod, ArrayList<Order> orderThisRoom, int numberOfNights,
 			String creditCardName, String billingAddress, String billingCardNumber){
@@ -210,6 +245,11 @@ public class PaymentManager {
     }
 	
 	//Any checkout after the required checkout time of 2pm is charged an extra day
+	/**
+	 * 
+	 * @param checkInDate check in date of the guest
+	 * @return number of nights stayed
+	 */
 	public int calcNumberOfNights(Calendar checkInDate){
 		float numberOfSeconds = ChronoUnit.SECONDS.between(checkInDate.getTime().toInstant(), Calendar.getInstance().toInstant());
     	//covertion from seconds to days
@@ -219,6 +259,11 @@ public class PaymentManager {
 	
 	
 	//this function helps to add up the price of each room service order to get the total roomservice charge
+	/**
+	 * 
+	 * @param orderThisRoom array list of orders for a room
+	 * @return total room service charges
+	 */
 	public double calcRoomServices(ArrayList<Order> orderThisRoom){
 		double RoomServices = 0;
 		if (orderThisRoom.isEmpty())
@@ -229,6 +274,9 @@ public class PaymentManager {
 		return RoomServices;
 	}
 	
+	/**
+	 *displays all previous payments made
+	 */
 	public void showAllPaidReservation(){
 		if (payments.size() == 0){
 			System.out.println("No Past Payment History Available.");
@@ -242,7 +290,16 @@ public class PaymentManager {
 		}
 	}
 	
-	public void printFullReceipt(){
+	/**
+	 * prints the full receipt for the guest to make payment
+	 * @param toCheckOut check out date
+	 * @param numberOfNightsGlobal numer of nights stayed
+	 * @param roomChargesGlobal room charges
+	 * @param roomServicesGlobal room service charges
+	 * @param discountGlobal discount applied
+	 * @param totalChargesGlobal total charges after discount
+	 */
+	public void printFullReceipt(Reservation toCheckOut, int numberOfNightsGlobal,  double roomChargesGlobal, double roomServicesGlobal,  double discountGlobal,  double totalChargesGlobal){
 		System.out.println("======== This is your Total Bill for your stay ========");
 		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName()); // Prints out name of the first name of Guest Details
 		System.out.println("Room Number: " + toCheckOut.getRoomDetails().getRoomNumber());
@@ -256,6 +313,10 @@ public class PaymentManager {
 		System.out.println("Total Charges: " + totalChargesGlobal);
 	}
 	
+	/**
+	 * prints a short receipt to display past payments made
+	 * @param p payment object
+	 */
 	public void printShortReceipt(Payment p){
 		System.out.println("Payment ID: " + p.getPaymentID());
 		System.out.println("Name: " + p.getCreditCardName());

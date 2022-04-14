@@ -1,5 +1,12 @@
 package classes;
 
+
+/**
+ * @author darren wong 
+ * @version 1.0
+ * @since 14 april 2022
+ */
+
 import java.util.ArrayList;
 
 import java.util.Calendar;
@@ -10,11 +17,27 @@ import classes.Reservation.StatusOfReservation;
 import classes.Room.StatusOfRoom;
 import classes.Room.TypeOfRoom;
 
+
+/**
+ * create a check in manager class
+ */
 public class CheckInManager {
 	
+	/**
+	 * taking in user input
+	 */
 	Scanner sc = new Scanner(System.in);
+	
+	/**
+	 * constructor for check in manager
+	 */
 	public CheckInManager() {};
 	
+	
+	/**
+	 * checking in of guests
+	 * @param resID reservation id
+	 */
 	public void CheckIn(int resID) {
 		int check = Initialise.resm.searchReservation(resID);
 		if(check == 0 || check == -1) {
@@ -42,6 +65,9 @@ public class CheckInManager {
 		
 	}
 	
+	/**
+	 * walk-in of guests
+	 */
 	public void WalkIn() {
 		Scanner sc = new Scanner(System.in);
 		int adults=0, children=0;

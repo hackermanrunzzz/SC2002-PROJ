@@ -1,5 +1,11 @@
 package classes;
 
+/**
+ * @author darren wong
+ * @version 1.0
+ * @since 14/04/2022
+ */
+
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -7,22 +13,35 @@ import Initialiser.Initialise;
 import classes.Room.TypeOfRoom;
 
 
-
+/**
+ * create room manager class
+ */
 public class RoomManager {
-	
+	/**
+	 * create an array list of rooms
+	 */
     private static ArrayList<Room> rooms=new ArrayList<Room>();
     
     
-    
+    /**
+     * constructor of room manager
+     * @param rooms array list of rooms
+     */
     public RoomManager(ArrayList<Room> rooms) {
     	RoomManager.rooms = rooms; // Made a change here cos the static reference wasn't accepted
     }
     
+    /**
+     * set array list of rooms
+     * @param rooms array list of rooms
+     */
     public void setRooms(ArrayList<Room> rooms) {
         RoomManager.rooms = rooms;
     }
     
-    
+    /**
+     *  displaying the different rooms via occupancy
+     */
     public void displayRoomViaOccupancy(){
     	int singlerm = 0, doublerm = 0, deluxerm = 0, vipsuiterm = 0;
     	System.out.println("============ SINGLE ============");
@@ -74,6 +93,10 @@ public class RoomManager {
         System.out.println();
     }
     
+    
+    /**
+     * displaying the different rooms via room status
+     */
     public void displayRoomViaStatus(){
     	int vacant = 0, occupied = 0, inMaintenance = 0, reserved = 0;
     	System.out.println("============ VACANT ============");
@@ -129,6 +152,12 @@ public class RoomManager {
         
     }
     
+    
+    /**
+     * setting room status to under maintenance
+     * @param roomNumber room number
+     */
+    
     public void setToMaintenance(String roomNumber){
         for(Room r: rooms){
             if(r.getRoomNumber().equals(roomNumber)) {
@@ -140,6 +169,11 @@ public class RoomManager {
         System.out.println("Unable to find Room Number.");
     }
     
+    
+    /**
+     * set room status to vacant
+     * @param roomNumber room number
+     */
     public void setToVacant(String roomNumber){
         for(Room r: rooms){
             if(r.getRoomNumber().equals(roomNumber)) {
@@ -151,6 +185,10 @@ public class RoomManager {
         System.out.println("Unable to find Room Number.");
     }
     
+    
+    /**
+     *  change room status
+     */
     public void changeRoomStatus() {
     	Scanner sc = new Scanner(System.in);
         int choice;
