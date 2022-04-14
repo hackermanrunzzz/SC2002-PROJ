@@ -41,7 +41,7 @@ public class Payment {
 	 */
 	public double discount;
 	/**
-	 * total charges
+	 * total charges after discount
 	 */
 	public double totalCharges;
 	/**
@@ -77,7 +77,7 @@ public class Payment {
 	 * @param tax tax on total charges
 	 * @param roomServices room service charges
 	 * @param discount discount available
-	 * @param totalCharges total charges
+	 * @param totalCharges total charges after discount
 	 * @param paymentMethod method of payment
 	 * @param orderThisRoom array list of orders for a room
 	 * @param numberOfNights number of nights stayed

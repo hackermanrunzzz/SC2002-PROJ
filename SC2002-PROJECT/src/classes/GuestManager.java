@@ -13,6 +13,9 @@ import classes.Guest;
 
 public class GuestManager {
 	
+	/**
+	 * taking in user input
+	 */
 	Scanner sc = new Scanner(System.in);
 	
 	/**

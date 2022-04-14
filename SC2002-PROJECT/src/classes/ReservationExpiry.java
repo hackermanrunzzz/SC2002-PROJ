@@ -10,38 +10,32 @@ import Initialiser.Initialise;
 import classes.Reservation.StatusOfReservation;
 import classes.Room.StatusOfRoom;
 
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
 
 public class ReservationExpiry extends TimerTask {
 	
- 
+	/**
+	 * array list of reservations
+	 */
     private ArrayList<Reservation> reservations;
-
+    
+    /**
+     * constructor of reservation expirty
+     * @param reservations array list of reservations
+     */
     public ReservationExpiry(ArrayList<Reservation> reservations){
     	this.reservations = reservations;
 	}
 
-  
-//    public void run(){
-//        int i = 0;
-//        synchronized (Initialise.reservations) {
-//            Calendar now = Calendar.getInstance();
-//            System.out.println("running expiry");
-//            if (Initialise.reservations.size() > 0) {
-//            	if(Initialise.reservations.get(i).getReservationStatus().equals(StatusOfReservation.CHECKED_IN)) {
-////            		System.out.println("running expiry");
-//	                long expiryTime =  Initialise.reservations.get(i).getCheckInDate().getTimeInMillis()+10000; //this is 45min
-//	                long nowMilli = now.getTimeInMillis();
-//	                if (expiryTime<nowMilli) {
-//	                    System.out.println("\n---- Removing expired reservation ---- Reservation ID " + Initialise.reservations.get(i).getReservationID());
-//	                    Initialise.reservations.remove(0);
-//	                }
-//            	}
-//            }
-//        }
-//
-//
-//    }
-    
+    /**
+     * Function executes at scheduled time if there is a reservation
+     * It will remove a reservation when it expires
+     * Right now it is set to 10s after the supposed check-in time
+     */
     public void run(){
     	
         synchronized (Initialise.reservations) {
