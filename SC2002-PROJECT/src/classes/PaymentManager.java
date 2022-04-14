@@ -151,6 +151,7 @@ public class PaymentManager {
 			if (check == 1){
 				System.out.println("Please enter your CCV / CVV: ");
 				int ccv = sc.nextInt(); // Just for confirmation of guest, one-time use, don't need to use
+				sc.nextLine();
 				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + ", with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + ", to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
 				System.out.println("Thank you for your stay! Have a safe trip back home!");
 				

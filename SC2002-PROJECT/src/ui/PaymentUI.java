@@ -29,7 +29,7 @@ public class PaymentUI {
 	                break;
 	            case 2:
 	            	Initialise.pm.makePaymentUI();
-	                
+	                break;
 	            case 3:
 	            	Initialise.pm.showAllPaidReservation();
 	            default:
