@@ -1,16 +1,18 @@
 package ui;
 
+
+import java.util.Calendar;
+import java.util.Scanner;
+import Initialiser.Initialise;
+import classes.Reservation;
+import classes.ReservationManager;
+
+
 /**
  * @author darren wong
  * @version 1.0
  * @since 14 April 2022
  */
-import java.util.Calendar;
-import java.util.Scanner;
-
-import Initialiser.Initialise;
-import classes.Reservation;
-import classes.ReservationManager;
 
 // This can be the UI for room-service in general
 /**

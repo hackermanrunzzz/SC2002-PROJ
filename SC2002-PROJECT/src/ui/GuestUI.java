@@ -9,6 +9,11 @@ import classes.Guest;
  * @version 1.0
  * @since 14th April 2022
  */
+
+
+/**
+ * creating guest user interface
+ */
 public class GuestUI {
 	/**
 	 * displaying options to update guest details

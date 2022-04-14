@@ -1,29 +1,48 @@
 package classes;
 
+/**
+ * @author Vijayanarayanan Sai Arunavan
+ * @version 1.0
+ * @since 14th April 2022
+ */
+
 import java.util.ArrayList;
 
 import java.util.Scanner;
 
 import classes.MenuItem.TypeOfMenuItem;
 
+/**
+ * create menu manager class
+ */
+
 public class MenuManager {
+    /**
+     * create an array of menu items
+     */
 	private static ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-    
-    
-    
+    /**
+     * constructor for menu manager class
+     * @param menu array of menu items
+     */
     public MenuManager(ArrayList<MenuItem> menu) {
-    	MenuManager.menu = menu; // Made a change here cos the static reference wasn't accepted
+    	MenuManager.menu = menu;
     }
-    
+    /**
+     * sets array of menu items
+     * @param menu array of menu items
+     */
     public void setMenu(ArrayList<MenuItem> menu) {
         MenuManager.menu = menu;
     }
-	
-	
+    /**
+     * scans input from user
+     */
 	Scanner sc = new Scanner(System.in);
-
-	
-
+    /**
+     * prints a certain menu item, depending on the index input as the argument
+     * @param i index of the menu item to be accessed
+     */
 	public void printMenuItem(int i)
     {
         System.out.println("Name: " + menu.get(i).getName() + " \n   Description: " +
@@ -32,6 +51,12 @@ public class MenuManager {
               menu.get(i).getPrice());
 
     }
+    /**
+     * adds a menu item into the array of menu items
+     * if menu item to be added is already present in the array of menu items, operation is terminated
+     * @param menuItem menu item object
+     * @return true if menu item is not already present in the array of menu items, false if otherwise
+     */
     public boolean addMenuBoolean(MenuItem menuItem){
         if(findFood(menuItem.getName())>=0){
             System.out.println("This food is already on the menu!");
@@ -40,7 +65,12 @@ public class MenuManager {
         MenuManager.menu.add(menuItem);
         return true;
     }
-    
+    /**
+     * asks for input for each field of the menu item, name, description, food type, and price
+     * calls addMenuBoolean function
+     * if boolean returned is false, menu item is not added into the array
+     * else menu item is added into the array and confirmation message is printed onto the screen
+     */
 	public void addMenuItem() {
 			
 		Scanner sc = new Scanner(System.in);
@@ -97,12 +127,20 @@ public class MenuManager {
             System.out.println("Menu item added successfully.");}
         else  return;
 	}
-
-    public void addMenuItem(MenuItem temp) // Overloaded Method, in-case you already created a MenuItem Object
+    /**
+     * overloaded addMenuItem method
+     * to be used in the case where a menu item object has already been created and is to be added into the array
+     * @param temp menu item object which has already been created
+     */
+    public void addMenuItem(MenuItem temp) 
     {
         menu.add(temp);
         return;
     }
+    /**
+     * removes menu item from array of menu items
+     * @return true if menu item was removed, false if otherwise
+     */
     
     public boolean removeMenuItem(){
     	int i,j;
@@ -143,9 +181,9 @@ public class MenuManager {
         }
         return -1;
     }
-
-
-
+    /**
+     * prints menu by accessing printMain(), printBeverage(), and printDesert()
+     */
     public void printMenu() {
         System.out.println("================================================================================");
         System.out.println("                         4 Guys Restaurant Menu");
@@ -154,8 +192,9 @@ public class MenuManager {
         printBeverage();
         printDessert();
     }
-
-    
+    /**
+     * prints menu items of foodtype main by accessing the menu item array
+     */
     public void printMain() {
         System.out.println("==================================== MAIN ======================================");
         for (int i = 0; i < MenuManager.menu.size(); i++) {
@@ -166,7 +205,9 @@ public class MenuManager {
             }
         }
     }
-
+    /**
+     * prints menu items of foodtype beverage by accessing the menu item array
+     */
     public void printBeverage() {
         System.out.println("================================== BEVERAGE ====================================");
         for (int i = 0; i < MenuManager.menu.size(); i++) {
@@ -177,7 +218,9 @@ public class MenuManager {
             }
         }
     }
-
+    /**
+     * prints menu items of foodtype dessert by accessing the menu item array
+     */
     public void printDessert() {
         System.out.println("=================================== DESSERT ====================================");
         for (int i = 0; i < MenuManager.menu.size(); i++) {
@@ -188,7 +231,10 @@ public class MenuManager {
             }
         }
     }
-    
+    /**
+     * updates the name of a menu item object in the menu item array
+     * @param menuItem menu item object
+     */
     public void updateMenuItemName(MenuItem menuItem) {
     	
     	System.out.println("[Update Name]");
@@ -196,8 +242,6 @@ public class MenuManager {
         System.out.println("Current Name : " + current);
         System.out.print("Insert New Name : ");
         String name = sc.nextLine();
-        
-        ////condition if the change is the same ask for change again////
         if(current.equals(name)){
             System.out.println("No change in name, please key in again");
             System.out.print("Insert New Name : ");
@@ -205,8 +249,10 @@ public class MenuManager {
         }
         menuItem.setName(name);
     }
-    
-    
+    /**
+     * updates description of a menu item object in the menu item array
+     * @param menuItem menu item object
+     */
     public void updateMenuItemDescription(MenuItem menuItem) {
     	System.out.println("[Update Description]" );
         System.out.println("Current Description : " + menuItem.getDescription());
@@ -214,7 +260,10 @@ public class MenuManager {
         String description = sc.nextLine();
         menuItem.setDescription(description);
     }
-    
+    /**
+     * updates the type of a menu item object in the menu item array
+     * @param menuItem menu item object
+     */
     public void updateMenuItemType(MenuItem menuItem) {
     	System.out.println("[Update Type]");
         System.out.println("Current Type : " + menuItem.getFoodType());
@@ -234,13 +283,16 @@ public class MenuManager {
         	menuItem.setFoodType(MenuItem.TypeOfMenuItem.DESSERT);
         }
     }
+    /**
+     * updates price of a menu item from the menu item array
+     * @param menuItem menu item object
+     */
     
     public void updateMenuItemPrice(MenuItem menuItem) {
     	System.out.println("[Update Price] ");
         System.out.println("Current Price : " + menuItem.getPrice());
         System.out.print("Insert New Price : ");
         double price ;
-        //condition to update the correct price////
         do {
             System.out.println("Please enter a new positive number!");
             while (!sc.hasNextDouble()) {
@@ -252,7 +304,9 @@ public class MenuManager {
         sc.nextLine();
         menuItem.setPrice(price);
     }
-    
+    /**
+     * user interface for updating menu items in the menu item array
+     */
     public void updateMenuItemUI() {
     	 System.out.println("========================================");
          System.out.println("Enter menu item index to be updated :");
@@ -299,11 +353,13 @@ public class MenuManager {
              }
          } while (option<5);
     }
-    
+    /**
+     * gets the array of menu items
+     * @return array of menu items
+     */
     public ArrayList<MenuItem> getFoods() {
         return menu;
     }
-
 }
 
 
