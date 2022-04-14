@@ -211,7 +211,7 @@ public class OrderManager {
 	        createOrder(ResID, RoomNumber,timenow,remarks, totalp,roomServiceitems);
 
 	        printIndividualfood(roomServiceitems);
-	        System.out.println("Total Price :" + "\t\t\t" + "$" + totalp);
+	        System.out.println("Total Price :" + "\t\t\t" + "$" + String.format("%.2f",totalp));
 	       
 	     
 	       

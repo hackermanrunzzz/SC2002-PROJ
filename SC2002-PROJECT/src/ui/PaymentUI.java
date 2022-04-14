@@ -1,11 +1,24 @@
 package ui;
 
+/**
+ * @author darren wong
+ * @version 1.0
+ * @since 14/04/2022
+ */
+
 import java.util.Scanner;
 
 import Initialiser.Initialise;
 
+/**
+ * creating a payment user interface class
+ */
 public class PaymentUI {
 	
+	
+	/**
+	 * displaying the payment options
+	 */
 	public static void paymentOptions() {
 		Scanner sc = new Scanner(System.in);
 		int option;

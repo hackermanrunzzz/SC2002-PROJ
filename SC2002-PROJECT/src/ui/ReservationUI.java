@@ -6,9 +6,15 @@ import java.util.Scanner;
 
 import Initialiser.Initialise;
 
-
+/**
+ * creating reservation user interface class
+ */
 public class ReservationUI {
 	
+	
+	/**
+	 * display reservation options 
+	 */
 	public static void showReservationOptions(){
 		
 		
@@ -24,7 +30,9 @@ public class ReservationUI {
 		//we need to initialise rooms here
 //		Initialise.InitialiseRoom();
 		
+	
 		Scanner sc = new Scanner(System.in);
+		
         int choice;
         do{
             System.out.println("========================================");
