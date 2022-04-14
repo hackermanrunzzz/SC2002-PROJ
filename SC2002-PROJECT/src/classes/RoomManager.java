@@ -1,7 +1,9 @@
 package classes;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
+import Initialiser.Initialise;
 import classes.Room.TypeOfRoom;
 
 
@@ -129,18 +131,55 @@ public class RoomManager {
     
     public void setToMaintenance(String roomNumber){
         for(Room r: rooms){
-            if(r.getRoomNumber() == roomNumber) {
+            if(r.getRoomNumber().equals(roomNumber)) {
             	r.setRoomStatus(Room.StatusOfRoom.UNDER_MAINTENANCE);
+            	System.out.println("Room status successfully updated to: UNDER_MAINTENANCE");
+            	return;
             }
         }
+        System.out.println("Unable to find Room Number.");
     }
     
     public void setToVacant(String roomNumber){
         for(Room r: rooms){
-            if(r.getRoomNumber() == roomNumber) {
+            if(r.getRoomNumber().equals(roomNumber)) {
             	r.setRoomStatus(Room.StatusOfRoom.VACANT);
+            	System.out.println("Room status successfully updated to: VACANT");
+            	return;
             }
         }
+        System.out.println("Unable to find Room Number.");
+    }
+    
+    public void changeRoomStatus() {
+    	Scanner sc = new Scanner(System.in);
+        int choice;
+        do{
+            System.out.println("========================================");
+            System.out.println("Select choice: ");
+            System.out.println("(1) Set Room to Under-Maintenance");
+            System.out.println("(2) Set Room to Vacant");
+            System.out.println("(3) Go Back To Main Menu");
+            System.out.println("========================================");
+
+            choice = sc.nextInt();
+            sc.nextLine();
+
+            switch(choice){
+                case 1:
+                	System.out.println("Please enter the Room Number: ");
+                	String roomNum = sc.nextLine();
+                	setToMaintenance(roomNum);
+                    break;
+                case 2:
+                	System.out.println("Please enter the Room Number: ");
+                	String roomNum2 = sc.nextLine();
+                	setToVacant(roomNum2);
+                    break;   
+                default:
+                	break;
+            }
+        } while (choice < 3);
     }
     
     

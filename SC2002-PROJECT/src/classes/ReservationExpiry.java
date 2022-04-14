@@ -8,6 +8,7 @@ import java.util.TimerTask;
 
 import Initialiser.Initialise;
 import classes.Reservation.StatusOfReservation;
+import classes.Room.StatusOfRoom;
 
 
 public class ReservationExpiry extends TimerTask {
@@ -56,6 +57,7 @@ public class ReservationExpiry extends TimerTask {
     	                long expiryTime =  r.getCheckInDate().getTimeInMillis()+10000; //this is 45min
     	                long nowMilli = now.getTimeInMillis();
     	                if (expiryTime<nowMilli) {
+    	                	r.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); //setting room back to vacant
     	                    System.out.println("\n---- Removing expired reservation ---- Reservation ID " + r.getReservationID());
     	                    itr.remove();
     	                }

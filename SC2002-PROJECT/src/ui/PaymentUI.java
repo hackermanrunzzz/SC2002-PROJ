@@ -16,7 +16,7 @@ public class PaymentUI {
 	        System.out.println("Hi! Please select an option:");
 	        System.out.println("(1) View All Reservations");
 	        System.out.println("(2) Checkout and Make Payment");
-	        System.out.println("(3) Display All Paid Reservations");
+	        System.out.println("(3) Display All Past Payments");
 	        System.out.println("(4) Go Back To Main Menu");
 	        System.out.println("========================================");
 	
@@ -28,14 +28,14 @@ public class PaymentUI {
 	            	Initialise.resm.showAllReservations();
 	                break;
 	            case 2:
-	            	Initialise.pm.makePayment();
-	                
+	            	Initialise.pm.makePaymentUI();
+	                break;
 	            case 3:
-	            	Initialise.pm.showAllPaidReservations();
+	            	Initialise.pm.showAllPaidReservation();
 	            default:
 	            	break;
 	        }
-	    } while (option<3);
+	    } while (option<4);
 	}
 
     

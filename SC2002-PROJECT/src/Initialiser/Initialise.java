@@ -58,7 +58,7 @@ public class Initialise {
 	public static GuestManager gm = new GuestManager();
 	
 	
-	private static ArrayList<Payment> payments = new ArrayList<Payment>();
+	public static ArrayList<Payment> payments = new ArrayList<Payment>();
 	public static PaymentManager pm = new PaymentManager(payments);
 	
 	
@@ -193,10 +193,10 @@ public class Initialise {
 
 		//Time In
 		
-		String date1_1 = "10/04/2022 14:30";
+		String date1_1 = "08/04/2022 14:30";
 		Calendar date1in = convert(date1_1);
 		
-        String date2_1 = "20/04/2022 14:30";
+        String date2_1 = "10/04/2022 14:30";
 		Calendar date2in = convert(date2_1);
 		
         String date3_1 = "20/04/2022 16:30";
@@ -276,7 +276,7 @@ public class Initialise {
 	public static void autoExpiry(){
         Timer time = new Timer();
         ReservationExpiry re = new ReservationExpiry(Initialise.reservations); // Instantiate ScheduledTask class
-        time.schedule(re, 0,2000); // Create Repetitively task for every 20 seconds
+        time.schedule(re, 0,5000); // Create Repetitively task for every 20 seconds
     }
 
 
