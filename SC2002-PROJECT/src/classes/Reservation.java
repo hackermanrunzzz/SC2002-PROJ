@@ -1,6 +1,7 @@
 package classes;
 
 import java.text.DateFormat;
+import java.io.Serializable;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -10,7 +11,7 @@ import java.util.Calendar;
  * @version 1.0
  * @since 14th April 2022
  */
-public class Reservation {
+public class Reservation implements Serializable{
 	/**
 	 * initialising enumeration for reservation status of rooms
 	 */

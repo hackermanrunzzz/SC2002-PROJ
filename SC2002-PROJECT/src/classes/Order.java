@@ -1,5 +1,6 @@
 package classes;
 
+import java.io.Serializable;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -13,7 +14,7 @@ import Initialiser.Initialise;
  * @version 1.0
  * @since 14/4/2022
  */
-public class Order {
+public class Order implements Serializable{
 	
 	/**
 	 *  status of order

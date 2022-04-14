@@ -1,4 +1,5 @@
 package classes;
+import java.io.Serializable;
 
 /**
  * @author Darren Choo
@@ -6,7 +7,7 @@ package classes;
  * @since 14th April 2022
  */
 
-public class Guest {
+public class Guest implements Serializable{
 	/**
      * guest's name
      */

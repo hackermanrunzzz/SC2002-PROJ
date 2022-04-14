@@ -1,13 +1,14 @@
 package classes;
 
 import java.util.ArrayList;
+import java.io.Serializable;
 
 /**
  * @author Darren Choo
  * @version 1.0
  * @since 14th April 2022
  */
-public class Payment {
+public class Payment implements Serializable{
 	/**
 	 * possible status values of payment
 	 */

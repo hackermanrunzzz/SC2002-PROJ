@@ -1,6 +1,7 @@
 package main;
 
 import ui.*;
+import Serialize.*;
 
 
 
@@ -56,6 +57,10 @@ public class HotelMain {
                 	break;
                 case 6:
                 	PaymentUI.paymentOptions();
+                	break;
+                case 7:
+                	WriteHotelDB.writeHotelDB();
+                	System.exit(0);
                 	break;
                 default:
                 	break;

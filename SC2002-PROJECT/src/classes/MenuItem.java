@@ -1,4 +1,5 @@
 package classes;
+import java.io.Serializable;
 /**
  * 
  * @author Vijayanarayanan Sai Arunavan
@@ -6,7 +7,7 @@ package classes;
  * @since 14th April 2022
  */
 
-public class MenuItem {
+public class MenuItem implements Serializable{
 	/**
 	 * possible types of menu item
 	 */

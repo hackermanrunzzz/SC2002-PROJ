@@ -1,12 +1,13 @@
 package classes;
 
+import java.io.Serializable;
 
 /**
  * @author Darren Wong
  * @version 1.0
  * @since 14 april 2022
  */
-public class Room {
+public class Room implements Serializable{
 	
 	/**
 	 * status of room
