@@ -65,7 +65,7 @@ public class Order {
 	 */
 	private double totalPrice;
 	/**
-	 * array list of menu items ordered;
+	 * array list of menu items ordered
 	 */
 	private ArrayList<MenuItem> menuI;
 	
