@@ -1,5 +1,9 @@
 package classes;
-
+/**
+ * @author Vijayanarayanan Sai Arunavan
+ * @version 1.0
+ * @since 14th April 2022
+ */
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -18,30 +22,39 @@ import Initialiser.Initialise;
 import classes.Reservation.*;
 import classes.Room.StatusOfRoom;
 import classes.Room.TypeOfRoom;
-
+/**
+ * create reservation manager class
+ */
 public class ReservationManager {
-
+	/**
+	 * create an array of reservation items
+	 */
 	private static ArrayList<Reservation> reservations;
-	
+	/**
+	 *create an array of room items
+	 */
 	private static ArrayList<Room> rooms;
-	
-	
-	
+	/**
+	 * constructor for reservation manager
+	 * @param reservations array list of reservation objects
+	 * @param rooms array list of room objects
+	 */	
 	public ReservationManager(ArrayList<Reservation> reservations, ArrayList<Room> rooms) {
 		ReservationManager.reservations = reservations;
 		ReservationManager.rooms = rooms;
     }
-	
+	/**
+	 * sets the reservation and room arrays
+	 * @param reservations array list of reservation objects
+	 * @param rooms array list of room objects
+	 */
 	public void setReservations(ArrayList<Reservation> reservations, ArrayList<Room> rooms) {
 		ReservationManager.reservations = reservations;
 		ReservationManager.rooms = rooms;
-		
 	}
-	
-	
-	
-	//fix this, include stuff like asking for all the details
-	//this makeReservationUI calls the below makeReservation function
+	/**
+	 * user interface to make a reservation object, to add into the array of reservation objects
+	 */
 	public void makeReservationUI(){
 		Scanner sc = new Scanner(System.in);
 		int adults=0, children=0;
@@ -57,15 +70,9 @@ public class ReservationManager {
     	Calendar checkOutDate;
     	String roomNumber ="";
     	int numberOfNights;
-        
 
-//        if(Restaurant.reservationManager.getReservations().size() > 9 ){
-//            System.out.println("We are fully booked!");
-//            return;
-//        }
+
         while(true) {
-        	
-        	//DC added this to check for proper room type input
         	boolean roomTypeCheck = true;
         	while(roomTypeCheck) {
 		        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE): ");
@@ -79,11 +86,6 @@ public class ReservationManager {
 		        	System.out.println("Invalid room type entered.");
 		        }
         	}
-	        
-//	        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE): ");
-//	        String typeofroom = sc.nextLine();
-//	        typeofroomUpper = typeofroom.toUpperCase();
-	        
 	        System.out.print("Enter amount of Adults: ");
 	        adults = sc.nextInt();
 	        
@@ -116,9 +118,7 @@ public class ReservationManager {
 	        	break;
 	        }
 	        sc.nextLine();
-        }
-        
-        //printing all the available rooms that are vacant and of the selected room type
+		}
         if(typeofroomUpper.equals("SINGLE")) {
         	System.out.println("These are the vacant Single Rooms:");
         	for (Room r : Initialise.rooms) {
@@ -163,8 +163,6 @@ public class ReservationManager {
         
         if(roomcounter == 0) {
         	System.out.println("There are no available rooms available.");
-        	//we must be able to exit here, right now if there are no available rooms, it jumps to date inputs
-        	
         }
         else {
         	while(RoomMatch) {
@@ -183,11 +181,6 @@ public class ReservationManager {
 	        		System.out.println("Invalid Room Number.");
 	        	}
         	}
-        	
-        	
-
-        	
-        	
         	System.out.println("Ensure that the first guest details is the one footing the bill !!!");
         	
         	for(int i=0; i<pax;i++) {
@@ -245,8 +238,9 @@ public class ReservationManager {
             makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
         }
     }
-	
-	
+	/**
+	 * makes a reservation object
+	 */
 	public void makeReservation(ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
 			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount, int numberOfNights){
 
@@ -269,8 +263,18 @@ public class ReservationManager {
 			System.out.println("The room is " + roomDetails.getRoomStatus() + ".");
 		}
     }
-	
-	//makeCheckIn
+
+	/**
+	 * assigns a room to a guest, via reservation
+	 * @param guestDetails array of guest objects
+	 * @param roomDetails array of room objects
+	 * @param billingInformation credit card name and number of paying guest(s)
+	 * @param checkInDate calendar type object to get check-in date
+	 * @param checkOutDate calendar type object to get check-out date
+	 * @param adultCount number of adults
+	 * @param childrenCount number of children
+	 * @param numberOfNights number of nights to be staying
+	 */
 	public void makeCheckIn(ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
 			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount, int numberOfNights){
 
@@ -293,8 +297,11 @@ public class ReservationManager {
 			System.out.println("The room is " + roomDetails.getRoomStatus() + ".");
 		}
     }
-	
-	
+	/**
+	 * searches for a specific reservation
+	 * @param resId unique identifier for reservations
+	 * @return 1 if search is successful, 0 otherwise, and -1 if an error is encountered
+	 */
 	public int searchReservation(int resId) {
         if(reservations.isEmpty() == true){
             System.out.println("\nThere are currently no reservations");
@@ -314,7 +321,9 @@ public class ReservationManager {
         }
         return -1;
     }
-	
+	/**
+	 * prints out information on all reservations made
+	 */
 	public void showAllReservations() {
 
         if (reservations.isEmpty() == true) {
@@ -324,16 +333,15 @@ public class ReservationManager {
             System.out.println("============ ALL RESERVATIONS ===============");
 
             for (Reservation r : reservations) {
-//                Date date = r.getCheckInDate().getTime();
-//                DateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy HH:mm");
-//                String strDate = dateFormat.format(date);
                 System.out.println(r.printReservation());
                 System.out.println();
             }
         }
     }
-	
-	//short reservation menu for staff to see to remove
+	/**
+	 * shows limited information about reservations made
+	 * @return reservation information
+	 */
 	public int showShortReservation(){
         if (reservations.isEmpty() == true) {
             System.out.println("There are currently no reservations");
@@ -350,9 +358,10 @@ public class ReservationManager {
             return 1;
         }
     }
-	
-	//manual cancellation
-	//can integrate all the user inputs inside this func, or we just get input from the ui
+	/**
+	 * cancels reservations
+	 * @return 1 if successful, 0 if otherwise
+	 */
 	public int cancelReservation(){ 
 		int resId;
 		int cancel = Initialise.resm.showShortReservation();
@@ -399,8 +408,11 @@ public class ReservationManager {
 		}
         return 0;
     }
-	
-	
+	/**
+	 * 
+	 * @param date calendar type object to get date
+	 * @return false if reservation is made too far before current date, true if date is valid
+	 */
 	public boolean checkValidReservationDate(Calendar date){
         Calendar now = Calendar.getInstance();
         if(date.get(Calendar.DAY_OF_YEAR) == now.get(Calendar.DAY_OF_YEAR) &&
@@ -418,7 +430,11 @@ public class ReservationManager {
         }
         return true;
     }
-
+	/**
+	 * checks if the time of the reservation is valid
+	 * @param time calendar type object which contains the time of the reservation
+	 * @return true if time is valid, false otherwise
+	 */
     public boolean checkValidReservationTime(Calendar time){
         if((time.get(Calendar.HOUR_OF_DAY)) < Initialise.OPENING_HOUR || (time.get(Calendar.HOUR_OF_DAY)) > Initialise.CLOSING_HOUR) {
             System.out.println("! ERROR: Invalid time, beyond working hours");
@@ -429,7 +445,10 @@ public class ReservationManager {
         System.out.println("! ERROR: Invalid time");
         return false;
     }
-
+	/**
+	 * gets the check-in date and the time
+	 * @return check-in date and time
+	 */
     public Calendar getValidCheckInDateTime(){
         String date = "";
         String time = "";
@@ -498,7 +517,11 @@ public class ReservationManager {
         }
         return checkInDate;
     }
-    
+	/**
+	 * gets the check-out date and time for the reservation
+	 * @param checkInDate  calendar type object which contains the check-in date of the reservation
+	 * @return check-out date
+	 */
     public Calendar getValidCheckOutDateTime(Calendar checkInDate){
         String date = "";
         String time = "";
@@ -549,7 +572,12 @@ public class ReservationManager {
 
         return checkOutDate;
     }
-	
+	/**
+	 * compares the check-in and check-out date of the reservation 
+	 * @param checkInDate calendar type object which contains the check-in date of the reservation
+	 * @param checkOutDate calendar type object which contains the check-out date of the reservation
+	 * @return true if dates are valid, false otherwise
+	 */
     public boolean compareCheckInCheckOut(Calendar checkInDate, Calendar checkOutDate ) {
     	if(checkInDate.before(checkOutDate)) {
     		return true;
@@ -558,7 +586,11 @@ public class ReservationManager {
     		return false;
     	}
     }
-    
+	/**
+	 * shows timings available for booking
+	 * @param date calendar type object which contains the current date 
+	 * @return list of times available for selection if successful
+	 */
     public List checkReservations(Calendar date){
 
         List times = new ArrayList();
@@ -571,7 +603,11 @@ public class ReservationManager {
         }
         return times;
     }
-    
+	/**
+	 * shows time slots for a certain interval
+	 * @param date calendar type object which contains the current date
+	 * @return list of time slots
+	 */
     public List showTimeSlots(Calendar date){
         int gapInMinutes =  30;  
         int j;
@@ -604,7 +640,11 @@ public class ReservationManager {
         return times;
 
     }
-
+	/**
+	 * returns room object which reservation is for
+	 * @param roomNumber room number of room object
+	 * @return room object if successful, null otherwise
+	 */
     public Room ReturnRoom(String roomNumber) {
     	for (Room r : Initialise.rooms) {
     		if (r.getRoomNumber().equals(roomNumber)) {
@@ -613,7 +653,12 @@ public class ReservationManager {
     	}
     	return null;
     }
-	
+	/**
+	 * calculates number of days between the check-in and the check-out date
+	 * @param checkInDate calendar type object which contains the check-in date of the reservation
+	 * @param checkOutDate calendar type object which contains the check-out date of the reservation
+	 * @return the number of days between the check-in and the check-out date
+	 */
     public int calcNumberOfDays(Calendar checkInDate, Calendar checkOutDate) {
 
     	long numberOfSeconds = ChronoUnit.SECONDS.between(checkInDate.getTime().toInstant(), checkOutDate.getTime().toInstant());
@@ -625,8 +670,11 @@ public class ReservationManager {
 
 
     }
-    
-  
+    /**
+	 * invalidates a reservation
+	 * @param resId unique identifier for each reservation
+	 * @return 1 if successful, 0 otherwise
+	 */
     public int expireReservation(int resId){ 
         int index = 0;
         for(Reservation r : reservations){
