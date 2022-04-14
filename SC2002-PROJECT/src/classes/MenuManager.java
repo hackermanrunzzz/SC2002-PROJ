@@ -1,10 +1,5 @@
 package classes;
 
-/**
- * @author Vijayanarayanan Sai Arunavan
- * @version 1.0
- * @since 14th April 2022
- */
 
 import java.util.ArrayList;
 
@@ -13,9 +8,10 @@ import java.util.Scanner;
 import classes.MenuItem.TypeOfMenuItem;
 
 /**
- * create menu manager class
+ * @author Vijayanarayanan Sai Arunavan
+ * @version 1.0
+ * @since 14th April 2022
  */
-
 public class MenuManager {
     /**
      * create an array of menu items
@@ -172,6 +168,11 @@ public class MenuManager {
         return true;
     }
     
+    /**
+     * 
+     * @param menuItemName menu item name
+     * @return index of menu item
+     */
     public int findFood(String menuItemName) {
         for(int i=0; i<MenuManager.menu.size(); i++) {
         	MenuItem menuItem = MenuManager.menu.get(i);

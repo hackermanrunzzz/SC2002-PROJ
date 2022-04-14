@@ -9,19 +9,17 @@ import classes.ReservationManager;
 
 
 /**
- * @author darren wong
+ * @author Darren Wong
  * @version 1.0
- * @since 14 April 2022
+ * @since 14th April 2022
  */
 
-// This can be the UI for room-service in general
-/**
- * creating a room service user interface class
- */
 public class OrderUI {
 
-		
-		    private static Scanner sc = new Scanner(System.in);
+		/**
+		 * takes in user input
+		 */
+		private static Scanner sc = new Scanner(System.in);
 
 		  /**
 		   * displaying the room service options

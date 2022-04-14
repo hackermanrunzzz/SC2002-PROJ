@@ -16,10 +16,6 @@ import classes.Room.StatusOfRoom; // Imported to set room to vacant after Reserv
  * @version 1.0
  * @since 14th April 2022
  */
-
-/**
- * create payment manager class
- */
 public class PaymentManager {
 	
 	/**

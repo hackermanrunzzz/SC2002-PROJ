@@ -1,13 +1,10 @@
 package classes;
 
-/**
- * @author darren wong
- * @version 1.0
- * @since 14 april 2022
- */
 
 /**
- * creating a room class
+ * @author Darren Wong
+ * @version 1.0
+ * @since 14 april 2022
  */
 public class Room {
 	

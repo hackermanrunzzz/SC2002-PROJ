@@ -6,10 +6,6 @@ package classes;
  * @since 14th April 2022
  */
 
-
-/**
- * create guest class
- */
 public class Guest {
 	/**
      * guest's name

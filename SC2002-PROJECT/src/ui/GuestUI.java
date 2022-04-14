@@ -11,9 +11,6 @@ import classes.Guest;
  */
 
 
-/**
- * creating guest user interface
- */
 public class GuestUI {
 	/**
 	 * displaying options to update guest details

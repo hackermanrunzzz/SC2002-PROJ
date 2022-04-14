@@ -6,15 +6,11 @@ import java.util.Scanner;
 import Initialiser.Initialise;
 
 /**
- * @author darren wong
+ * @author Darren Wong
  * @version 1.0
- * @since 14/04/2022
+ * @since 14th April 2022
  */
 
-
-/**
- * creating a payment user interface class
- */
 public class PaymentUI {
 	
 	

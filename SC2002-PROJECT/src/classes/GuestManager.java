@@ -12,9 +12,6 @@ import classes.Guest;
  */
 
 
-/**
- * create guest manager class
- */
 public class GuestManager {
 	
 	/**

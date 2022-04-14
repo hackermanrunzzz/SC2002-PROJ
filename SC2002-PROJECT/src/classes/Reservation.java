@@ -1,15 +1,14 @@
 package classes;
-/**
- * @author Vijayanarayanan Sai Arunavan
- * @version 1.0
- * @since 14th April 2022
- */
+
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+
 /**
- * create reservation class
+ * @author Vijayanarayanan Sai Arunavan
+ * @version 1.0
+ * @since 14th April 2022
  */
 public class Reservation {
 	/**
@@ -78,12 +77,12 @@ public class Reservation {
 	 * @param guestDetails array of guest objects
 	 * @param roomDetails room object
 	 * @param billingInformation credit card name and number of paying guest
-	 * @param checkInDate calendar 
-	 * @param checkOutDate
-	 * @param adultCount
-	 * @param childrenCount
-	 * @param reservationStatus
-	 * @param numberOfNights
+	 * @param checkInDate calendar type object to get check-in date
+	 * @param checkOutDate calendar type object to get check-out date
+	 * @param adultCount number of adults
+	 * @param childrenCount number of children
+	 * @param reservationStatus status of reservation
+	 * @param numberOfNights number of nights to be spent in the room(s)
 	 */
 	public Reservation(int reservationID, ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
 			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount,

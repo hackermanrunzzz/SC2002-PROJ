@@ -1,17 +1,10 @@
 package classes;
 
 
-/**
- * @author darren wong 
- * @version 1.0
- * @since 14 april 2022
- */
 
 import java.util.ArrayList;
-
 import java.util.Calendar;
 import java.util.Scanner;
-
 import Initialiser.Initialise;
 import classes.Reservation.StatusOfReservation;
 import classes.Room.StatusOfRoom;
@@ -19,7 +12,9 @@ import classes.Room.TypeOfRoom;
 
 
 /**
- * create a check in manager class
+ * @author Darren Wong 
+ * @version 1.0
+ * @since 14th April 2022
  */
 public class CheckInManager {
 	

@@ -1,11 +1,6 @@
 package classes;
 
 
-/**
- * @author darren wong
- * @version 1.0
- * @since 14 april 2022
- */
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,7 +15,9 @@ import classes.Order.StatusOfOrder;
 import classes.Reservation.StatusOfReservation;
 
 /**
- * creating order manager class
+ * @author darren wong
+ * @version 1.0
+ * @since 14th April 2022
  */
 public class OrderManager {
 //	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();  //should we declare new here?, or take from initialise
@@ -39,13 +36,15 @@ public class OrderManager {
 	private static ArrayList<Order> orders;
    
    
-
+	/**
+	 * takes in user input
+	 */
 	Scanner sc = new Scanner(System.in);
 
 
 	/**
 	 * constructing order manager
-	 * @param orders
+	 * @param orders array list of orders
 	 */
     public OrderManager(ArrayList<Order> orders) {
         OrderManager.orders = orders;
@@ -96,7 +95,7 @@ public class OrderManager {
      * finding order id 
      * @param ResID reservation id
      * @param RoomNumber room number
-     * @return
+     * @return order id
      */
     public static String findOrderID(int ResID,String RoomNumber) {
         for (Order o : Initialise.orders)
@@ -127,9 +126,6 @@ public class OrderManager {
 			System.out.println("========================================");
 			System.out.println("Creating Room Service Order");
 			System.out.println("----------------------------------------");
-			
-			int table =0;
-			
 			
 			
 			try {
@@ -282,8 +278,13 @@ public class OrderManager {
 	            
 	            
 
-
-	  public int searchOrders( int ResID, String RoomNumber) {
+    /**
+     * 	
+     * @param ResID reservation id
+     * @param RoomNumber room number
+     * @return integer check
+     */
+    public int searchOrders( int ResID, String RoomNumber) {
 		  int found = 0;
 	      if(Initialise.orders.isEmpty() == true){
 	          System.out.println("\nThere are currently no orders.");
@@ -298,32 +299,32 @@ public class OrderManager {
 	                  System.out.println("\n==============Found Order============== ");
 	                  System.out.println(Initialise.orders.get(k).printOrder());
 	                  found  = 1;
-                  
-              }
-              
-          }
-          if (found==0) {
-        	  System.out.println("Order not found.");
-          }
-      }
-      return -1;
+	              
+	              }
+	          
+	          }
+	          if (found==0) {
+	        	  System.out.println("Order not found.");
+	          }
+	      }
+	      return -1;
 	  }
 	  
-	  public void printIndividualfood (ArrayList<MenuItem> menuitems) {
-		  System.out.println("============================Order Receipt========================");
+    /**
+     * displays individual room service itmes
+     * @param menuitems array list of menu items
+     */
+    public void printIndividualfood (ArrayList<MenuItem> menuitems) {
+    	System.out.println("============================Order Receipt========================");
 		  
-		  for (int y = 0 ; y<menuitems.size(); y++) {
+    	for (int y = 0 ; y<menuitems.size(); y++) {
 			
-			  System.out.print(menuitems.get(y).getName() + "\t\t\t" + "$"+menuitems.get(y).getPrice());
-			  System.out.print("\n");
-		  }
-		  
+		  System.out.print(menuitems.get(y).getName() + "\t\t\t" + "$"+menuitems.get(y).getPrice());
+		  System.out.print("\n");
+		 }
 		  
 		  System.out.println("========================================");
-
-		  
-		  
-	  }
+  	}
 
 	  
 	  
@@ -353,8 +354,8 @@ public class OrderManager {
 	  
 	  /**
 	   * searching for room service order object
-	   * @param ResID
-	   * @param RoomNumber
+	   * @param ResID reservation id
+	   * @param RoomNumber room number
 	   * @return room service order object
 	   */
 	  public Order searchRoomServiceOrder(int ResID, String RoomNumber){

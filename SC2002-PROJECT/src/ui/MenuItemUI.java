@@ -6,15 +6,12 @@ import java.util.Scanner;
 import Initialiser.Initialise;
 
 /**
- * @author darren wong
+ * @author Darren Wong
  * @version 1.0
- * @since 14 April 2022
+ * @since 14th April 2022
  */
 
 
-/**
- * creating menu item user interface
- */
 public class MenuItemUI {
 	
 	/**

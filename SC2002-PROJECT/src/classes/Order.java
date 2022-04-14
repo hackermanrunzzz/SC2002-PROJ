@@ -9,13 +9,9 @@ import java.util.UUID;
 import Initialiser.Initialise;
 
 /**
- * @author darren wong 
+ * @author Darren Wong 
  * @version 1.0
  * @since 14/4/2022
- */
-
-/**
- * create order class
  */
 public class Order {
 	

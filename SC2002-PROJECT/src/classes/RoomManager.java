@@ -1,10 +1,5 @@
 package classes;
 
-/**
- * @author darren wong
- * @version 1.0
- * @since 14/04/2022
- */
 
 import java.util.ArrayList;
 import java.util.Scanner;
@@ -14,7 +9,9 @@ import classes.Room.TypeOfRoom;
 
 
 /**
- * create room manager class
+ * @author darren wong
+ * @version 1.0
+ * @since 14/04/2022
  */
 public class RoomManager {
 	/**

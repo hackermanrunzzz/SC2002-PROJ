@@ -11,9 +11,6 @@ import Initialiser.Initialise;
  * @since 14th April 2022
  */
 
-/**
- * creating check in user interface
- */
 public class CheckInUI {	
 	/**
 	 * displaying options to check in

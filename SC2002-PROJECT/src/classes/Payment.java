@@ -7,11 +7,6 @@ import java.util.ArrayList;
  * @version 1.0
  * @since 14th April 2022
  */
-
-
-/**
- * create payment class
- */
 public class Payment {
 	/**
 	 * possible status values of payment

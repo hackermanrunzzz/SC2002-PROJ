@@ -1,9 +1,5 @@
 package classes;
-/**
- * @author Vijayanarayanan Sai Arunavan
- * @version 1.0
- * @since 14th April 2022
- */
+
 
 import java.text.DateFormat;
 import java.text.ParseException;
@@ -22,8 +18,12 @@ import Initialiser.Initialise;
 import classes.Reservation.*;
 import classes.Room.StatusOfRoom;
 import classes.Room.TypeOfRoom;
+
+
 /**
- * create reservation manager class
+ * @author Vijayanarayanan Sai Arunavan
+ * @version 1.0
+ * @since 14th April 2022
  */
 public class ReservationManager {
 	/**
@@ -238,8 +238,17 @@ public class ReservationManager {
             makeReservation(currentGuestArr, thisRoom,currentGuestArr.get(0).getCreditCardNumber(), checkInDate, checkOutDate, adults, children, numberOfNights);
         }
     }
+	
 	/**
-	 * makes a reservation object
+	 * 
+	 * @param guestDetails array list of guest
+	 * @param roomDetails room object
+	 * @param billingInformation credit card name of guest
+	 * @param checkInDate calendar type object to get check-in date
+	 * @param checkOutDate calendar type object to get check-out date
+	 * @param adultCount number of adults
+	 * @param childrenCount number of children
+	 * @param numberOfNights number of nights to be staying
 	 */
 	public void makeReservation(ArrayList<Guest> guestDetails, Room roomDetails, String billingInformation,
 			Calendar checkInDate, Calendar checkOutDate, int adultCount, int childrenCount, int numberOfNights){
@@ -268,7 +277,7 @@ public class ReservationManager {
 	 * assigns a room to a guest, via reservation
 	 * @param guestDetails array of guest objects
 	 * @param roomDetails array of room objects
-	 * @param billingInformation credit card name and number of paying guest(s)
+	 * @param billingInformation credit card name of guest
 	 * @param checkInDate calendar type object to get check-in date
 	 * @param checkOutDate calendar type object to get check-out date
 	 * @param adultCount number of adults

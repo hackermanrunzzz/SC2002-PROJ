@@ -5,9 +5,7 @@ package classes;
  * @version 1.0
  * @since 14th April 2022
  */
-/**
- * create menu item class
- */
+
 public class MenuItem {
 	/**
 	 * possible types of menu item
