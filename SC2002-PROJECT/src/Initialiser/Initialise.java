@@ -232,16 +232,16 @@ public class Initialise {
 		
 
 		// Initialising 4 TEST Guests inside the Guests Array
-		Guest guest_one = new Guest("Derrick", "Derrick James", "96785757", "The Ritz, Avenue 6", "Singapore", 'M', "Indian", "Singaporean", "96978575");
+		Guest guest_one = new Guest("Derrick", "Derrick James", "96785757", "The Ritz, Avenue 6", "Singapore", 'M', "T1234567X", "Singaporean", "96978575");
 		guestarr1.add(guest_one);
 		
-		Guest guest_two = new Guest("Mark", "Mark Black", "96684738", "Patriots' Street 58", "Malaysia", 'F', "Chinese", "Malaysian", "77778888");
+		Guest guest_two = new Guest("Mark", "Mark Black", "96684738", "Patriots' Street 58", "Malaysia", 'F', "123456-78-9123", "Malaysian", "77778888");
 		guestarr2.add(guest_two);
 		
-		Guest guest_three = new Guest("Darren", "Darren Williams", "77665544", "Fourier Avenue 69", "Sweden", 'M', "Indonesian", "American", "12345678");
+		Guest guest_three = new Guest("Darren", "Darren Williams", "77665544", "Fourier Avenue 69", "Sweden", 'M', "1852-345-3214", "American", "12345678");
 		guestarr3.add(guest_three);
 		
-		Guest guest_four = new Guest("Blake", "Blake Johnson", "11234578", "Salem Avenue 23", "Denmark", 'M', "Armenian", "Australian", "90807060");
+		Guest guest_four = new Guest("Blake", "Blake Johnson", "11234578", "Salem Avenue 23", "Denmark", 'M', "0123456789", "Australian", "90807060");
 		guestarr4.add(guest_four);
 
 		
