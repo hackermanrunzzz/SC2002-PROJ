@@ -5,10 +5,11 @@ package classes;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Scanner;
-import Initialiser.Initialise;
+
 import classes.Reservation.StatusOfReservation;
 import classes.Room.StatusOfRoom;
 import classes.Room.TypeOfRoom;
+import initialiser.Initialise;
 
 
 /**
@@ -33,7 +34,7 @@ public class CheckInManager {
 	 * checking in of guests
 	 * @param resID reservation id
 	 */
-	public void CheckIn(int resID) {
+	public void checkIn(int resID) {
 		int check = Initialise.resm.searchReservation(resID);
 		if(check == 0 || check == -1) {
 			return;
@@ -63,12 +64,12 @@ public class CheckInManager {
 	/**
 	 * walk-in of guests
 	 */
-	public void WalkIn() {
+	public void walkIn() {
 		Scanner sc = new Scanner(System.in);
 		int adults=0, children=0;
         int pax = 0;
         int maxOccupancy=0;
-        int roomcounter = 0;
+        int roomCounter = 0;
         String typeofroomUpper = "";
         ArrayList<String> vacantRooms = new ArrayList<String>();
         boolean RoomMatch = true;
@@ -84,9 +85,12 @@ public class CheckInManager {
         	
         	boolean roomTypeCheck = true;
         	while(roomTypeCheck) {
-		        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE): ");
-		        String typeofroom = sc.nextLine();
-		        typeofroomUpper = typeofroom.toUpperCase();
+		        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE) (Enter 0 to cancel): ");
+		        String typeOfRoom = sc.nextLine();
+		        if(typeOfRoom.equals("0")) {
+		        	return;
+		        }
+		        typeofroomUpper = typeOfRoom.toUpperCase();
 		        
 		        if(typeofroomUpper.equals("SINGLE") || typeofroomUpper.equals("DOUBLE") || typeofroomUpper.equals("DELUXE") || typeofroomUpper.equals("VIPSUITE")) {
 		        	roomTypeCheck = false;
@@ -96,11 +100,29 @@ public class CheckInManager {
 		        }
         	}
 	        
-	        System.out.print("Enter amount of Adults: ");
-	        adults = sc.nextInt();
+	        while(true) {
+		        try {
+		        	System.out.print("Enter amount of Adults: ");
+		        	adults = sc.nextInt();
+		        	sc.nextLine();
+		        	break;
+		        }catch(Exception e) {
+		        	System.out.println("Invalid input!");
+		        	sc.nextLine();
+		        }
+	        }
 	        
-	        System.out.print("Enter amount of Children: ");
-	        children = sc.nextInt();
+	        while(true) {
+		        try {
+		        	System.out.print("Enter amount of Children: ");
+		        	children = sc.nextInt();
+		        	sc.nextLine();
+		        	break;
+		        }catch(Exception e) {
+		        	System.out.println("Invalid input!");
+		        	sc.nextLine();
+		        }
+	        }
 	        
 	        pax = adults + children;
 	        
@@ -122,7 +144,7 @@ public class CheckInManager {
 	        }
 	        
 	        if(pax > maxOccupancy) {
-	        	System.out.println("Invalid input! Number of pax greater than max occupany, please reenter pax or choose another room");
+	        	System.out.println("Invalid input! Number of pax greater than max occupany, please re-enter pax or choose another room");
 	        }
 	        else {
 	        	break;
@@ -136,7 +158,7 @@ public class CheckInManager {
         	for (Room r : Initialise.rooms) {
         		 if (r.getRoomType().equals(TypeOfRoom.SINGLE) && r.getRoomStatus().equals(StatusOfRoom.VACANT)) {
         			 System.out.println(r.getRoomNumber());
-        			 roomcounter++;
+        			 roomCounter++;
         			 vacantRooms.add(r.getRoomNumber());
         		 }
         	}
@@ -146,7 +168,7 @@ public class CheckInManager {
         	for (Room r : Initialise.rooms) {
         		 if (r.getRoomType().equals(TypeOfRoom.DOUBLE) && r.getRoomStatus().equals(StatusOfRoom.VACANT)) {
         			 System.out.println(r.getRoomNumber());
-        			 roomcounter++;
+        			 roomCounter++;
         			 vacantRooms.add(r.getRoomNumber());
         		 }
         	}
@@ -156,7 +178,7 @@ public class CheckInManager {
         	for (Room r : Initialise.rooms) {
         		 if (r.getRoomType().equals(TypeOfRoom.DELUXE) && r.getRoomStatus().equals(StatusOfRoom.VACANT)) {
         			 System.out.println(r.getRoomNumber());
-        			 roomcounter++;
+        			 roomCounter++;
         			 vacantRooms.add(r.getRoomNumber());
         		 }
         	}
@@ -166,14 +188,14 @@ public class CheckInManager {
         	for (Room r : Initialise.rooms) {
         		 if (r.getRoomType().equals(TypeOfRoom.VIPSUITE) && r.getRoomStatus().equals(StatusOfRoom.VACANT)) {
         			 System.out.println(r.getRoomNumber());
-        			 roomcounter++;
+        			 roomCounter++;
         			 vacantRooms.add(r.getRoomNumber());
         		 }
         	}
         }
         sc.nextLine();
         
-        if(roomcounter == 0) {
+        if(roomCounter == 0) {
         	System.out.println("There are no available rooms available.");
         }
         else {

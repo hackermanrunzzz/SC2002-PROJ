@@ -2,8 +2,7 @@ package ui;
 
 import java.util.Scanner;
 
-
-import Initialiser.Initialise;
+import initialiser.Initialise;
 
 /**
  * @author Darren Choo
@@ -18,8 +17,8 @@ public class CheckInUI {
 	public static void checkInOptions() {
 		
 		Scanner sc = new Scanner(System.in);
-		
-		int option;
+		int option = 0;
+
 		
 		do {
 			
@@ -30,8 +29,12 @@ public class CheckInUI {
 	        System.out.println("(3) Make Walk In");
 	        System.out.println("(4) Go Back To Main Menu");
 	        System.out.println("========================================");
-	
-	        option = sc.nextInt();
+	        option = 0;
+	        try {
+	            option = sc.nextInt();
+	            
+	        }catch (Exception e) {
+	        }
 	        sc.nextLine();
 	
 	        switch(option) {
@@ -41,15 +44,18 @@ public class CheckInUI {
 	            case 2:
 	            	System.out.println("Please enter the reservation ID that you wish to check the guest in for:");
 	            	int reserID = sc.nextInt();
-	            	Initialise.checkm.CheckIn(reserID);
+	            	Initialise.checkm.checkIn(reserID);
 	                break;
 	            case 3:
-	            	Initialise.checkm.WalkIn();
+	            	Initialise.checkm.walkIn();
 	                break;
+	            case 4:
+	            	break;
 	            default:
+	            	System.out.println("Invalid input!");
 	            	break;
 	        }
-	    } while (option<4);
+	    } while(option != 4);
 	}
 	
 	

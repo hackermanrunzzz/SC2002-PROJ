@@ -3,7 +3,8 @@ package ui;
 
 
 import java.util.Scanner;
-import Initialiser.Initialise;
+
+import initialiser.Initialise;
 
 
 
@@ -21,23 +22,10 @@ public class ReservationUI {
 	 */
 	public static void showReservationOptions(){
 		
-		
-		
-//		ArrayList<Room> rooms = new ArrayList<Room>();
-//		RoomManager roomm = new RoomManager(rooms);
-//		
-//		
-//		ArrayList<Reservation> reservations = new ArrayList<Reservation>();
-//		ReservationManager resm = new ReservationManager(reservations, rooms);
-		
-		
-		//we need to initialise rooms here
-//		Initialise.InitialiseRoom();
-		
 	
 		Scanner sc = new Scanner(System.in);
 		
-        int choice;
+		int option;
         do{
             System.out.println("========================================");
             System.out.println("Select choice: ");
@@ -50,17 +38,20 @@ public class ReservationUI {
             System.out.println("(7) Change Room Status");
             System.out.println("(8) Go Back To Main Menu");
             System.out.println("========================================");
+            
+            option = 0;
+	        try {
+	            option = sc.nextInt();
+	            
+	        }catch (Exception e) {
+	        }
+	        sc.nextLine();
 
-            choice = sc.nextInt();
-            sc.nextLine();
-
-            switch(choice){
+            switch(option){
                 case 1:
                 	Initialise.resm.makeReservationUI();
                     break;
                 case 2:
-//                	System.out.println("Please enter the reservation ID that you wish to cancel:");
-//                	int resID = sc.nextInt();
                 	Initialise.resm.cancelReservation();
                     break;
                 case 3:
@@ -68,8 +59,15 @@ public class ReservationUI {
                     break;
                 case 4:
                 	System.out.println("Please enter the reservation ID: ");
-                	int input = sc.nextInt();
-                	Initialise.resm.searchReservation(input);
+                	int input = 0;
+        	        try {
+        	        	input = sc.nextInt();
+                    	sc.nextLine();
+                    	Initialise.resm.searchReservation(input);
+        	        }catch (Exception e) {
+        	        	System.out.println("Invalid input!");
+        	        	sc.nextLine();
+        	        }
                     break;
                 case 5:
                 	Initialise.room.displayRoomViaOccupancy();;
@@ -79,10 +77,13 @@ public class ReservationUI {
                     break;
                 case 7:
                 	Initialise.room.changeRoomStatus();
-                    break;    
+                    break;
+                case 8:
+                	break;
                 default:
+                	System.out.println("Invalid input!");
                 	break;
             }
-        } while (choice < 8);
+        } while (option != 8);
 	}
 }

@@ -1,9 +1,10 @@
-package Serialize;
+package serialize;
 
 import java.util.ArrayList;
 import java.util.List;
-import Initialiser.*;
+
 import classes.*;
+import initialiser.*;
 
 public class ReadHotelDB {
 	

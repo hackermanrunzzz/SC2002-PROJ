@@ -1,7 +1,7 @@
-package Serialize;
+package serialize;
 import java.util.List;
 
-import Initialiser.*;
+import initialiser.*;
 
 public class WriteHotelDB {
 	public static void writeHotelDB(){

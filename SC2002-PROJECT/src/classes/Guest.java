@@ -33,7 +33,7 @@ public class Guest implements Serializable{
      */
 	private char gender;
 	/**
-     * guest's identitfication number
+     * guest's identification number
      */
 	private String identity;
 	/**
@@ -54,7 +54,7 @@ public class Guest implements Serializable{
      * @param address guest's address
      * @param country guest's country
      * @param gender guest's gender
-     * @param identity guest's identitfication number
+     * @param identity guest's identification number
      * @param nationality guest's nationality
      * @param contact guest's contact number
      */

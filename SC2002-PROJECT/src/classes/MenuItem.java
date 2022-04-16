@@ -45,16 +45,10 @@ public class MenuItem implements Serializable{
 	 * @param name name of menu item
 	 * @param description description of menu item
 	 * @param foodType type of menu item
-	 * @param price prce of the menu item
+	 * @param price price of the menu item
 	 */
     public MenuItem(String name, String description, TypeOfMenuItem foodType , double price) {
         this.price = price;
-        if(name.length()!=25){
-            int space = 25-name.length();
-            for(int i=0; i<space;i++){
-                name = name + " ";
-            }
-        }
         this.name = name;
         this.description = description;
         this.foodType = foodType;

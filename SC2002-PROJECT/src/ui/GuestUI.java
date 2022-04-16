@@ -1,8 +1,9 @@
 package ui;
 
 import java.util.Scanner;
-import Initialiser.Initialise;
+
 import classes.Guest;
+import initialiser.Initialise;
 
 /**
  * @author Darren Choo
@@ -18,7 +19,7 @@ public class GuestUI {
 	public static void guestOptions() {
 		
 		Scanner sc = new Scanner(System.in);
-		int option;
+		int option = 0;
 		boolean searchSuccessful = false;
 		Guest guest = null;
 		
@@ -53,9 +54,13 @@ public class GuestUI {
             System.out.println("(9) Update guest's contact");
             System.out.println("(10) Go Back To Previous Page");
             System.out.println("========================================");
-
-            option = sc.nextInt();
-            sc.nextLine();
+            option = 0;
+	        try {
+	            option = sc.nextInt();
+	            
+	        }catch (Exception e) {
+	        }
+	        sc.nextLine();
 
             switch(option) {
                 case 1:
@@ -85,8 +90,12 @@ public class GuestUI {
                 case 9:
                 	Initialise.gm.updateGuestContact(guest);
                     break;
+                case 10:
+                	break;
+                default:
+                	System.out.println("Invalid input!");
             }
-        } while (option<10);
+        } while (option != 10);
 		
     }
 	

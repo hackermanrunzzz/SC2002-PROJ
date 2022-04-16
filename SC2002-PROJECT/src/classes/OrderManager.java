@@ -10,9 +10,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.UUID;
 
-import Initialiser.Initialise;
 import classes.Order.StatusOfOrder;
 import classes.Reservation.StatusOfReservation;
+import initialiser.Initialise;
 
 /**
  * @author darren wong
@@ -20,9 +20,7 @@ import classes.Reservation.StatusOfReservation;
  * @since 14th April 2022
  */
 public class OrderManager {
-//	private static ArrayList<Reservation> reservations = new ArrayList<Reservation>();  //should we declare new here?, or take from initialise
-//
-//	private static ArrayList<Order> orders = new ArrayList<Order>();
+
 	
 	
 	/**
@@ -82,10 +80,10 @@ public class OrderManager {
 	 * @param totalPrice total price of room service order
 	 * @param menuI array list of menu items
 	 */
-    public void createOrder(int ResID,String RoomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
-    	String OrderID = UUID.randomUUID().toString();
+    public void createOrder(int resID,String roomNumber, Calendar time, String remarks, double totalPrice, ArrayList<MenuItem> menuI) {
+    	String orderID = UUID.randomUUID().toString();
 
-        Order ordering = new Order( OrderID, ResID, RoomNumber,  time,  remarks,StatusOfOrder.CONFIRMED, totalPrice, menuI);
+        Order ordering = new Order(orderID, resID, roomNumber, time, remarks,StatusOfOrder.CONFIRMED, totalPrice, menuI);
         Initialise.orders.add(ordering);
     }
 
@@ -97,10 +95,10 @@ public class OrderManager {
      * @param RoomNumber room number
      * @return order id
      */
-    public static String findOrderID(int ResID,String RoomNumber) {
+    public static String findOrderID(int resID,String roomNumber) {
         for (Order o : Initialise.orders)
 		{
-            if (o.getResID() == ResID)
+            if (o.getResID() == resID)
 			{
 				return o.getOrderID();
 			}
@@ -119,7 +117,7 @@ public class OrderManager {
     public void createOrderUI(){
 			Scanner sc = new Scanner(System.in);
 			int found = 0;
-			int ResID=0;
+			int resID=0;
 			String RoomNumber = "";
 			ArrayList<MenuItem> roomServiceitems = new ArrayList<MenuItem>();
 			
@@ -132,7 +130,7 @@ public class OrderManager {
 				
 				
 			    System.out.println("Enter Reservation ID: ");
-			    ResID = sc.nextInt();
+			    resID = sc.nextInt();
 			    sc.nextLine();
 			    System.out.println("Enter Room Number: ");
 			        
@@ -140,23 +138,19 @@ public class OrderManager {
 			 
 			        
 			
-			    	}
-			    
-			    
+			    }
 			    catch(InputMismatchException e)
 			    {
-			    
-			  	
-			    	
+			    	System.out.println("Invalid input!");
+			    	return;
 			    }
 			      
 			    
 			  
-			    //sc.nextLine();
 			        
 			        for (Reservation r: Initialise.reservations)
 					{
-			        	if (ResID == r.getReservationID() && r.getReservationStatus().equals(StatusOfReservation.CHECKED_IN) && r.getRoomDetails().getRoomNumber().equals(RoomNumber))
+			        	if (resID == r.getReservationID() && r.getReservationStatus().equals(StatusOfReservation.CHECKED_IN) && r.getRoomDetails().getRoomNumber().equals(RoomNumber))
 			        	{
 			        		found = 1;
 			        		break;
@@ -198,10 +192,7 @@ public class OrderManager {
 			    
 			    roomServiceitems.add(food);
 			    
-			   
-			    
-			  
-			  //  menu.getFoods().add(food);
+
 			System.out.print(choice+". ");
 			System.out.println(food.getName()+" has been added to order.");
 			System.out.println("--------------------------------------------------------------------------------");
@@ -212,8 +203,7 @@ public class OrderManager {
 			        }
 			
 			    }while(choice!=-1);
-			   // Restaurant.menu.printShortPromoMenu();
-			//Initialise.mm.printMenu();
+
 			
 			System.out.println("Please Enter Additional Remarks (If Any): ");
 			String remarks = sc.next();
@@ -229,7 +219,7 @@ public class OrderManager {
 			
 			
 			
-			createOrder(ResID, RoomNumber,timenow,remarks, totalp,roomServiceitems);
+			createOrder(resID, RoomNumber,timenow,remarks, totalp,roomServiceitems);
 			
 			printIndividualfood(roomServiceitems);
 			System.out.println("Total Price :" + "\t\t\t" + "$" + String.format("%.2f",totalp));
@@ -269,10 +259,7 @@ public class OrderManager {
 	            }
 	            
 	        }
-	         
-	       
-	        
-	      //  searchOrders(resIDROOM,roomNum);
+
 	        searchRoomServiceOrder(resIDROOM,roomNum);
 	  }
 	            
@@ -376,14 +363,7 @@ public class OrderManager {
 						if(confirmation.equals("1")) {
 							return o;
 						}
-						else
-							not_found = 1;
-							continue;
 					}
-				
-			}
-			if (not_found == 1) {
-				System.out.println("Order Not Found.");
 			}
 			return null;
 		}
@@ -462,27 +442,41 @@ public class OrderManager {
 	            System.out.println("(2) Room Service order has been Delivered");
 	            System.out.println("(3) Go Back To Main Menu");
 	            System.out.println("========================================");
-
-	            choice = sc.nextInt();
-	            sc.nextLine();
+	            choice = 0;
+		        try {
+		        	choice = sc.nextInt();
+		        }catch (Exception e) {
+		        }
+		        sc.nextLine();
+		        int resID = 0;
 
 	            switch (choice) {
 	                case 1:
-	                	System.out.println("Enter ResID and Room Number to find Order: ");
-	                	System.out.println("Enter ResID: ");
-	                	int resID = sc.nextInt();
+	                	System.out.println("Enter Reservation ID and Room Number to find Order");
+	                	System.out.println("Enter Reservation ID: ");
+	    		        try {
+	    		        	resID = sc.nextInt();
+	    		        }catch (Exception e) {
+	    		        	System.out.println("Invalid Reservation ID");
+	    		        	sc.nextLine();
+	    		        	break;
+	    		        }
 	                	sc.nextLine();
 	                	System.out.println("Enter Room Number: ");
 	                	String rN = sc.nextLine();
 	                	
 	                	Order rsOrder = searchRoomServiceOrder(resID,rN);
+	                	if(rsOrder == null) {
+	                		System.out.println("Order not found");
+	                		break;
+	                	}
 	                	while(true) {
 	                		System.out.println("Do You Wish to Send Order to the Kitchen? Press(1) to Send , Press(0) to Return to Main Menu");
-	                		int send = sc.nextInt();
-	                		if (send == 0) {
+	                		String send = sc.nextLine();
+	                		if (send.equals("0")) {
 	                			break;
 	                		}
-	                		else if (send ==1) {
+	                		else if (send.equals("1")) {
 	                			
 	                			rsOrder.setOrderStatus(StatusOfOrder.PREPARING);
 	                			System.out.println("Order is Being Prepared now.");
@@ -498,21 +492,31 @@ public class OrderManager {
 	  
 	                    break;
 	                case 2:
-	                	System.out.println("Enter ResID and Room Number to find Order: ");
-	                	System.out.println("Enter ResID:");
-	                	int ID = sc.nextInt();
+	                	System.out.println("Enter Reservation ID and Room Number to find Order");
+	                	System.out.println("Enter Reservation ID: ");
+	    		        try {
+	    		        	resID = sc.nextInt();
+	    		        }catch (Exception e) {
+	    		        	System.out.println("Invalid Reservation ID");
+	    		        	sc.nextLine();
+	    		        	break;
+	    		        }
 	                	sc.nextLine();
 	                	System.out.println("Enter Room Number: ");
 	                	String rNum = sc.nextLine();
 	                	
-	                	Order deliveredO = searchRoomServiceOrder(ID,rNum);
+	                	Order deliveredO = searchRoomServiceOrder(resID,rNum);
+	                	if(deliveredO == null) {
+	                		System.out.println("Order not found");
+	                		break;
+	                	}
 	                	while(true) {
 	                		System.out.println("Has Order Been Delivered? Press(1) for Yes , Press(0) to Return to Main Menu");
-	                		int send = sc.nextInt();
-	                		if (send == 0) {
+	                		String send = sc.nextLine();
+	                		if (send.equals("0")) {
 	                			break;
 	                		}
-	                		else if (send ==1) {
+	                		else if (send.equals("1")) {
 	                			deliveredO.setOrderStatus(StatusOfOrder.DELIVERED);
 	                			System.out.println("Order Has Been Delivered.");
 	                			break;
@@ -528,8 +532,10 @@ public class OrderManager {
 	                    break;
 	                case 3:
 	                	break;
+	                default:
+	                	System.out.println("Invalid input!");
 	            }
-	        } while (choice < 3);
+	        } while (choice != 3);
 	    }
 
 

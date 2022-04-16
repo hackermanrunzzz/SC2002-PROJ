@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.UUID;
 
-import Initialiser.Initialise;
+import initialiser.Initialise;
 
 /**
  * @author Darren Wong 
@@ -36,15 +36,15 @@ public class Order implements Serializable{
 	/**
 	 *  unique identifier of order
 	 */
-	private String OrderID;
+	private String orderID;
 	/**
 	 * unique identifier of reservation
 	 */
-	private int ResID;
+	private int resID;
 	/**
 	 *  room number
 	 */
-	private String RoomNumber;
+	private String roomNumber;
 	/**
 	 *  time of order
 	 */
@@ -79,11 +79,11 @@ public class Order implements Serializable{
 	 * @param totalPrice total price of order
 	 * @param menuI array list of menu items ordered
 	 */
-	public Order(String OrderID, int ResID,String RoomNumber, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice, ArrayList<MenuItem> menuI) 
+	public Order(String orderID, int resID,String roomNumber, Calendar time, String remarks, StatusOfOrder orderStatus, double totalPrice, ArrayList<MenuItem> menuI) 
 	{
-		this.OrderID = OrderID;
-		this.ResID = ResID;
-		this.RoomNumber = RoomNumber;
+		this.orderID = orderID;
+		this.resID = resID;
+		this.roomNumber = roomNumber;
 		this.timeOfOrder = time;
 		this.remarks = remarks;
 		this.orderStatus = orderStatus;
@@ -103,7 +103,7 @@ public class Order implements Serializable{
 	 * @return order id
 	 */
     public String getOrderID() {
-		return OrderID;
+		return orderID;
 	}
 
 
@@ -114,7 +114,7 @@ public class Order implements Serializable{
      * @param orderID order id
      */
 	public void setOrderID(String orderID) {
-		OrderID = orderID;
+		this.orderID = orderID;
 	}
 
 
@@ -125,7 +125,7 @@ public class Order implements Serializable{
 	 * @return reservation id
 	 */
 	public int getResID() {
-		return ResID;
+		return resID;
 	}
 
 
@@ -136,7 +136,7 @@ public class Order implements Serializable{
 	 * @param resID reservation id
 	 */
 	public void setResID(int resID) {
-		ResID = resID;
+		this.resID = resID;
 	}
 
 
@@ -240,7 +240,7 @@ public class Order implements Serializable{
 	 * @return room number of order
 	 */
 	public String getRoomNumber() {
-		return RoomNumber;
+		return roomNumber;
 	}
 
 
@@ -251,7 +251,7 @@ public class Order implements Serializable{
 	 * @param roomNumber room number
 	 */
 	public void setRoomNumber(String roomNumber) {
-		RoomNumber = roomNumber;
+		this.roomNumber = roomNumber;
 	}
 
 
@@ -302,11 +302,11 @@ public class Order implements Serializable{
 	 * print menu items
 	 * @param menuitems array list of menu items
 	 */
-	 public void printIndividualfood (ArrayList<MenuItem> menuitems) {
+	 public void printIndividualFood (ArrayList<MenuItem> menuItems) {
 		  
-		  for (int y = 0 ; y<menuitems.size(); y++) {
+		  for (int y = 0 ; y<menuItems.size(); y++) {
 			  
-			  System.out.println(menuitems.get(y).getName() +"           " +  menuitems.get(y).getPrice() + "\n" );
+			  System.out.println(menuItems.get(y).getName() +"           " +  menuItems.get(y).getPrice() + "\n" );
 		  }
 	  }
 	

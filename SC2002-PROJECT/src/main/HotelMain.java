@@ -1,21 +1,17 @@
 package main;
 
 import ui.*;
-import Serialize.*;
-
-
-
-import Initialiser.Initialise;
+import serialize.*;
 
 import java.util.Scanner;
+
+import initialiser.Initialise;
 
 public class HotelMain {
 	public static void main (String[] args) {
 		Scanner sc = new Scanner(System.in);
-		int option;
+		int option = 0;
 		Initialise.InitialiseHotel(); 
-		//this is like redundant, but we may have issues to initialise rooms, since right now the UIs are the ones initialising their respective ites
-		//Room doesnt have a UI, unless its  under Reservation UI then i guess thats fine...
 		
 		
 		
@@ -34,11 +30,16 @@ public class HotelMain {
             System.out.println("(6) Payment");
             System.out.println("(7) Exit Program");
             System.out.println("========================================");
-
-
-            option = sc.nextInt();
-            sc.nextLine();
-
+            
+            option = 0;
+            try {
+	            option = sc.nextInt();
+	            sc.nextLine();
+	            
+            }catch (Exception e) {
+            }
+	           
+	            
             switch(option){
                 case 1 :
                 	GuestUI.guestOptions();
@@ -63,9 +64,11 @@ public class HotelMain {
                 	System.exit(0);
                 	break;
                 default:
+                	System.out.println("Invalid input!");
                 	break;
-
             }
-        } while (option<7);
+
+            
+        } while (true);
 	}
 }

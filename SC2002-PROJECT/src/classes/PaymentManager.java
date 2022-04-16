@@ -4,11 +4,10 @@ import java.time.temporal.ChronoUnit;
 
 import java.util.*;
 
-
-import Initialiser.Initialise;
 import classes.Payment.methodOfPayment;
 import classes.Reservation.StatusOfReservation;
 import classes.Room.StatusOfRoom; // Imported to set room to vacant after Reservation was deleted
+import initialiser.Initialise;
 
 
 /**
@@ -87,22 +86,17 @@ public class PaymentManager {
 				toCheckOut = r;
 				break;
 			}
-			//reservation matched but reservation not checked in
-			else if(!r.getReservationStatus().equals(StatusOfReservation.CHECKED_IN)) {
-				System.out.println("Invalid entry! Reservation is not checked in.");
-				System.out.println("Cancelling check out...");
-				return;
-			}
+
 		}
 		if(!validRoomFound) {
-			System.out.println("Invalid entry! Unable to find any reservations for this room!");
+			System.out.println("Invalid entry! Unable to find any reservations for this room / Reservation is not checked in!");
 			System.out.println("Cancelling check out...");
 			return;
 		}
 		
 		//assigning attributes
 		numberOfNightsGlobal = calcNumberOfNights(toCheckOut.getCheckInDate());
-		roomChargesGlobal = Math.round(toCheckOut.getRoomDetails().getRate() * numberOfNightsGlobal*100.0)/100.0;
+		roomChargesGlobal = toCheckOut.getRoomDetails().getRate() * numberOfNightsGlobal;
 		tax = Initialise.GST;
 		
 		for(Order o: Initialise.orders) {
@@ -111,31 +105,64 @@ public class PaymentManager {
 			}
 		}
 		
-		roomServicesGlobal = Math.round(calcRoomServices(checkOutRoomOrders)*100.0)/100.0;
+		roomServicesGlobal = calcRoomServices(checkOutRoomOrders);
 		//getting discount value
 		System.out.println("Please enter discount value in % (Enter 0 for no discount, enter only the numerical value without '%'): ");
-		discountGlobal = sc.nextDouble()/100;
+		while(true) {
+			try {
+				discountGlobal = sc.nextDouble()/100;
+				sc.nextLine();
+				break;
+			}catch(Exception e) {
+				System.out.println("Invalid input! Please re-enter discount value:");
+				sc.nextLine();
+			}
+		}
 		
 		//Calculating total charges
-		totalChargesGlobal = Math.round(((roomChargesGlobal+roomServicesGlobal)*(1-discountGlobal)*(1+tax))*100.0)/100.0;
+		totalChargesGlobal = (roomChargesGlobal+roomServicesGlobal)*(1-discountGlobal)*(1+tax);
 		
 		//need to add billing info and payment method
 		int bills = 0; // to identify the type of bill put into the system
 		double total = 0; // for computing total number of bills put into the system
 		int choice = 0;
-		printFullReceipt(toCheckOut, numberOfNightsGlobal, roomChargesGlobal, roomServicesGlobal, discountGlobal, totalChargesGlobal); // Printing receipt before user decides how to pay
+		printFullReceipt(toCheckOut, numberOfNightsGlobal, roomChargesGlobal, roomServicesGlobal, discountGlobal,tax , totalChargesGlobal); // Printing receipt before user decides how to pay
 		System.out.println("Please enter (1) if you would like to pay by Cash. Enter (2) if you would like to pay by Card instead");
-		choice = sc.nextInt();
+		while(true) {
+	        try {
+	        	choice = sc.nextInt();
+	            if(choice == 0 || choice == 1)
+	            	break;
+	            else
+	            	System.out.println("Invalid input! Please enter (1) if you would like to pay by Cash. Enter (2) if you would like to pay by Card instead");
+	        }catch (Exception e) {
+	        	System.out.println("Invalid input! Please enter (1) if you would like to pay by Cash. Enter (2) if you would like to pay by Card instead");
+	        	sc.nextLine();
+	        }
+		}
+		sc.nextLine();
 		if (choice==1){
 			globalPaymentType = "Cash";
-			System.out.println("Please enter the appropriate number for which bill, $1000, $100, or $50, you would like to use. Enter (4) to exit");
+			System.out.println("Please enter the appropriate number for which bill, $1000, $100, or $50, you would like to use. ");
 			System.out.println("========== Cash Input ==========");
 			System.out.println("|Enter '1' for $1000 input     |");
 			System.out.println("|Enter '2' for $100 input      |");
 			System.out.println("|Enter '3' for $50 input       |");
-			System.out.println("|Enter '4' for input of change |");
+			System.out.println("|Enter '4' for specific input  |");
 			while (total<=totalChargesGlobal){
-				bills = sc.nextInt();
+				while(true) {
+			        try {
+			        	bills = sc.nextInt();
+			            if(bills == 1 || bills == 2 || bills == 3 || bills == 4)
+			            	break;
+			            else
+			            	System.out.println("Invalid input! Please re-enter your choice.");
+			        }catch (Exception e) {
+			        	System.out.println("Invalid input! Please re-enter your choice.");
+			        	sc.nextLine();
+			        }
+				}
+				sc.nextLine();
 				if (bills == 1){
 					total += 1000;
 				}
@@ -149,8 +176,20 @@ public class PaymentManager {
 				}
 				
 				else if (bills == 4){
-					System.out.println("Please enter the amount of money you would like to use as change: ");
-					double temp = sc.nextDouble();
+					System.out.println("Please enter a specific amount: ");
+					double temp = 0;
+					while(true) {
+				        try {
+				        	temp = sc.nextDouble();
+				            if(temp > 0)
+				            	break;
+				            else
+				            	System.out.println("Invalid input! Please re-enter your choice.");
+				        }catch (Exception e) {
+				        	System.out.println("Invalid input! Please re-enter your choice.");
+				        	sc.nextLine();
+				        }
+					}
 					total += temp;
 				}
 				System.out.println("Total cash paid: " + total);
@@ -167,33 +206,43 @@ public class PaymentManager {
 		}
 		else if (choice == 2){
 			globalPaymentType = "Card";
-			int check = 0;
-			System.out.println("Please verify that this is your credit card name: " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + ". If yes, enter (1). Else, enter (0)");
-			check = sc.nextInt();
-			if (check == 1){
-				System.out.println("Please enter your CCV / CVV: ");
-				int ccv = sc.nextInt(); // Just for confirmation of guest, one-time use, don't need to use
-				sc.nextLine();
-				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + ", with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + ", to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
-				System.out.println("Thank you for your stay! Have a safe trip back home!");
-				
-				makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
-			}
-			else if  (check == 0){
-				String address;
-				String name;
-				String number;
-				System.out.println("Plese enter your credit card name: ");
-				name = sc.nextLine();
-				System.out.println("Please enter your credit card number: ");
-				number = sc.nextLine();
-				System.out.println("Please enter your billing address: ");
-				address = sc.nextLine();
-				System.out.println("The amount of $" + totalChargesGlobal + " will be charged to your card, under the name, " + name + ", with the number " + number + ", to your billing address at " + address);
-				System.out.println("Thank you for your stay! Have a safe trip back home!");
-				
-				makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // Calling the method
-				
+			System.out.println("Please verify that this are your credit card details (If yes, enter (1). Else, enter(0))");
+			System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getCreditCardName());
+			System.out.println("Card Number: " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
+			System.out.println("Billing address: " + toCheckOut.getGuestDetails().get(0).getAddress());
+
+			while(true) {
+				String check = sc.nextLine();
+				if (check.equals("1")){
+					System.out.println("Please enter your CVC / CVV: ");
+					String cvc = sc.nextLine(); // Just for confirmation of guest, one-time use, don't need to use
+					System.out.printf("The amount of $%.2f", totalChargesGlobal);
+					System.out.println(" will be charged to your card, under the name " + toCheckOut.getGuestDetails().get(0).getCreditCardName() + ", with the number " + toCheckOut.getGuestDetails().get(0).getCreditCardNumber() + ", to the address " + toCheckOut.getGuestDetails().get(0).getAddress());
+					System.out.println("Thank you for your stay! Have a safe trip back home!");
+					
+					makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal,toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber());
+					break;
+				}
+				else if  (check.equals("0")){
+					String address;
+					String name;
+					String number;
+					System.out.println("Plese enter your credit card name: ");
+					name = sc.nextLine();
+					System.out.println("Please enter your credit card number: ");
+					number = sc.nextLine();
+					System.out.println("Please enter your billing address: ");
+					address = sc.nextLine();
+					System.out.printf("The amount of $%.2f", totalChargesGlobal );
+					System.out.println(" will be charged to your card, under the name, " + name + ", with the number " + number + ", to your billing address at " + address);
+					System.out.println("Thank you for your stay! Have a safe trip back home!");
+					
+					makePaymentObject(roomChargesGlobal, tax, roomServicesGlobal, discountGlobal, totalChargesGlobal, methodOfPayment.CARD, checkOutRoomOrders, numberOfNightsGlobal, toCheckOut.getGuestDetails().get(0).getCreditCardName() , toCheckOut.getGuestDetails().get(0).getAddress(), toCheckOut.getGuestDetails().get(0).getCreditCardNumber()); // Calling the method
+					break;
+				}
+				else{
+				System.out.println("Invalid input! If yes, enter (1). Else, enter(0)");
+				}
 			}
 		}
 		
@@ -211,6 +260,13 @@ public class PaymentManager {
                 
         	}
     	}
+		
+		//deleting room service orders
+		for(Order o: Initialise.orders) {
+			if(o.getResID()==toCheckOut.getReservationID()) {
+				Initialise.orders.remove(o);
+			}
+		}
 
 	}
 	
@@ -252,7 +308,7 @@ public class PaymentManager {
 	 */
 	public int calcNumberOfNights(Calendar checkInDate){
 		float numberOfSeconds = ChronoUnit.SECONDS.between(checkInDate.getTime().toInstant(), Calendar.getInstance().toInstant());
-    	//covertion from seconds to days
+    	//conversion from seconds to days
     	int numberOfNights = (int)Math.ceil((numberOfSeconds/(60*60*24)));
     	return numberOfNights;
 	}
@@ -299,18 +355,18 @@ public class PaymentManager {
 	 * @param discountGlobal discount applied
 	 * @param totalChargesGlobal total charges after discount
 	 */
-	public void printFullReceipt(Reservation toCheckOut, int numberOfNightsGlobal,  double roomChargesGlobal, double roomServicesGlobal,  double discountGlobal,  double totalChargesGlobal){
+	public void printFullReceipt(Reservation toCheckOut, int numberOfNightsGlobal,  double roomChargesGlobal, double roomServicesGlobal,  double discountGlobal, double tax,  double totalChargesGlobal){
 		System.out.println("======== This is your Total Bill for your stay ========");
-		System.out.println("Name: " + toCheckOut.getGuestDetails().get(0).getName()); // Prints out name of the first name of Guest Details
-		System.out.println("Room Number: " + toCheckOut.getRoomDetails().getRoomNumber());
-		System.out.println("Check-In Date: " + toCheckOut.getCheckInDate().getTime());
-		System.out.println("Check-Out Date: " + Calendar.getInstance().getTime());
+		System.out.println("Name: \t\t\t" + toCheckOut.getGuestDetails().get(0).getName()); // Prints out name of the first name of Guest Details
+		System.out.println("Room Number: \t\t" + toCheckOut.getRoomDetails().getRoomNumber());
+		System.out.println("Check-In Date: \t\t" + toCheckOut.getCheckInDate().getTime());
+		System.out.println("Check-Out Date: \t" + Calendar.getInstance().getTime());
 		System.out.println("Number of Nights Stayed: " + numberOfNightsGlobal);
-		System.out.println("Room Charges: " + roomChargesGlobal);
-		System.out.println("Room Service Charges: " + roomServicesGlobal);
-		System.out.println("Discount: " + discountGlobal);
-		System.out.println("Tax: " + Initialise.GST);
-		System.out.println("Total Charges: " + totalChargesGlobal);
+		System.out.printf("Room Charges: \t\t %.2f. \n", roomChargesGlobal);
+		System.out.printf("Room Service Charges: \t %.2f. \n", roomServicesGlobal);
+		System.out.println("Discount(%): \t\t "+ discountGlobal*100 );
+		System.out.println("Tax(%): \t\t "+ tax*100);
+		System.out.printf("Total Charges: \t\t %.2f \n"  , totalChargesGlobal);
 	}
 	
 	/**
@@ -320,9 +376,8 @@ public class PaymentManager {
 	public void printShortReceipt(Payment p){
 		System.out.println("Payment ID: " + p.getPaymentID());
 		System.out.println("Name: " + p.getCreditCardName());
-		System.out.println("Total Amount: " + p.getTotalCharges());
+		System.out.printf("Total Amount: %.2f \n", p.getTotalCharges());
 		System.out.println("Payment Type: " + p.getPaymentMethod()); 
-//		System.out.println("Check-Out Date: " + ); 
 		System.out.println();
 	}
 	

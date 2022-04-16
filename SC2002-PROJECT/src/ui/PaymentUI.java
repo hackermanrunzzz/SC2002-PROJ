@@ -3,7 +3,8 @@ package ui;
 
 
 import java.util.Scanner;
-import Initialiser.Initialise;
+
+import initialiser.Initialise;
 
 /**
  * @author Darren Wong
@@ -19,7 +20,7 @@ public class PaymentUI {
 	 */
 	public static void paymentOptions() {
 		Scanner sc = new Scanner(System.in);
-		int option;
+		int option = 0;
 		
 		do {
 			
@@ -30,9 +31,13 @@ public class PaymentUI {
 	        System.out.println("(3) Display All Past Payments");
 	        System.out.println("(4) Go Back To Main Menu");
 	        System.out.println("========================================");
-	
-	        option = sc.nextInt();
-	        sc.nextLine();
+	        option = 0;
+	        try {
+	            option = sc.nextInt();
+	            
+	        }catch (Exception e) {
+	        }
+	        	sc.nextLine();
 	
 	        switch(option) {
 	            case 1:
@@ -43,10 +48,14 @@ public class PaymentUI {
 	                break;
 	            case 3:
 	            	Initialise.pm.showAllPaidReservation();
+	            	break;
+	            case 4:
+	            	break;
 	            default:
+	            	System.out.println("Invalid input!");
 	            	break;
 	        }
-	    } while (option<4);
+	    } while (option!=4);
 	}
 
     

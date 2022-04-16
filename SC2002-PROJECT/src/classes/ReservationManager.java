@@ -14,10 +14,10 @@ import java.util.List;
 import java.util.Scanner;
 import java.time.temporal.ChronoUnit;
 
-import Initialiser.Initialise;
 import classes.Reservation.*;
 import classes.Room.StatusOfRoom;
 import classes.Room.TypeOfRoom;
+import initialiser.Initialise;
 
 
 /**
@@ -75,10 +75,12 @@ public class ReservationManager {
         while(true) {
         	boolean roomTypeCheck = true;
         	while(roomTypeCheck) {
-		        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE): ");
+		        System.out.println("Please enter the type of room that you want (SINGLE/DOUBLE/DELUXE/VIPSUITE) (Enter 0 to cancel): ");
 		        String typeofroom = sc.nextLine();
+		        if(typeofroom.equals("0")) {
+		        	return;
+		        }
 		        typeofroomUpper = typeofroom.toUpperCase();
-		        
 		        if(typeofroomUpper.equals("SINGLE") || typeofroomUpper.equals("DOUBLE") || typeofroomUpper.equals("DELUXE") || typeofroomUpper.equals("VIPSUITE")) {
 		        	roomTypeCheck = false;
 		        }
@@ -86,11 +88,30 @@ public class ReservationManager {
 		        	System.out.println("Invalid room type entered.");
 		        }
         	}
-	        System.out.print("Enter amount of Adults: ");
-	        adults = sc.nextInt();
 	        
-	        System.out.print("Enter amount of Children: ");
-	        children = sc.nextInt();
+	        while(true) {
+		        try {
+		        	System.out.print("Enter amount of Adults: ");
+		        	adults = sc.nextInt();
+		        	sc.nextLine();
+		        	break;
+		        }catch(Exception e) {
+		        	System.out.println("Invalid input!");
+		        	sc.nextLine();
+		        }
+	        }
+	        
+	        while(true) {
+		        try {
+		        	System.out.print("Enter amount of Children: ");
+		        	children = sc.nextInt();
+		        	sc.nextLine();
+		        	break;
+		        }catch(Exception e) {
+		        	System.out.println("Invalid input!");
+		        	sc.nextLine();
+		        }
+	        }
 	        
 	        pax = adults + children;
 	        
@@ -381,6 +402,7 @@ public class ReservationManager {
 			System.out.println();
 			System.out.println("Please enter the reservation ID that you wish to cancel:");
 	    	resId = sc.nextInt();
+	    	
 	    	
 	    	//checking for valid reservation ID
 	    	for(Reservation r : reservations){

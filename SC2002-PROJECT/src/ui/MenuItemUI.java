@@ -3,7 +3,7 @@ package ui;
 
 import java.util.Scanner;
 
-import Initialiser.Initialise;
+import initialiser.Initialise;
 
 /**
  * @author Darren Wong
@@ -19,16 +19,10 @@ public class MenuItemUI {
 	 */
 	public static void menuOptions() {
 		
-//		ArrayList<MenuItem> menu = new ArrayList<MenuItem>();
-//		MenuManager mm = new MenuManager(menu);
 		
 		Scanner sc = new Scanner(System.in);
-		int option;
+		int option = 0;
 	
-	
-
-		//each ui has to initialise their respective items!
-//		Initialise.InitialiseMenu(); 
 		
 
 		do {
@@ -40,9 +34,13 @@ public class MenuItemUI {
             System.out.println("(4) Update Menu Item");
             System.out.println("(5) Go Back To Main Menu");
             System.out.println("========================================");
-
-            option = sc.nextInt();
-            sc.nextLine();
+            option = 0;
+	        try {
+	            option = sc.nextInt();
+	            
+	        }catch (Exception e) {
+	        }
+	        	sc.nextLine();
 
             switch(option) {
                 case 1:
@@ -57,7 +55,12 @@ public class MenuItemUI {
                 case 4:
                 	Initialise.mm.updateMenuItemUI();
                     break;
+                case 5:
+                	break;
+            	default:
+            		System.out.println("Invalid input!");
+            		break;
             }
-        } while (option<5);
+        } while (option != 5);
     }
 }

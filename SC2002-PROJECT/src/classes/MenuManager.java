@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 import classes.MenuItem.TypeOfMenuItem;
+import initialiser.Initialise;
 
 /**
  * @author Vijayanarayanan Sai Arunavan
@@ -41,10 +42,10 @@ public class MenuManager {
      */
 	public void printMenuItem(int i)
     {
-        System.out.println("Name: " + menu.get(i).getName() + " \n   Description: " +
-                menu.get(i).getDescription() + "\n   Type: " +
-               menu.get(i).getFoodType() + "          Price: $" +
-              menu.get(i).getPrice());
+        System.out.println( menu.get(i).getName() + " \nDescription: " +
+                			menu.get(i).getDescription());
+               System.out.print("Type: " + menu.get(i).getFoodType()); 
+               System.out.printf("          Price: $%.2f\n", menu.get(i).getPrice());
 
     }
     /**
@@ -54,11 +55,27 @@ public class MenuManager {
      * @return true if menu item is not already present in the array of menu items, false if otherwise
      */
     public boolean addMenuBoolean(MenuItem menuItem){
+    	int i=0;
         if(findFood(menuItem.getName())>=0){
             System.out.println("This food is already on the menu!");
             return false;
         }
-        MenuManager.menu.add(menuItem);
+        if(menuItem.getFoodType()==TypeOfMenuItem.MAIN) {
+        	for(i=0; i<Initialise.menu.size(); i++) {
+        		if(Initialise.menu.get(i).getFoodType()==TypeOfMenuItem.BEVERAGE)
+        			break;
+        	}
+        }
+        else if(menuItem.getFoodType()==TypeOfMenuItem.BEVERAGE) {
+        	for(i=0; i<Initialise.menu.size(); i++) {
+        		if(Initialise.menu.get(i).getFoodType()==TypeOfMenuItem.DESSERT)
+        			break;
+        	}
+        }
+        else {
+        	i = Initialise.menu.size();
+        }
+        Initialise.menu.add(i,menuItem);
         return true;
     }
     /**
@@ -72,6 +89,7 @@ public class MenuManager {
 		Scanner sc = new Scanner(System.in);
 		MenuItem menuItem = new MenuItem("dummy", "dummy",TypeOfMenuItem.MAIN, 0);
 		boolean i;
+		int j=0;
 		
         System.out.println("========================================");
         System.out.println("Enter name of new menu item :");
@@ -79,93 +97,120 @@ public class MenuManager {
 
         System.out.println("Enter description of new menu item : ");
         String description = sc.nextLine();
-        System.out.println("Enter type of new menu item (MAIN/ BEVERAGE / DESSERT) :");
+        System.out.println("Enter type of new menu item (MAIN/BEVERAGE/DESSERT) :");
         
         String type = sc.nextLine();
-        while(!type.equals("MAIN") && !type.equals("BEVERAGE") && !type.equals("DESSERT")  ){
-            System.out.println("Insert New Type (MAIN/ BEVERAGE/ DESSERT) :");
-            type=sc.next();
+        while(!type.toUpperCase().equals("MAIN") && !type.toUpperCase().equals("BEVERAGE") && !type.toUpperCase().equals("DESSERT")  ){
+            System.out.println("Invalid input! Enter type of new menu item (MAIN/BEVERAGE/DESSERT) :");
+            type =sc.nextLine();
         }
 
 
-        System.out.println("Enter price of new menu item :");
-        double price;
+
+        double price=0;
+        boolean validprice = false;
         do {
-            System.out.println("Please enter a positive number!");
-            while (!sc.hasNextDouble()) {
-                System.out.println("That's not a number!");
-                sc.next(); // this is important!
-            }
-            price = sc.nextDouble();
-        } while (price <= 0);
+            System.out.println("Enter price of new menu item :");
+        	try {
+        		price = sc.nextDouble();
+        		if(price>0) {
+            		validprice = true;
+        		}
+        		else {
+        			System.out.println("Please enter a positive number!");
+        		}
+        	}catch(Exception e) {
+        		System.out.println("Input is not a number!");
+        	}
+            sc.nextLine();
+        }while(!validprice);
 
 
-        sc.nextLine();
+
+
         
-        menuItem.setName(name);
-        menuItem.setDescription(description);
-        menuItem.setPrice(price);
+        System.out.println("Name: " + name + "\nDescription: " + description);
+        System.out.print("Type: " + type.toUpperCase());
+        System.out.printf("          Price: $%.2f\n", price);
         
-        if(type.equals("MAIN")) {
-        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.MAIN);
-        }
-        else if(type.equals("BEVERAGE")) {
-        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.BEVERAGE);
-        }
-        else if(type.equals("DESSERT")) {
-        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.DESSERT);
-        }
-       
+    	try {
+	    	System.out.println("Press (1) to confirm addition, Press any other number to cancel");
+	    	j = sc.nextInt();
+    	}catch(Exception e) {
+    		System.out.println("Invalid input! Cancelling addition...");
+    	}
+    	
+    	if(j==1) {
         
-        i = addMenuBoolean(menuItem);
-        if(i){
-            System.out.println("----------------------------------------");
-            System.out.println("Menu item added successfully.");}
-        else  return;
+	        menuItem.setName(name);
+	        menuItem.setDescription(description);
+	        menuItem.setPrice(price);
+	        
+	        if(type.toUpperCase().equals("MAIN")) {
+	        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.MAIN);
+	        }
+	        else if(type.toUpperCase().equals("BEVERAGE")) {
+	        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.BEVERAGE);
+	        }
+	        else if(type.toUpperCase().equals("DESSERT")) {
+	        	menuItem.setFoodType(MenuItem.TypeOfMenuItem.DESSERT);
+	        }
+	       
+	        
+	        i = addMenuBoolean(menuItem);
+	        if(i){
+	            System.out.println("----------------------------------------");
+	            System.out.println("Menu item added successfully.");}
+	        else  return;
+    	}
+    	else {
+    		System.out.println("Cancelling addition...");
+    	}
+    	return;
 	}
-    /**
-     * overloaded addMenuItem method
-     * to be used in the case where a menu item object has already been created and is to be added into the array
-     * @param temp menu item object which has already been created
-     */
-    public void addMenuItem(MenuItem temp) 
-    {
-        menu.add(temp);
-        return;
-    }
+
     /**
      * removes menu item from array of menu items
      * @return true if menu item was removed, false if otherwise
      */
     
-    public boolean removeMenuItem(){
-    	int i,j;
+    public void removeMenuItem(){
+    	int i=0,j=0;
     	System.out.println("Enter the index of the food you want to remove: ");
-    	i = sc.nextInt();
+    	try {
+    		i = sc.nextInt();
+    	}catch(Exception e){
+    		System.out.println("Invalid input!");
+    		sc.nextLine();
+    		return;
+    	};
     	
     	try{
             menu.get(i-1);
         }
         catch (IndexOutOfBoundsException e) {
             System.out.println("Menu Item index is not valid.");
-            return false;
+            sc.nextLine();
+            return;
         }
-    	
+    	sc.nextLine();
     	System.out.println("Are you sure you want to remove the following:");
     	printMenuItem(i-1);
     	
-    	
-    	System.out.println("Press (1) to confirm, Press any other number to cancel");
-    	j = sc.nextInt();
-    	
-    	if(j==1) {
-    		MenuManager.menu.remove(i-1);
-    		System.out.println("Food successfully removed.");
+    	try {
+	    	System.out.println("Press (1) to confirm, Press any other number to cancel");
+	    	j = sc.nextInt();
+	    	sc.nextLine();
+	    	if(j==1) {
+	    		MenuManager.menu.remove(i-1);
+	    		System.out.println("Food successfully removed.");
+	    	}
+    	}catch(Exception e) {
+    		System.out.println("Invalid input! Cancelling removal...");
+    		return;
     	}
-    	else {
-    		return false;
-    	}
-        return true;
+    	
+        return;
     }
     
     /**
@@ -200,7 +245,7 @@ public class MenuManager {
         System.out.println("==================================== MAIN ======================================");
         for (int i = 0; i < MenuManager.menu.size(); i++) {
             if (MenuManager.menu.get(i).getFoodType().equals(TypeOfMenuItem.MAIN)) {
-                System.out.print((i + 1) + ". ");
+                System.out.print((i+1) + ". ");
                 printMenuItem(i);
                 System.out.println("--------------------------------------------------------------------------------");
             }
@@ -213,7 +258,7 @@ public class MenuManager {
         System.out.println("================================== BEVERAGE ====================================");
         for (int i = 0; i < MenuManager.menu.size(); i++) {
         	if (MenuManager.menu.get(i).getFoodType().equals(TypeOfMenuItem.BEVERAGE)) {
-                System.out.print((i + 1) + ". ");
+                System.out.print((i+1) + ". ");
                 printMenuItem(i);
                 System.out.println("--------------------------------------------------------------------------------");
             }
@@ -226,7 +271,7 @@ public class MenuManager {
         System.out.println("=================================== DESSERT ====================================");
         for (int i = 0; i < MenuManager.menu.size(); i++) {
         	if (MenuManager.menu.get(i).getFoodType().equals(TypeOfMenuItem.DESSERT)) {
-                System.out.print((i + 1) + ". ");
+                System.out.print((i+1) + ". ");
                 printMenuItem(i);
                 System.out.println("--------------------------------------------------------------------------------");
             }
@@ -293,15 +338,22 @@ public class MenuManager {
     	System.out.println("[Update Price] ");
         System.out.println("Current Price : " + menuItem.getPrice());
         System.out.print("Insert New Price : ");
-        double price ;
+        double price = 0;
         do {
-            System.out.println("Please enter a new positive number!");
-            while (!sc.hasNextDouble()) {
-                System.out.println("That's not a number!");
-                sc.next();
-            }
-            price = sc.nextDouble();
-        } while (price <= 0 || price== menuItem.getPrice());
+        	try {
+        		price = sc.nextDouble();
+        	}catch(Exception e) {
+        		System.out.println("Invalid input! Please enter a positive number!");
+        		sc.nextLine();
+        		continue;
+        	}
+        	if(price <= 0 || price== menuItem.getPrice()) {
+        		System.out.println("Please enter a new positive number!");
+        		}
+        	else {
+        		break;
+        	}
+        } while(true);
         sc.nextLine();
         menuItem.setPrice(price);
     }
@@ -334,9 +386,13 @@ public class MenuManager {
              System.out.println("(4) Update Price");
              System.out.println(("(5) Exit"));
              System.out.println("========================================");
-
-             option = sc.nextInt();
-             sc.nextLine();
+             option = 0;
+ 	        try {
+	            option = sc.nextInt();
+	            
+	        }catch (Exception e) {
+	        }
+	        sc.nextLine();
 
              switch(option){
                  case 1:
@@ -351,8 +407,13 @@ public class MenuManager {
                  case 4:
                 	 updateMenuItemPrice(menu.get(index-1));
                      break;
+                 case 5:
+                	 break;
+            	 default:
+            		 System.out.println("Invalid input!");
+            		 break;
              }
-         } while (option<5);
+         } while (option != 5);
     }
     /**
      * gets the array of menu items

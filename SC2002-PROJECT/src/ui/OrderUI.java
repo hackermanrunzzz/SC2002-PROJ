@@ -3,9 +3,10 @@ package ui;
 
 import java.util.Calendar;
 import java.util.Scanner;
-import Initialiser.Initialise;
+
 import classes.Reservation;
 import classes.ReservationManager;
+import initialiser.Initialise;
 
 
 /**
@@ -25,7 +26,7 @@ public class OrderUI {
 		   * displaying the room service options
 		   */
 		    public static void orderOptions() {
-		        int choice;
+		        int option = 0;
 		        do {
 		            System.out.println("========================================");
 		            System.out.println("Select choice: ");
@@ -36,11 +37,16 @@ public class OrderUI {
 		            System.out.println("(5) Change Order Status");
 		            System.out.println("(6) Go Back To Main Menu");
 		            System.out.println("========================================");
+		            option = 0;
+			        try {
+			            option = sc.nextInt();
+			            
+			        }catch (Exception e) {
+			        }
+			        sc.nextLine();
+			        	
 
-		            choice = sc.nextInt();
-		            sc.nextLine();
-
-		            switch (choice) {
+		            switch (option) {
 		                case 1:
 		                  Initialise.om.createOrderUI();
 		                    break;
@@ -48,20 +54,21 @@ public class OrderUI {
 		                    Initialise.om.viewOrderUI();
 		                    break;
 		                case 3:
-		                   // addItemToOrderUI();
 		                	Initialise.om.DeleteOrder();
 		                    break;
 		                case 4:
 		                	Initialise.om.showAllOrders();
-		                  //  removeItemFromOrderUI();
 		                    break;
 		                case 5:
 		                   Initialise.om.ChangeStatusofOrder();
 		                    break;
 		                case 6:
+		                	break;
+	                	default:
+	                		System.out.println("Invalid input!");
 
 		            }
-		        } while (choice < 6);
+		        } while (option != 6);
 		    }
 
 
