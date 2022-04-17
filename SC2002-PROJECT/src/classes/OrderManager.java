@@ -206,7 +206,7 @@ public class OrderManager {
 
 			
 			System.out.println("Please Enter Additional Remarks (If Any): ");
-			String remarks = sc.next();
+			String remarks = sc.nextLine();
 			
 			
 			Calendar timenow = Calendar.getInstance();
@@ -357,7 +357,7 @@ public class OrderManager {
 						System.out.println("========================================");
 						System.out.println("OrderID: \t\t\t" + o.getOrderID() + "\nReservation ID: \t\t" + o.getResID()
 						+ "\nRoomNumber: \t\t\t" + o.getRoomNumber() + "\nTime Of Order:\t\t\t" +strtimeOfOrder + "\nRemarks: \t\t\t" + o.getRemarks() +
-						"\nOrder Status: \t\t\t"+ o.getOrderStatus()+"\nTotal Price: \t\t\t" + o.getTotalPrice());
+						"\nOrder Status: \t\t\t"+ o.getOrderStatus()+"\nTotal Price: \t\t\t" + String.format("%.2f", o.getTotalPrice()));
 											
 						String confirmation = sc.nextLine();
 						if(confirmation.equals("1")) {

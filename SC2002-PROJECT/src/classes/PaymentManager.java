@@ -131,7 +131,7 @@ public class PaymentManager {
 		while(true) {
 	        try {
 	        	choice = sc.nextInt();
-	            if(choice == 0 || choice == 1)
+	            if(choice == 1 || choice == 2)
 	            	break;
 	            else
 	            	System.out.println("Invalid input! Please enter (1) if you would like to pay by Cash. Enter (2) if you would like to pay by Card instead");
@@ -262,12 +262,13 @@ public class PaymentManager {
     	}
 		
 		//deleting room service orders
-		for(Order o: Initialise.orders) {
-			if(o.getResID()==toCheckOut.getReservationID()) {
-				Initialise.orders.remove(o);
-			}
-		}
-
+		Iterator<Order> itr2 = Initialise.orders.iterator();
+		while(itr2.hasNext()) {
+			Order o = itr2.next();
+    		if(o.getResID()==toCheckOut.getReservationID()) {
+              itr2.remove();
+        	}
+    	}
 	}
 	
 	/**
@@ -362,11 +363,11 @@ public class PaymentManager {
 		System.out.println("Check-In Date: \t\t" + toCheckOut.getCheckInDate().getTime());
 		System.out.println("Check-Out Date: \t" + Calendar.getInstance().getTime());
 		System.out.println("Number of Nights Stayed: " + numberOfNightsGlobal);
-		System.out.printf("Room Charges: \t\t %.2f. \n", roomChargesGlobal);
-		System.out.printf("Room Service Charges: \t %.2f. \n", roomServicesGlobal);
+		System.out.printf("Room Charges: \t\t %.2f\n", roomChargesGlobal);
+		System.out.printf("Room Service Charges: \t %.2f\n", roomServicesGlobal);
 		System.out.println("Discount(%): \t\t "+ discountGlobal*100 );
 		System.out.println("Tax(%): \t\t "+ tax*100);
-		System.out.printf("Total Charges: \t\t %.2f \n"  , totalChargesGlobal);
+		System.out.printf("Total Charges: \t\t %.2f\n"  , totalChargesGlobal);
 	}
 	
 	/**

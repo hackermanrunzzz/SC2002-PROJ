@@ -138,7 +138,6 @@ public class ReservationManager {
 	        else {
 	        	break;
 	        }
-	        sc.nextLine();
 		}
         if(typeofroomUpper.equals("SINGLE")) {
         	System.out.println("These are the vacant Single Rooms:");
@@ -180,7 +179,7 @@ public class ReservationManager {
         		 }
         	}
         }
-        sc.nextLine();
+
         
         if(roomcounter == 0) {
         	System.out.println("There are no available rooms available.");

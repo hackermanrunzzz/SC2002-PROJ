@@ -1,21 +1,12 @@
 package initialiser;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
-import java.util.Calendar;
-import java.util.Date;
+
 import java.util.Timer;
 
 import classes.*;
-import classes.MenuItem.TypeOfMenuItem;
-import classes.Room.StatusOfRoom;
-import classes.Room.TypeOfBed;
-import classes.Room.TypeOfRoom;
 import serialize.ReadHotelDB;
-import serialize.SerializeHotelDB;
-import classes.Reservation.StatusOfReservation;
-import classes.Payment.methodOfPayment; // For initialising Payment here first, testing
+
 
 public class Initialise {
 	
@@ -67,7 +58,7 @@ public class Initialise {
 	public static void autoExpiry(){
         Timer time = new Timer();
         ReservationExpiry re = new ReservationExpiry(Initialise.reservations); // Instantiate ScheduledTask class
-        time.schedule(re, 0,5000); // Create Repetitively task for every 20 seconds
+        time.schedule(re, 0,50000); // Create Repetitively task for every 50 seconds
     }
 
 

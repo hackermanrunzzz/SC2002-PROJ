@@ -1,9 +1,7 @@
 package classes;
 
-import java.util.ArrayList;
-import java.util.Scanner;
 
-import classes.Guest;
+import java.util.Scanner;
 import initialiser.Initialise;
 
 /**
@@ -179,8 +177,13 @@ public class GuestManager {
 			System.out.println("Cancelling change...");
 			return;
 		}
+		if(updatedGender != 'M' && updatedGender != 'm' && updatedGender != 'F' && updatedGender != 'f') {
+			System.out.println("Invalid Input!");
+			System.out.println("Cancelling change...");
+			return;
+		}
 		sc.nextLine();
-		System.out.println("Update guest gender from " + guest.getName()+" to " + updatedGender +" ? (Enter 1 to confirm, 0 to cancel)");
+		System.out.println("Update guest gender from " + guest.getGender() +" to " + updatedGender +" ? (Enter 1 to confirm, 0 to cancel)");
 		String confirmation = sc.nextLine();
 		if(confirmation.equals("1")) {
 			guest.setGender(updatedGender);

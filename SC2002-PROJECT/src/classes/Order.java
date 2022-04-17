@@ -5,9 +5,6 @@ import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.UUID;
-
-import initialiser.Initialise;
 
 /**
  * @author Darren Wong 
@@ -291,7 +288,7 @@ public class Order implements Serializable{
       
 
         return "OrderID : \t\t\t" + this.getOrderID() + "\nResid: \t\t\t\t" + this.getResID()  + "\nRoomNumber: \t\t\t" + this.getRoomNumber() + "\nTime Of Order: \t\t\t"  + strtimeOfOrder + "\nRemarks : \t\t\t" + this.getRemarks()  + "\nStatus Of Order:  \t\t"
-   + this.getOrderStatus() +  "\nTotal Price : \t\t\t" + "$"+ this.getTotalPrice();            
+   + this.getOrderStatus() +  "\nTotal Price : \t\t\t" + "$"+ String.format("%.2f", this.getTotalPrice());            
               
     }
 	

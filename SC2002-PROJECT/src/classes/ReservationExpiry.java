@@ -47,7 +47,7 @@ public class ReservationExpiry extends TimerTask {
         		while(itr.hasNext()) {
         			Reservation r = itr.next();
             		if(r.getReservationStatus().equals(StatusOfReservation.CONFIRMED)) {
-    	                long expiryTime =  r.getCheckInDate().getTimeInMillis()+10000; //this is 45min
+    	                long expiryTime =  r.getCheckInDate().getTimeInMillis()+3600000; //this is 1hr
     	                long nowMilli = now.getTimeInMillis();
     	                if (expiryTime<nowMilli) {
     	                	r.getRoomDetails().setRoomStatus(StatusOfRoom.VACANT); //setting room back to vacant

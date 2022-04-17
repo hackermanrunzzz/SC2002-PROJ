@@ -149,7 +149,6 @@ public class CheckInManager {
 	        else {
 	        	break;
 	        }
-	        sc.nextLine();
         }
         
         //printing all the available rooms that are vacant and of the selected room type
@@ -193,7 +192,7 @@ public class CheckInManager {
         		 }
         	}
         }
-        sc.nextLine();
+
         
         if(roomCounter == 0) {
         	System.out.println("There are no available rooms available.");

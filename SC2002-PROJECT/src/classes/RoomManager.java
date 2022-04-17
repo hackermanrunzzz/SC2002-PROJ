@@ -4,9 +4,6 @@ package classes;
 import java.util.ArrayList;
 import java.util.Scanner;
 
-import classes.Room.TypeOfRoom;
-import initialiser.Initialise;
-
 
 /**
  * @author darren wong
