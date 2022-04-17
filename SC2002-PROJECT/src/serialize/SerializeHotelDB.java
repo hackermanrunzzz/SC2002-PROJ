@@ -8,8 +8,19 @@ import java.io.ObjectOutputStream;
 import java.util.List;
 import java.util.ArrayList;
 
-public class SerializeHotelDB {
 
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
+public class SerializeHotelDB {
+	
+	/**
+	 * 
+	 * @param filename file name in string format
+	 * @return object
+	 */
 	public static List readSerializedObject(String filename) {
 		List pDetails = null;
 		FileInputStream fis = null;
@@ -29,7 +40,12 @@ public class SerializeHotelDB {
 		//System.out.println();
 		return pDetails;
 	}
-
+	
+	/**
+	 * 
+	 * @param filename file name in string format
+	 * @param list list of objects
+	 */
 	public static void writeSerializedObject(String filename, List list) {
 		FileOutputStream fos = null;
 		ObjectOutputStream out = null;

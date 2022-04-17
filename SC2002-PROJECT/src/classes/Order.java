@@ -67,9 +67,9 @@ public class Order implements Serializable{
 
 	/**
 	 * 
-	 * @param OrderID unique identifier for order
-	 * @param ResID unique identifier for reservation
-	 * @param RoomNumber room number
+	 * @param orderID unique identifier for order
+	 * @param resID unique identifier for reservation
+	 * @param roomNumber room number
 	 * @param time time of order
 	 * @param remarks additional remarks
 	 * @param orderStatus status of order
@@ -297,7 +297,7 @@ public class Order implements Serializable{
 	
 	/**
 	 * print menu items
-	 * @param menuitems array list of menu items
+	 * @param menuItems array list of menu items
 	 */
 	 public void printIndividualFood (ArrayList<MenuItem> menuItems) {
 		  

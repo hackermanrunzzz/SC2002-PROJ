@@ -73,8 +73,8 @@ public class OrderManager {
 
 	/**
 	 * creating object of order
-	 * @param ResID reservation id
-	 * @param RoomNumber room number
+	 * @param resID reservation id
+	 * @param roomNumber room number
 	 * @param time time of order
 	 * @param remarks remarks for room service order
 	 * @param totalPrice total price of room service order
@@ -91,8 +91,8 @@ public class OrderManager {
     
     /**
      * finding order id 
-     * @param ResID reservation id
-     * @param RoomNumber room number
+     * @param resID reservation id
+     * @param roomNumber room number
      * @return order id
      */
     public static String findOrderID(int resID,String roomNumber) {

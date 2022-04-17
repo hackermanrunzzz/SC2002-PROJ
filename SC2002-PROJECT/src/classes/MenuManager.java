@@ -171,9 +171,7 @@ public class MenuManager {
 
     /**
      * removes menu item from array of menu items
-     * @return true if menu item was removed, false if otherwise
      */
-    
     public void removeMenuItem(){
     	int i=0,j=0;
     	System.out.println("Enter the index of the food you want to remove: ");

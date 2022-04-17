@@ -7,7 +7,18 @@ import java.util.Scanner;
 
 import initialiser.Initialise;
 
+
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
 public class HotelMain {
+	
+	/**
+	 * main function
+	 * @param args string
+	 */
 	public static void main (String[] args) {
 		Scanner sc = new Scanner(System.in);
 		int option = 0;

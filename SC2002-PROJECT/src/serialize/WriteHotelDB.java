@@ -3,7 +3,17 @@ package serialize;
 
 import initialiser.*;
 
+
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
 public class WriteHotelDB {
+	
+	/**
+	 * writes data in the program onto files
+	 */
 	public static void writeHotelDB(){
 		try	{
 

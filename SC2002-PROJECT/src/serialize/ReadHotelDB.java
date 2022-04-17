@@ -6,8 +6,17 @@ import java.util.List;
 import classes.*;
 import initialiser.*;
 
+
+/**
+ * @author Darren Choo
+ * @version 1.0
+ * @since 14th April 2022
+ */
 public class ReadHotelDB {
 	
+	/**
+	 * reads in data files into program
+	 */
 	public static void readHotelDB() {
 		List list;
 		try	{

@@ -354,6 +354,7 @@ public class PaymentManager {
 	 * @param roomChargesGlobal room charges
 	 * @param roomServicesGlobal room service charges
 	 * @param discountGlobal discount applied
+	 * @param tax tax of 9%
 	 * @param totalChargesGlobal total charges after discount
 	 */
 	public void printFullReceipt(Reservation toCheckOut, int numberOfNightsGlobal,  double roomChargesGlobal, double roomServicesGlobal,  double discountGlobal, double tax,  double totalChargesGlobal){
